@@ -6,6 +6,10 @@ export default {
       minHeight: {
         600: '600px',
       },
+      colors: {
+        'main-dark': '#111115',
+        'blue-dark': '#161d30',
+      },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
         accent: ['BebasNeue', 'sans-serif'],

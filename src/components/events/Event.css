@@ -1,0 +1,21 @@
+.slick-arrow {
+  z-index: 10;
+  transition: all;
+}
+
+.slick-arrow:hover {
+  opacity: 0.9;
+}
+
+.slick-arrow:before {
+  font-size: 24px;
+  color: black;
+}
+
+.slick-prev {
+  left: 0;
+}
+
+.slick-next {
+  right: 4px;
+}
