@@ -1,7 +1,7 @@
 export * from './Main';
 export * from './Team';
 export * from './Fotos';
-// export * from './Impressum';
+export * from './Impressum';
 export * from './Kontakt';
 export * from './Navbar';
 export * from './NavMenu';
