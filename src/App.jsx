@@ -17,25 +17,19 @@ const App = () => {
     <div className='app'>
       <Navbar />
       <div className='parallax' id='parallax1'>
-        <div className='content'>
-          <Main />
-        </div>
+        <Main />
       </div>
       <div className='section'>
         <Team />
       </div>
       <div className='parallax' id='parallax2'>
-        <div className='content'>
-          <Fotos />
-        </div>
+        <Fotos />
       </div>
       <div className='section'>
         <PastEvents />
       </div>
       <div className='parallax' id='parallax1'>
-        <div className='content'>
-          <Kontakt />
-        </div>
+        <Kontakt />
       </div>
       <div className='section'>
         <Footer />
