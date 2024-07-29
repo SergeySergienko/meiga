@@ -13,7 +13,10 @@ export const EventPopup = ({ event, onClose }) => {
 
   return (
     <div className='fixed p-4 inset-0 z-50 flex items-center justify-center bg-main-dark/80 backdrop-blur'>
-      <div className='relative external-container pt-16 pb-6 overflow-y-auto max-h-full bg-white rounded'>
+      <div
+        className='relative external-container pt-16 pb-6 overflow-y-auto max-h-full bg-white rounded'
+        style={{ marginTop: 100 }}
+      >
         <button
           className='absolute top-4 right-4 text-xl hover:text-red-600'
           onClick={onClose}

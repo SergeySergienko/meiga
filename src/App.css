@@ -25,6 +25,10 @@ html {
   text-align: center;
 }
 
+#bg-fixed {
+  background-image: url('./assets/images/hero-bg.webp');
+}
+
 #parallax1 {
   background-image: url('./assets/images/hero-bg.webp');
 }

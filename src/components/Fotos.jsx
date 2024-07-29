@@ -10,7 +10,7 @@ export const Fotos = () => {
           Fotos
         </h2>
       </div> */}
-      <div className='flex-column'>
+      <div className='flex-column rotate-6'>
         <div>
           <img
             src={Mannschaftsfoto}
@@ -18,25 +18,25 @@ export const Fotos = () => {
             style={{ width: '98%', border: '8px solid white' }}
           />
         </div>
-        <div className=''>
+        <div className='bg-white text-main-dark mb-16' style={{ width: '98%' }}>
           <p>Ein Teil unseres Teams mit den neuen Trikots</p>
-          <p className='mb-4'>Hol dir auch du deine Wunschnummer!</p>
+          <p className='pb-2'>Hol dir auch du deine Wunschnummer!</p>
         </div>
       </div>
 
-      <div className='flex-column'>
+      <div className='relative flex-column -rotate-6 z-10'>
         <div>
           <img src={sv3} alt='sv3' />
         </div>
-        <div>
+        <div className='bg-white text-main-dark mb-16' style={{ width: '98%' }}>
           <p>
             Impressionen zu unseren Trainingseinheiten in der Freiluftsaison
             2023
           </p>
-          <p className='mb-4'>Immer mit Ehrgeiz, aber auch viel Spaß</p>
+          <p className='pb-2'>Immer mit Ehrgeiz, aber auch viel Spaß</p>
         </div>
       </div>
-      <div className='flex-column'>
+      <div className='flex-column origin-bottom-right transform rotate-12'>
         <img src={sv4} alt='sv4' />
       </div>
     </div>
