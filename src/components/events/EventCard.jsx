@@ -45,7 +45,7 @@ export const EventCard = ({ event }) => {
   if (!event)
     return (
       <h2 className='text-center font-accent tracking-widest font-bold'>
-        <p className='text-4xl'>Keine Ereignisse</p>
+        <p className='text-3xl'>Keine Ereignisse</p>
       </h2>
     );
 
@@ -53,7 +53,7 @@ export const EventCard = ({ event }) => {
     <>
       <>
         <h2 className='text-center font-accent tracking-widest font-bold'>
-          <p className='text-4xl'>{event.title}</p>
+          <p className='text-3xl'>{event.title}</p>
         </h2>
         {/* <p className='text-center'>
           <span className='mr-1'>Platz im Turnier: </span>
@@ -72,7 +72,7 @@ export const EventCard = ({ event }) => {
         {event.photos.map((photo, index) => (
           <div key={index}>
             <img
-              className='w-full h-64 sm:h-96 object-contain object-center'
+              className='w-full h-64 sm:h-72 object-contain object-center'
               src={photo}
               alt={`Event_photo_${index}`}
             />
