@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { FaTimes } from 'react-icons/fa';
 import { links } from './NavMenu';
+import { CrossIcon } from './icons';
 
 export const MenuPopup = ({ onClose }) => {
   useEffect(() => {
@@ -13,22 +13,12 @@ export const MenuPopup = ({ onClose }) => {
 
   return (
     <div className='fixed inset-0 z-50 backdrop-blur'>
-      <nav
-        className='fixed h-72 bg-main-dark w-screen p-8'
-        // x-show='showSidenav'
-        // x-transition:enter='transition ease-out duration-300'
-        // x-transition:enter-start='-translate-x-72'
-        // x-transition:enter-end='translate-x-0'
-        // x-transition:leave='transition ease-in duration-300 '
-        // x-transition:leave-start='translate-x-0'
-        // x-transition:leave-end='-translate-x-72'
-        // x-cloak
-      >
+      <nav className='fixed bg-main-dark/90 w-screen p-8'>
         <button
-          className='absolute top-10 right-6 text-2xl text-white/70 hover:text-white'
+          className='absolute top-8 right-6 md:right-10 text-white hover:text-purple-300'
           onClick={onClose}
         >
-          <FaTimes />
+          <CrossIcon />
         </button>
         <ul className='flex flex-col gap-8'>
           {links.map((link) => (
@@ -36,7 +26,7 @@ export const MenuPopup = ({ onClose }) => {
               <a
                 href={link.path}
                 onClick={onClose}
-                className='mr-10 transition cursor-pointer text-white hover:text-purple-300'
+                className='mr-10 transition cursor-pointer font-bold text-xl text-white hover:text-purple-300'
               >
                 {link.label}
               </a>

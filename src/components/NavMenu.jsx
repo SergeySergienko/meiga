@@ -1,4 +1,4 @@
-import logo from '../assets/images/logo.svg';
+import { LogoIcon } from './icons';
 
 export const links = [
   { path: '#startseite', label: 'Startseite' },
@@ -13,10 +13,10 @@ export const NavMenu = () => {
     <>
       <a
         href='#startseite'
-        className='flex flex-shrink-0 items-center mr-4 md:mr-12'
+        className='flex flex-shrink-0 items-center mr-4 md:mr-12 text-white hover:text-white/70'
       >
-        <img className='h-10 mr-2' src={logo} alt='Freiberger Maulwürfe' />
-        <span className='text-white font-accent tracking-widest'>
+        <LogoIcon />
+        <span className='text-white ml-2 font-bold tracking-widest'>
           SV Meissner Gasse e.V.
         </span>
       </a>
@@ -26,7 +26,7 @@ export const NavMenu = () => {
           <li key={link.path}>
             <a
               href={link.path}
-              className='mr-10 transition cursor-pointer text-white hover:text-purple-300'
+              className='mr-10 transition cursor-pointer font-bold text-white hover:text-purple-300'
             >
               {link.label}
             </a>

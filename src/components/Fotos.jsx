@@ -5,11 +5,6 @@ import sv4 from '../assets/images/20230719_213453.jpg';
 export const Fotos = () => {
   return (
     <div id='fotos' className='external-container py-6 sm:py-12 lg:py-20'>
-      {/* <div className='flex justify-center p-4 bg-purple-200'>
-        <h2 className='text-4xl text-center text-purple-600 font-bold [text-shadow:2px_2px_3px_var(--tw-shadow-color)] shadow-purple-900'>
-          Fotos
-        </h2>
-      </div> */}
       <div className='flex-column rotate-6'>
         <div>
           <img

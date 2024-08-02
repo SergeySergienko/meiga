@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { FaMapMarker, FaCalendar, FaTrophy } from 'react-icons/fa';
+// import { FaTrophy } from 'react-icons/fa';
 import { EventPopup } from './EventPopup';
 import { getLocaleDate } from '../../utils';
+import { CalendarIcon, MapMarkerIcon } from '../icons';
 
 export const EventCardCover = ({ event }) => {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
@@ -35,12 +36,20 @@ export const EventCardCover = ({ event }) => {
               {/* <FaTrophy className='inline pb-1 mr-1 text-red-600' />
             <span>{event.teamPlace}</span> */}
             </h3>
-            <p className='line-clamp-1 text-red-600 text-sm mb-4'>
-              <FaCalendar className='inline pb-1 mr-1' />
-              <span className='mr-2'>{getLocaleDate(event.date)}</span>
-              <FaMapMarker className='inline pb-1' />
-              <span>{event.location}</span>
-            </p>
+            <div className='flex justify-center items-center gap-4 text-purple-800 text-sm'>
+              <div className='flex justify-center items-center gap-1'>
+                <span>
+                  <CalendarIcon />
+                </span>
+                <span>{getLocaleDate(event.date)}</span>
+              </div>
+              <div className='flex justify-center items-center gap-1'>
+                <span>
+                  <MapMarkerIcon />
+                </span>
+                <span className='line-clamp-1'>{event.location}</span>
+              </div>
+            </div>
             <p className='h-24 line-clamp-4 opacity-60 mb-4 md:mb-0'>
               {event.description}
             </p>

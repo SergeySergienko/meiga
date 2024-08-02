@@ -1,10 +1,11 @@
 import { useState, useRef } from 'react';
-import { FaMapMarker, FaCalendar, FaTrophy } from 'react-icons/fa';
+// import { FaTrophy } from 'react-icons/fa';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Event.css';
 import { getLocaleDate } from '../../utils';
+import { CalendarIcon, MapMarkerIcon } from '../icons';
 
 export const EventCard = ({ event }) => {
   const [currentPhoto, setCurrentPhoto] = useState(0);
@@ -60,13 +61,21 @@ export const EventCard = ({ event }) => {
           <FaTrophy className='inline pb-1 mr-1 text-red-600' />
           <span>{event.teamPlace}</span>
         </p> */}
-        <p className='mb-4 text-center text-red-600 text-sm'>
-          <FaCalendar className='inline pb-1 mr-1' />
-          <span className='mr-2'>{getLocaleDate(event.date)}</span>
-          <FaMapMarker className='inline pb-1' />
-          <span>{event.location}</span>
-        </p>
-        <p className='h-full opacity-60 mb-4'>{event.description}</p>
+        <div className='flex justify-center items-center gap-4 text-purple-800'>
+          <div className='flex justify-center items-center gap-1'>
+            <span>
+              <CalendarIcon />
+            </span>
+            <span>{getLocaleDate(event.date)}</span>
+          </div>
+          <div className='flex justify-center items-center gap-1'>
+            <span>
+              <MapMarkerIcon />
+            </span>
+            <span>{event.location}</span>
+          </div>
+        </div>
+        <p className='h-full opacity-60 my-4'>{event.description}</p>
       </>
       <Slider ref={mainSlider} {...settingsMain} className='slider-for mb-4'>
         {event.photos.map((photo, index) => (

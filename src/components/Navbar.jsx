@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 // import { FaSearch } from 'react-icons/fa';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import { NavMenu, MenuPopup } from './';
+import { BurgerIcon } from './icons';
 
 export const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -32,12 +32,13 @@ export const Navbar = () => {
           <div className='flex grow justify-between p-1 rounded-full bg-gradient-to-r from-white/15 to-40% '>
             <NavMenu />
           </div>
-          <div className='flex items-center h-12 py-1 px-4 lg:hidden'>
-            <GiHamburgerMenu
-              className='fill-white/90 cursor-pointer transition hover:fill-white/50'
-              size={40}
+          <div className='flex items-center h-12 py-1 lg:hidden'>
+            <button
+              className='text-white hover:text-white/70'
               onClick={() => toggleMenuPopup((prevState) => !prevState)}
-            />
+            >
+              <BurgerIcon />
+            </button>
           </div>
 
           {/* <div className='hidden sm:flex items-center h-12 py-1 px-4 rounded-full bg-white/10'>
