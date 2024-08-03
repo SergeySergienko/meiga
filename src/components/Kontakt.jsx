@@ -4,7 +4,7 @@ export const Kontakt = () => {
   return (
     <div
       id='contacts'
-      className='external-container bg-blue-dark/60 m-6 sm:my-12 lg:my-20 p-6 sm:py-12 lg:py-20'
+      className='external-container bg-blue-dark/80 m-6 sm:my-12 lg:my-20 p-6 sm:py-12 lg:py-20'
     >
       <div>
         <p className='font-bold'>Anschrift: </p>

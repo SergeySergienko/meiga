@@ -4,14 +4,9 @@ export const Team = () => {
   return (
     <div className='bg-main-dark/10'>
       <div id='team' className='external-container p-6 sm:py-12 lg:py-20'>
-        {/* <div className='flex justify-center p-4 bg-purple-200'>
-        <h2 className='text-4xl text-center text-purple-600 font-bold [text-shadow:2px_2px_3px_var(--tw-shadow-color)] shadow-purple-900'>
-          Team
-        </h2>
-      </div> */}
-        <div>
-          <p className='text-4xl font-bold'>Wer sind wir?</p>
-          <p className='mb-4'>
+        <div className='bg-white p-2 mb-4'>
+          <p className='text-3xl sm:text-4xl font-bold'>Wer sind wir?</p>
+          <p>
             Wir sind ein kleiner dynamischer Verein aus Freiberg
             (Mittelsachsen). Bei unserem Team handelt es sich um eine Volleyball
             Mixed-Mannschaft, die mit viel Spaß regelmäßig trainiert und
@@ -19,9 +14,9 @@ export const Team = () => {
             Freizeitturnieren in der Region teilnehmt.
           </p>
         </div>
-        <div>
-          <p className='text-4xl font-bold'>Wir suchen dich!</p>
-          <p className='mb-4'>
+        <div className='bg-white p-2 mb-4'>
+          <p className='text-3xl sm:text-4xl font-bold'>Wir suchen dich!</p>
+          <p>
             Hast du Interesse an einer ungezwungenen und sportlichen
             Freizeitgestaltung? Dann komm zu uns. Immer Mittwochs von 19:30 bis
             21:30 Uhr in der Turnhalle der "Winklerschule" am Franz-Kögler-Ring
@@ -30,13 +25,13 @@ export const Team = () => {
             aber vorteilhaft. Wir freuen uns auf dich/euch!
           </p>
         </div>
-        <div className='flex-column sm:flex'>
-          <div className='sm:flex-shrink-0 sm:w-2/4'>
-            <img src={sv2} alt='sv2' className='my-0 mx-auto' />
+        <div className='flex-column sm:flex sm:items-start'>
+          <div className='sm:flex-shrink-0 sm:w-2/4 sm:mr-2'>
+            <img src={sv2} alt='sv2' />
           </div>
-          <div className='sm:flex-shrink'>
-            <p className='text-4xl font-bold'>Das bieten wir:</p>
-            <p className='mb-4'>
+          <div className='bg-white p-2 mt-4 sm:mt-0 sm:flex-grow'>
+            <p className='text-3xl sm:text-4xl font-bold'>Das bieten wir:</p>
+            <p>
               Egal, ob jung, alt, groß, klein, Mann oder Frau, dünn oder etwas
               kräftiger... all das ist für uns kein Problem, denn von den
               meisten dieser Eigenschaften haben wir bereits Mitglieder im

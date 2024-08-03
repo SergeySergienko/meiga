@@ -28,7 +28,7 @@ export const EventCardCover = ({ event }) => {
           <div className='flex flex-col justify-between items-start md:mr-4'>
             <h3 className='line-clamp-1 uppercase'>
               <span
-                className='mr-4 font-bold transition hover:text-red-600 cursor-pointer'
+                className='mr-4 font-bold transition hover:text-purple-600 cursor-pointer'
                 onClick={openEventPopup}
               >
                 {event.title}

@@ -53,9 +53,9 @@ export const EventCard = ({ event }) => {
   return (
     <>
       <>
-        <h2 className='text-center font-bold'>
+        <h3 className='text-center font-bold'>
           <p className='text-xl'>{event.title}</p>
-        </h2>
+        </h3>
         {/* <p className='text-center'>
           <span className='mr-1'>Platz im Turnier: </span>
           <FaTrophy className='inline pb-1 mr-1 text-red-600' />
@@ -81,7 +81,7 @@ export const EventCard = ({ event }) => {
         {event.photos.map((photo, index) => (
           <div key={index}>
             <img
-              className='w-full h-40 sm:h-72 object-contain object-center'
+              className='w-full h-48 sm:h-96 object-contain object-center'
               src={photo}
               alt={`Event_photo_${index}`}
             />
