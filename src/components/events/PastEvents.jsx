@@ -35,9 +35,9 @@ export const PastEvents = () => {
   return (
     <>
       <div id='events' className='bg-main-dark/10'>
-        <div className='external-container py-10 sm:py-16 lg:py-20'>
-          <h2 className='mb-4 text-center font-accent tracking-widest font-bold'>
-            <p className='text-4xl'>Unsere vergangenen Veranstaltungen</p>
+        <div className='external-container py-4 sm:py-10 lg:py-16'>
+          <h2 className='mb-4 text-center text-2xl font-accent font-bold'>
+            Unsere vergangenen Veranstaltungen
           </h2>
           <div className='mb-10'>
             {events.map((event, index) => (

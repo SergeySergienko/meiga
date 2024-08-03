@@ -23,19 +23,19 @@ const App = () => {
       <div className='parallax'>
         <Main />
       </div>
-      <div className='relative z-10 bg-white'>
+      <div className='relative bg-white'>
         <Team />
       </div>
       <div className='parallax'>
         <Fotos />
       </div>
-      <div className='relative z-10 bg-white'>
+      <div className='relative bg-white'>
         <PastEvents />
       </div>
       <div className='parallax'>
         <Kontakt />
       </div>
-      <div className='relative z-10'>
+      <div className='relative'>
         <Footer />
       </div>
     </div>

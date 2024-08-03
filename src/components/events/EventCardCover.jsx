@@ -26,7 +26,7 @@ export const EventCardCover = ({ event }) => {
             }}
           ></div>
           <div className='flex flex-col justify-between items-start md:mr-4'>
-            <h3 className='line-clamp-1 text-xl uppercase'>
+            <h3 className='line-clamp-1 uppercase'>
               <span
                 className='mr-4 font-bold transition hover:text-red-600 cursor-pointer'
                 onClick={openEventPopup}
@@ -50,7 +50,7 @@ export const EventCardCover = ({ event }) => {
                 <span className='line-clamp-1'>{event.location}</span>
               </div>
             </div>
-            <p className='h-24 line-clamp-4 opacity-60 mb-4 md:mb-0'>
+            <p className='text-main-dark/80 line-clamp-4 mb-4 md:mb-0'>
               {event.description}
             </p>
           </div>
