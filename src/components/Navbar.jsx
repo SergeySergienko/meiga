@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 // import { FaSearch } from 'react-icons/fa';
 import { NavMenu, MenuPopup } from './';
-import { BurgerIcon } from './icons';
+import { BurgerIcon, LogoIcon } from './icons';
 
 export const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [showSearchInput, setShowSearchInput] = useState(false);
+  // const [showSearchInput, setShowSearchInput] = useState(false);
   const [isMenuPopupOpen, toggleMenuPopup] = useState(false);
 
   useEffect(() => {
@@ -29,8 +29,17 @@ export const Navbar = () => {
         className={`z-20 fixed top-0 left-0 right-0 w-full text-white/40 ${bgClass}`}
       >
         <div className='flex items-center justify-between h-20 external-container'>
-          <div className='flex grow justify-between p-1 rounded-full bg-gradient-to-r from-white/15 to-40% '>
-            <NavMenu />
+          <div className='flex grow items-center justify-between p-1 rounded-full bg-gradient-to-r from-white/15 to-40% '>
+            <a
+              href='#home'
+              className='flex flex-shrink-0 items-center mr-4 md:mr-12 text-white hover:text-white/70'
+            >
+              <LogoIcon />
+              <span className='text-white ml-2 font-bold tracking-widest'>
+                SV Meissner Gasse e.V.
+              </span>
+            </a>
+            <NavMenu classList='hidden lg:flex gap-8' />
           </div>
           <div className='flex items-center h-12 py-1 lg:hidden'>
             <button

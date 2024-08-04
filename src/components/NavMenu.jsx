@@ -1,38 +1,55 @@
-import { LogoIcon } from './icons';
+import { useEffect } from 'react';
 
 export const links = [
-  { path: '#startseite', label: 'Startseite' },
+  { path: '#home', label: 'Startseite' },
   { path: '#team', label: 'Team' },
   { path: '#fotos', label: 'Fotos' },
   { path: '#events', label: 'Veranstaltungen' },
   { path: '#contacts', label: 'Kontakt' },
 ];
 
-export const NavMenu = () => {
-  return (
-    <>
-      <a
-        href='#startseite'
-        className='flex flex-shrink-0 items-center mr-4 md:mr-12 text-white hover:text-white/70'
-      >
-        <LogoIcon />
-        <span className='text-white ml-2 font-bold tracking-widest'>
-          SV Meissner Gasse e.V.
-        </span>
-      </a>
+export const NavMenu = ({ classList, onClose }) => {
+  useEffect(() => {
+    const handleNavClick = (event) => {
+      event.preventDefault();
+      const targetId = event.currentTarget.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = window.scrollY + elementPosition - 60;
 
-      <ul className='flex items-center hidden lg:flex'>
-        {links.map((link) => (
-          <li key={link.path}>
-            <a
-              href={link.path}
-              className='mr-10 transition cursor-pointer font-bold text-white hover:text-purple-300'
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </>
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      }
+    };
+
+    const navLinks = document.querySelectorAll('nav ul a');
+    navLinks.forEach((link) => {
+      link.addEventListener('click', handleNavClick);
+    });
+
+    return () => {
+      navLinks.forEach((link) => {
+        link.removeEventListener('click', handleNavClick);
+      });
+    };
+  }, []);
+
+  return (
+    <ul className={classList}>
+      {links.map((link) => (
+        <li key={link.path}>
+          <a
+            href={link.path}
+            onClick={onClose}
+            className='transition cursor-pointer font-bold text-xl text-white hover:text-purple-300'
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 };

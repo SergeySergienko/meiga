@@ -15,24 +15,21 @@ import './App.css';
 const App = () => {
   return (
     <div className='app'>
-      <div
-        id='bg-fixed'
-        className='fixed top-0 left-0 bottom-0 right-0 bg-cover'
-      ></div>
+      <div id='img-bg' className='fixed inset-0 bg-cover'></div>
       <Navbar />
-      <div className='parallax'>
+      <div className='relative'>
         <Main />
       </div>
-      <div className='relative bg-white'>
+      <div className='relative'>
         <Team />
       </div>
-      <div className='parallax'>
+      <div className='relative flex'>
         <Fotos />
       </div>
-      <div className='relative bg-white'>
+      <div className='relative'>
         <PastEvents />
       </div>
-      <div className='parallax'>
+      <div className='relative flex'>
         <Kontakt />
       </div>
       <div className='relative'>

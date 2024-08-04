@@ -33,19 +33,18 @@ const events = [
 
 export const PastEvents = () => {
   return (
-    <>
-      <div id='events' className='bg-main-dark/10'>
-        <div className='external-container py-4 sm:py-10 lg:py-16'>
-          <h2 className='mb-4 text-center text-2xl font-accent font-bold'>
-            Unsere vergangenen Veranstaltungen
-          </h2>
-          <div className='mb-10'>
-            {events.map((event, index) => (
-              <EventCardCover key={index} event={event} />
-            ))}
-          </div>
-        </div>
+    <div
+      id='events'
+      className='external-container py-4 sm:py-10 lg:py-16 bg-gray-200'
+    >
+      <h2 className='mb-4 text-center text-2xl font-accent font-bold'>
+        Unsere vergangenen Veranstaltungen
+      </h2>
+      <div className='mb-10'>
+        {events.map((event, index) => (
+          <EventCardCover key={index} event={event} />
+        ))}
       </div>
-    </>
+    </div>
   );
 };

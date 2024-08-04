@@ -24,6 +24,7 @@ export const EventCardCover = ({ event }) => {
             style={{
               backgroundImage: `url(${event.photos[0]})`,
             }}
+            onClick={openEventPopup}
           ></div>
           <div className='flex flex-col justify-between items-start md:mr-4'>
             <h3 className='line-clamp-1 uppercase'>

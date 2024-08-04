@@ -11,29 +11,6 @@ html {
   overflow-x: hidden;
 }
 
-.parallax {
-  position: relative;
-  /* background-attachment: fixed; */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-align: center;
-}
-
-#bg-fixed {
+#img-bg {
   background-image: url('./assets/images/hero-bg.webp');
-}
-
-#parallax1 {
-  background-image: url('./assets/images/hero-bg.webp');
-}
-
-#parallax2 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
-    url('./assets/images/hero-bg.webp');
 }

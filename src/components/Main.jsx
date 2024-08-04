@@ -38,8 +38,8 @@ export const Main = () => {
   };
 
   return (
-    <section
-      id='startseite'
+    <div
+      id='home'
       className='flex flex-col justify-end relative w-full h-screen min-h-600 overflow-hidden bg-hero-bg bg-cover bg-center'
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -85,6 +85,6 @@ export const Main = () => {
           </h1>
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 };
