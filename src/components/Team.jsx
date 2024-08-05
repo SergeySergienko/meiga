@@ -1,11 +1,19 @@
-import sv2 from '../assets/images/SV2.jpg';
+import vereinslogo from '../assets/images/vereinslogo.jpg';
 
 export const Team = () => {
   return (
     <div
       id='team'
-      className='external-container p-6 sm:py-12 lg:py-20 bg-gray-200'
+      className='external-container p-4 sm:py-10 lg:py-16 bg-gray-200'
     >
+      <h2 className='mb-4 text-center font-accent text-lg'>
+        <p class='text-purple-700'>Team</p>
+      </h2>
+
+      <p className='mb-6 text-center text-3xl sm:text-4xl font-bold italic text-purple-700 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-black'>
+        Volleyball verbindet – egal wer du bist
+      </p>
+
       <article className='bg-white p-2 mb-4'>
         <p className='text-3xl sm:text-4xl font-bold'>Wer sind wir?</p>
         <p>
@@ -16,6 +24,11 @@ export const Team = () => {
           teilnehmt.
         </p>
       </article>
+
+      <article className='p-2 mb-4'>
+        <img src={vereinslogo} alt='vereinslogo' />
+      </article>
+
       <article className='bg-white p-2 mb-4'>
         <p className='text-3xl sm:text-4xl font-bold'>Wir suchen dich!</p>
         <p>
@@ -27,6 +40,7 @@ export const Team = () => {
           vorteilhaft. Wir freuen uns auf dich/euch!
         </p>
       </article>
+
       <article className='bg-white p-2 mb-4'>
         <p className='text-3xl sm:text-4xl font-bold'>Das bieten wir:</p>
         <p>
