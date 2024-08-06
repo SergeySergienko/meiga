@@ -1,4 +1,4 @@
-export const BurgerIcon = ({ size = '2.5em' }) => (
+export const BurgerIcon = ({ size = '2em' }) => (
   <svg
     stroke='currentColor'
     fill='currentColor'

@@ -25,7 +25,13 @@ export const MenuPopup = ({ onClose }) => {
         isVisible ? 'opasity-100' : 'opacity-0'
       }`}
     >
-      <nav className='fixed bg-blue-dark w-screen p-8'>
+      <nav
+        className='fixed w-screen h-3/5 p-8'
+        style={{
+          backgroundImage:
+            'linear-gradient(to bottom, #161d30, #161d30, #161d30, #161d30,#253151, #253151, transparent)',
+        }}
+      >
         <button
           className='absolute top-8 right-6 md:right-10 text-white hover:text-purple-300'
           onClick={handleMenuClose}
