@@ -39,7 +39,7 @@ export const Navbar = () => {
                 SV Meissner Gasse e.V.
               </span>
             </a>
-            <NavMenu classList='hidden lg:flex gap-8' />
+            <NavMenu classList='hidden lg:flex gap-6' />
           </div>
           <div className='flex items-center h-12 py-1 lg:hidden'>
             <button

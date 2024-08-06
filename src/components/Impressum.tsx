@@ -2,12 +2,10 @@ import React from 'react';
 
 export const Impressum = () => {
   return (
-    <div id='impressum' className='external-container p-6 sm:py-12 lg:py-20'>
-      <div className='flex justify-center p-4 bg-purple-200'>
-        <h2 className='text-4xl text-center text-purple-600 font-bold [text-shadow:2px_2px_3px_var(--tw-shadow-color)] shadow-purple-900'>
-          Impressum
-        </h2>
-      </div>
+    <div className='external-container pb-8'>
+      <p className='mb-8 text-center text-xl sm:text-2xl font-bold'>
+        Impressum
+      </p>
       <div>
         <p className='mb-4'>
           Vertreten durch den Vorstand: Herr Frank Kehling
@@ -18,7 +16,7 @@ export const Impressum = () => {
           verpflichtet und nehmen auch nicht freiwillig teil.
         </p>
       </div>
-      <h3 className='text-xl font-bold my-6'>Haftungsausschluss</h3>
+      <h3 className='text-lg font-bold my-6'>Haftungsausschluss</h3>
       <p className='font-bold'>Haftung für Inhalte</p>
       <p className='mb-4'>
         Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die

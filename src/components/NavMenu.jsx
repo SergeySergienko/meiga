@@ -1,14 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { ImpressumPopup } from './ImpressumPopup';
 
 export const links = [
   { path: '#home', label: 'Startseite' },
   { path: '#team', label: 'Team' },
   { path: '#fotos', label: 'Fotos' },
   { path: '#events', label: 'Veranstaltungen' },
+  { path: 'impressum', label: 'Impressum' },
   { path: '#contacts', label: 'Kontakt' },
 ];
 
 export const NavMenu = ({ classList, onClose }) => {
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+
+  const openImpressumPopup = () => {
+    setIsPopUpOpen(true);
+  };
+
+  const closeImpressumPopup = () => {
+    setIsPopUpOpen(false);
+    if (onClose) {
+      onClose();
+    }
+  };
+
   useEffect(() => {
     const handleNavClick = (event) => {
       event.preventDefault();
@@ -38,18 +53,36 @@ export const NavMenu = ({ classList, onClose }) => {
   }, []);
 
   return (
-    <ul className={classList}>
-      {links.map((link) => (
-        <li key={link.path}>
-          <a
-            href={link.path}
-            onClick={onClose}
-            className='transition cursor-pointer font-bold text-xl text-white hover:text-purple-300'
-          >
-            {link.label}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className={classList}>
+        {links.map((link) => {
+          if (link.label === 'Impressum') {
+            return (
+              <li key={link.path}>
+                <span
+                  onClick={openImpressumPopup}
+                  className='transition cursor-pointer font-bold text-xl text-white hover:text-purple-300'
+                >
+                  {link.label}
+                </span>
+              </li>
+            );
+          }
+
+          return (
+            <li key={link.path}>
+              <a
+                href={link.path}
+                onClick={onClose}
+                className='transition cursor-pointer font-bold text-xl text-white hover:text-purple-300'
+              >
+                {link.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+      {isPopUpOpen && <ImpressumPopup onClose={closeImpressumPopup} />}
+    </>
   );
 };
