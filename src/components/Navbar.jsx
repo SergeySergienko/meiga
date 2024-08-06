@@ -21,14 +21,17 @@ export const Navbar = () => {
     };
   }, []);
 
-  const bgClass = scrollPosition > 100 ? 'bg-blue-dark' : 'bg-transparent';
+  const bgClass =
+    scrollPosition > 40
+      ? 'bg-gradient-to-b from-blue-dark via-blue-dark'
+      : 'bg-transparent';
 
   return (
     <>
       <nav
         className={`z-20 fixed top-0 left-0 right-0 w-full text-white/40 ${bgClass}`}
       >
-        <div className='flex items-center justify-between h-20 external-container'>
+        <div className='flex items-start justify-between h-28 external-container pt-4'>
           <div className='flex grow items-center justify-between p-1 rounded-full bg-gradient-to-r from-white/15 to-40% '>
             <a
               href='#home'

@@ -1,9 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BackIcon } from './icons';
 import { Impressum } from './Impressum';
 
 export const ImpressumPopup = ({ onClose }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
+    setIsVisible(true);
     document.body.classList.add('overflow-hidden');
 
     return () => {
@@ -11,12 +14,21 @@ export const ImpressumPopup = ({ onClose }) => {
     };
   }, []);
 
+  const handleImpressumClose = () => {
+    setIsVisible(false);
+    setTimeout(onClose, 0);
+  };
+
   return (
-    <div className='fixed inset-0 z-30'>
+    <div
+      className={`fixed inset-0 z-30 transition-opacity duration-500 ${
+        isVisible ? 'opasity-100' : 'opacity-0'
+      }`}
+    >
       <div className='flex flex-col justify-between h-screen p-8 overflow-y-auto bg-white text-main-dark'>
         <button
           className='place-self-start hover:text-main-dark/70'
-          onClick={onClose}
+          onClick={handleImpressumClose}
         >
           <BackIcon />
         </button>
