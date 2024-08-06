@@ -1,4 +1,4 @@
-export const CrossIcon = ({ size = '2em' }) => (
+export const CrossIcon = ({ size = '1.5em' }) => (
   <svg
     stroke='currentColor'
     fill='currentColor'
