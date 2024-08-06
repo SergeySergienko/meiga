@@ -21,8 +21,8 @@ export const MenuPopup = ({ onClose }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-50 backdrop-blur transition-transform duration-500 ${
-        isVisible ? 'translate-x-0' : 'translate-x-full'
+      className={`fixed inset-0 z-50 backdrop-blur transition-opacity duration-500 ${
+        isVisible ? 'opasity-100' : 'opacity-0'
       }`}
     >
       <nav className='fixed bg-blue-dark w-screen p-8'>
