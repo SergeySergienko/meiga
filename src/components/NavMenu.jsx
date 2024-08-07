@@ -59,10 +59,7 @@ export const NavMenu = ({ classList, onClose }) => {
           if (link.label === 'Impressum') {
             return (
               <li key={link.path}>
-                <span
-                  onClick={openImpressumPopup}
-                  className='transition cursor-pointer font-bold text-xl text-white hover:text-purple-300'
-                >
+                <span onClick={openImpressumPopup} className='nav-menu-item'>
                   {link.label}
                 </span>
               </li>
@@ -71,11 +68,7 @@ export const NavMenu = ({ classList, onClose }) => {
 
           return (
             <li key={link.path}>
-              <a
-                href={link.path}
-                onClick={onClose}
-                className='transition cursor-pointer font-bold text-xl text-white hover:text-purple-300'
-              >
+              <a href={link.path} onClick={onClose} className='nav-menu-item'>
                 {link.label}
               </a>
             </li>

@@ -21,20 +21,18 @@ export const Navbar = () => {
     };
   }, []);
 
-  const bgClass =
+  const navBgClass = scrollPosition > 40 ? 'bg-blue-dark' : 'transparent';
+  const navEdgeClass =
     scrollPosition > 40
-      ? 'linear-gradient(to bottom, #161d30, #253151, #253151, transparent)'
-      : 'none';
+      ? 'bg-gradient-to-b from-blue-dark to-transparent'
+      : 'transparent';
 
   return (
     <>
       <nav
-        className={`z-20 fixed top-0 left-0 right-0 w-full text-white/40`}
-        style={{
-          backgroundImage: bgClass,
-        }}
+        className={`z-20 fixed top-0 left-0 right-0 w-full text-white/40 ${navBgClass}`}
       >
-        <div className='flex items-start justify-between h-28 external-container pt-3'>
+        <div className='flex items-start justify-between h-16 external-container pt-3'>
           <div className='flex grow items-center justify-between p-1 rounded-full bg-gradient-to-r from-white/15 to-40% '>
             <a
               href='#home'
@@ -70,6 +68,9 @@ export const Navbar = () => {
         </div> */}
         </div>
       </nav>
+      <div
+        className={`h-4 z-20 fixed top-16 left-0 right-0 w-full ${navEdgeClass}`}
+      />
       {isMenuPopupOpen && (
         <MenuPopup onClose={() => toggleMenuPopup((prevState) => !prevState)} />
       )}
