@@ -7,6 +7,7 @@ export * from './ImpressumPopup';
 export * from './Kontakt';
 export * from './Navbar';
 export * from './NavMenu';
+export * from './SubMenu';
 export * from './MenuPopup';
 export * from './Footer';
 export * from './events';

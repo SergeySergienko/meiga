@@ -26,10 +26,10 @@ export const MenuPopup = ({ onClose }) => {
       }`}
     >
       <nav
-        className='w-screen h-auto p-8'
+        className='w-screen p-8'
         style={{
           backgroundImage:
-            'linear-gradient(to bottom, #161d30, #161d30, #161d30, transparent)',
+            'linear-gradient(to bottom, #161d30, #161d30, #161d30, #161d30, transparent)',
         }}
       >
         <button
