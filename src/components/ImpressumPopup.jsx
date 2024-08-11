@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BackIcon } from './icons';
-import { Impressum } from './Impressum';
+import { Impressum } from '.';
 
 export const ImpressumPopup = ({ onClose }) => {
   const [isVisible, setIsVisible] = useState(false);

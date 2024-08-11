@@ -39,7 +39,7 @@ export const Navbar = () => {
               className='flex flex-shrink-0 items-center mr-4 md:mr-12 text-white hover:text-white/70'
             >
               <LogoIcon />
-              <span className='text-white ml-2 font-bold tracking-widest'>
+              <span className='text-white ml-2 xs:font-bold xs:tracking-widest'>
                 SV Meissner Gasse e.V.
               </span>
             </a>
@@ -69,7 +69,7 @@ export const Navbar = () => {
         </div>
       </nav>
       <div
-        className={`h-4 z-20 fixed top-16 left-0 right-0 w-full ${navEdgeClass}`}
+        className={`h-4 z-10 fixed top-16 left-0 right-0 w-full ${navEdgeClass}`}
       />
       {isMenuPopupOpen && (
         <MenuPopup onClose={() => toggleMenuPopup((prevState) => !prevState)} />

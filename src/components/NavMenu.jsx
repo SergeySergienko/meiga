@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
-import { ImpressumPopup } from './ImpressumPopup';
+import { ImpressumPopup } from '.';
 
-export const links = [
+const links = [
   { path: '#home', label: 'Startseite' },
   { path: '#team', label: 'Team' },
   { path: '#fotos', label: 'Fotos' },
   { path: '#events', label: 'Veranstaltungen' },
   { path: 'impressum', label: 'Impressum' },
   { path: '#contacts', label: 'Kontakt' },
+  // { path: 'formulare', label: 'Formulare' },
 ];
 
 export const NavMenu = ({ classList, onClose }) => {

@@ -79,7 +79,7 @@ export const Main = () => {
             <p className='text-lg text-blue-400 [text-shadow:1px_1px_1px_var(--tw-shadow-color)] shadow-black'>
               Willkommen beim
             </p>
-            <p className='text-3xl text-white text-purple-200 font-bold [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-black'>
+            <p className='text-2xl xs:text-3xl text-purple-200 font-bold [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-black'>
               SV Meissner Gasse e.V.
             </p>
           </h1>
