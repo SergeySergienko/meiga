@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import { BackIcon } from './icons';
-import { Impressum } from '.';
+import ErrorBoundary from './ErrorBoundary';
+import { Skeleton } from './Skeleton';
 
-export const ImpressumPopup = ({ onClose }) => {
+export const FullScreenPopup = ({ formularName, onClose }) => {
+  const [Component, setComponent] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -14,10 +16,12 @@ export const ImpressumPopup = ({ onClose }) => {
     };
   }, []);
 
-  const handleImpressumClose = () => {
-    setIsVisible(false);
-    setTimeout(onClose, 0);
-  };
+  useEffect(() => {
+    const LoadedComponent = lazy(() =>
+      import(`./formulars/${formularName}.jsx`)
+    );
+    setComponent(() => LoadedComponent);
+  }, [formularName]);
 
   return (
     <div
@@ -28,13 +32,17 @@ export const ImpressumPopup = ({ onClose }) => {
       <div className='flex flex-col justify-between h-screen p-8 overflow-y-auto bg-white text-main-dark'>
         <button
           className='place-self-start hover:text-main-dark/70'
-          onClick={handleImpressumClose}
+          onClick={onClose}
         >
           <BackIcon />
         </button>
-        <Impressum />
+        <ErrorBoundary>
+          <Suspense fallback={<Skeleton />}>
+            {Component && <Component />}
+          </Suspense>
+        </ErrorBoundary>
         <button
-          className='place-self-end bg-purple-700 hover:bg-purple-500 text-white py-2 px-4 rounded'
+          className='place-self-end bg-transparent border border-purple-300 font-semibold hover:bg-purple-100 text-purple-700 py-1 px-2 rounded'
           onClick={onClose}
         >
           Zurück zur Startseite

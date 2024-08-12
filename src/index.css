@@ -10,7 +10,7 @@
     @apply transition cursor-pointer font-bold text-xl text-white hover:text-purple-300 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-blue-dark;
   }
   .submenu-item {
-    @apply transition cursor-pointer p-3 mt-1 text-lg lg:bg-gradient-to-l from-blue-dark via-blue-dark/90 to-transparent lg:text-right text-white hover:text-purple-300 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-blue-dark;
+    @apply transition cursor-pointer p-3 mt-3 text-base text-white hover:text-purple-300 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-blue-dark;
   }
 }
 

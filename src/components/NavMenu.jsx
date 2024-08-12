@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { SubMenu } from '.';
+import { CaretIcon } from './icons';
 
 const links = [
   { path: '#home', label: 'Startseite' },
@@ -8,7 +9,7 @@ const links = [
   { path: '#events', label: 'Veranstaltungen' },
   // { path: 'impressum', label: 'Impressum' },
   // { path: '#contacts', label: 'Kontakt' },
-  { path: 'formulare', label: 'Formulare' },
+  { path: 'unterlagen', label: 'Unterlagen' },
 ];
 
 export const NavMenu = ({ classList, onClose }) => {
@@ -52,30 +53,35 @@ export const NavMenu = ({ classList, onClose }) => {
   }, []);
 
   return (
-    <>
-      <ul className={classList}>
-        {links.map((link) => {
-          if (link.label === 'Formulare') {
-            return (
-              <li key={link.path} className='relative'>
-                <span onClick={toggleSubmenu} className='nav-menu-item'>
-                  {link.label}
-                </span>
-                {isSubmenuOpen && <SubMenu onClose={closeSubmenu} />}
-              </li>
-            );
-          }
-
+    <ul className={classList}>
+      {links.map((link) => {
+        if (link.label === 'Unterlagen') {
           return (
-            <li key={link.path}>
-              <a href={link.path} onClick={onClose} className='nav-menu-item'>
-                {link.label}
-              </a>
+            <li key={link.path} className='relative'>
+              <div
+                onClick={toggleSubmenu}
+                className='flex items-center gap-1 nav-menu-item'
+              >
+                <span>{link.label}</span>
+                <span
+                  className={`${isSubmenuOpen ? 'rotate-180' : 'rotate-0'}`}
+                >
+                  <CaretIcon />
+                </span>
+              </div>
+              {isSubmenuOpen && <SubMenu onClose={closeSubmenu} />}
             </li>
           );
-        })}
-      </ul>
-      {/* {isSubmenuOpen && <SubMenu onClose={closeSubmenu} />} */}
-    </>
+        }
+
+        return (
+          <li key={link.path}>
+            <a href={link.path} onClick={onClose} className='nav-menu-item'>
+              {link.label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
   );
 };

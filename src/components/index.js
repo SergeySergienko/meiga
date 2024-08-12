@@ -1,9 +1,8 @@
-// export * from './DownloadButton';
+export * from './DownloadButton';
 export * from './Main';
 export * from './Team';
 export * from './Fotos';
-export * from './Impressum';
-export * from './ImpressumPopup';
+export * from './FullScreenPopup';
 export * from './Kontakt';
 export * from './Navbar';
 export * from './NavMenu';

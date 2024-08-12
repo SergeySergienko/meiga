@@ -1,6 +1,4 @@
-import React from 'react';
-
-export const Impressum = () => {
+const Impressum = () => {
   return (
     <div className='external-container pb-8'>
       <p className='mb-8 text-center text-xl sm:text-2xl font-bold'>
@@ -65,3 +63,5 @@ export const Impressum = () => {
     </div>
   );
 };
+
+export default Impressum;
