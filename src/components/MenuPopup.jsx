@@ -26,7 +26,7 @@ export const MenuPopup = ({ onClose }) => {
       }`}
     >
       <nav
-        className='w-screen p-8'
+        className='w-screen p-8 overflow-y-auto max-h-full'
         style={{
           backgroundImage:
             'linear-gradient(to bottom, #161d30, #161d30, #161d30, #161d30, transparent)',

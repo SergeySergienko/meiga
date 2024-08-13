@@ -31,7 +31,8 @@ export const NavMenu = ({ classList, onClose }) => {
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
         const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = window.scrollY + elementPosition - 60;
+        const offset = targetElement.id === 'home' ? 0 : 60;
+        const offsetPosition = window.scrollY + elementPosition - offset;
 
         window.scrollTo({
           top: offsetPosition,
