@@ -29,7 +29,10 @@ export const FullScreenPopup = ({ formularName, onClose }) => {
         isVisible ? 'opasity-100' : 'opacity-0'
       }`}
     >
-      <div className='flex flex-col justify-between h-screen p-8 overflow-y-auto bg-white text-main-dark'>
+      <div
+        style={{ height: '100svh' }}
+        className='flex flex-col justify-between h-screen p-8 overflow-y-auto bg-white text-main-dark'
+      >
         <button
           className='place-self-start hover:text-main-dark/70'
           onClick={onClose}

@@ -40,34 +40,32 @@ export const Main = () => {
   return (
     <div
       id='home'
+      style={{ height: '100svh' }}
       className='flex flex-col justify-end relative w-full h-screen min-h-600 overflow-hidden bg-hero-bg bg-cover bg-center'
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <>
-        <motion.div
-          className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-2500 ease-out bg-contain bg-center bg-no-repeat w-96 h-screen min-h-600 border-transparent'
-          style={{
-            borderTopWidth: '60px',
-            borderBottomWidth: '160px',
-            backgroundImage: `url(${player})`,
-            x: translateX,
-            y: translateY,
-          }}
-        ></motion.div>
-        <motion.div
-          className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-2500 ease-out bg-contain bg-center bg-no-repeat w-96 h-screen min-h-600 border-transparent'
-          style={{
-            borderTopWidth: '100px',
-            borderBottomWidth: '150px',
-            backgroundImage: `url(${ball})`,
-            x: translateX,
-            y: translateY,
-            scale: scale,
-          }}
-        ></motion.div>
-      </>
-
+      <motion.div
+        className='centeredBackgroundClasses'
+        style={{
+          borderTopWidth: '60px',
+          borderBottomWidth: '160px',
+          backgroundImage: `url(${player})`,
+          x: translateX,
+          y: translateY,
+        }}
+      />
+      <motion.div
+        className='centeredBackgroundClasses'
+        style={{
+          borderTopWidth: '100px',
+          borderBottomWidth: '150px',
+          backgroundImage: `url(${ball})`,
+          x: translateX,
+          y: translateY,
+          scale: scale,
+        }}
+      />
       <div className='z-10 flex flex-col justify-end w-full h-full pt-20 pb-12 px-8 external-container'>
         <motion.div
           className='max-w-sm'

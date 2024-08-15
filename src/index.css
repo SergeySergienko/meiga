@@ -12,6 +12,9 @@
   .submenu-item {
     @apply transition cursor-pointer p-3 mt-3 text-base text-white hover:text-purple-300 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-blue-dark;
   }
+  .centeredBackgroundClasses {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-2500 ease-out bg-contain bg-center bg-no-repeat w-96 h-screen min-h-600 border-transparent;
+  }
 }
 
 @layer utilities {
