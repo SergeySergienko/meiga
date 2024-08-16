@@ -9,7 +9,7 @@ const submenuItems = [
   { path: 'impressum', label: 'Impressum' },
 ];
 
-export const SubMenu = ({ onClose }) => {
+export const SubMenu = ({ isScrolled, onClose }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [formularName, setFormularName] = useState(null);
 
@@ -27,10 +27,15 @@ export const SubMenu = ({ onClose }) => {
     setFormularName(null);
   };
 
+  const navBgClass = isScrolled ? 'bg-blue-dark' : 'transparent';
+  const navEdgeClass = isScrolled
+    ? 'bg-gradient-to-b from-blue-dark to-transparent'
+    : 'transparent';
+
   return (
     <>
       <ul
-        className={`lg:absolute top-10 lg:left-auto lg:-right-9 lg:w-36 lg:bg-blue-dark font-bold transition-opacity duration-500 ${
+        className={`lg:absolute top-10 lg:left-auto lg:-right-9 lg:w-36 lg:${navBgClass} font-bold transition-opacity duration-500 ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -43,7 +48,9 @@ export const SubMenu = ({ onClose }) => {
             <span>{item.label}</span>
           </li>
         ))}
-        <div className='hidden lg:block h-4 absolute left-0 right-0 bg-gradient-to-b from-blue-dark to-transparent' />
+        <div
+          className={`hidden lg:block h-4 absolute left-0 right-0 ${navEdgeClass}`}
+        />
       </ul>
       {formularName && (
         <FullScreenPopup formularName={formularName} onClose={closePopup} />

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 // import { FaSearch } from 'react-icons/fa';
 import { NavMenu, MenuPopup } from './';
 import { BurgerIcon, LogoIcon } from './icons';
+import { throttle } from '../utils';
 
 export const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -9,10 +10,9 @@ export const Navbar = () => {
   const [isMenuPopupOpen, toggleMenuPopup] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const position = window.scrollY;
-      setScrollPosition(position);
-    };
+    const handleScroll = throttle(() => {
+      setScrollPosition(window.scrollY);
+    });
 
     window.addEventListener('scroll', handleScroll);
 
@@ -21,11 +21,11 @@ export const Navbar = () => {
     };
   }, []);
 
-  const navBgClass = scrollPosition > 40 ? 'bg-blue-dark' : 'transparent';
-  const navEdgeClass =
-    scrollPosition > 40
-      ? 'bg-gradient-to-b from-blue-dark to-transparent'
-      : 'transparent';
+  const isScrolledBeyondOffset = scrollPosition > 40;
+  const navBgClass = isScrolledBeyondOffset ? 'bg-blue-dark' : 'transparent';
+  const navEdgeClass = isScrolledBeyondOffset
+    ? 'bg-gradient-to-b from-blue-dark to-transparent'
+    : 'transparent';
 
   return (
     <>
@@ -43,7 +43,10 @@ export const Navbar = () => {
                 SV Meissner Gasse e.V.
               </span>
             </a>
-            <NavMenu classList='hidden lg:flex gap-6' />
+            <NavMenu
+              classList='hidden lg:flex gap-6'
+              isScrolled={isScrolledBeyondOffset}
+            />
           </div>
           <div className='flex items-center h-12 p-1 lg:hidden'>
             <button

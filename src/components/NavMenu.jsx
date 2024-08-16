@@ -12,7 +12,7 @@ const links = [
   { path: 'unterlagen', label: 'Unterlagen' },
 ];
 
-export const NavMenu = ({ classList, onClose }) => {
+export const NavMenu = ({ classList, isScrolled, onClose }) => {
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
   const toggleSubmenu = () => setIsSubmenuOpen((prev) => !prev);
@@ -70,7 +70,9 @@ export const NavMenu = ({ classList, onClose }) => {
                   <CaretIcon />
                 </span>
               </div>
-              {isSubmenuOpen && <SubMenu onClose={closeSubmenu} />}
+              {isSubmenuOpen && (
+                <SubMenu isScrolled={isScrolled} onClose={closeSubmenu} />
+              )}
             </li>
           );
         }
