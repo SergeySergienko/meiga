@@ -21,7 +21,7 @@ const App = () => {
       <div className='relative'>
         <Team />
       </div>
-      <div className='relative flex'>
+      <div className='relative flex justify-center'>
         <Fotos />
       </div>
       <div className='relative'>

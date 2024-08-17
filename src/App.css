@@ -14,3 +14,11 @@ html {
 #img-bg {
   background-image: url('./assets/images/hero-bg.webp');
 }
+
+/* animation */
+
+.photo {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: none;
+}
