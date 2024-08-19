@@ -6,7 +6,7 @@ const links = [
   { path: '#home', label: 'Startseite' },
   { path: '#team', label: 'Team' },
   { path: '#fotos', label: 'Fotos' },
-  { path: '#events', label: 'Veranstaltungen' },
+  { path: '#last-event', label: 'Veranstaltungen' },
   // { path: 'impressum', label: 'Impressum' },
   // { path: '#contacts', label: 'Kontakt' },
   { path: 'unterlagen', label: 'Unterlagen' },

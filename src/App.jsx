@@ -6,6 +6,8 @@ import {
   Navbar,
   PastEvents,
   Footer,
+  LastEvent,
+  Events,
 } from './components';
 
 import './App.css';
@@ -24,8 +26,8 @@ const App = () => {
       <div className='relative flex justify-center'>
         <Fotos />
       </div>
-      <div className='relative'>
-        <PastEvents />
+      <div>
+        <Events />
       </div>
       <div className='relative flex'>
         <Kontakt />

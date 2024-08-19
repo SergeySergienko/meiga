@@ -6,6 +6,9 @@
   .btn-primary {
     @apply py-3 px-9 bg-purple-700 text-white font-bold rounded-full shadow-xl hover:bg-purple-500 hover:text-black hover:shadow-none focus:outline-none transition-all;
   }
+  .btn-secondary-small {
+    @apply py-0 px-1 text-sm text-purple-700 border border-gray-200 shadow-md hover:shadow-none hover:text-purple-400 transition-all;
+  }
   .nav-menu-item {
     @apply transition cursor-pointer font-bold text-xl text-white hover:text-purple-300 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-blue-dark;
   }

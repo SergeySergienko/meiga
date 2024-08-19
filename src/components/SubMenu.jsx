@@ -35,7 +35,7 @@ export const SubMenu = ({ isScrolled, onClose }) => {
   return (
     <>
       <ul
-        className={`lg:absolute top-10 lg:left-auto lg:-right-9 lg:w-36 lg:${navBgClass} font-bold transition-opacity duration-500 ${
+        className={`lg:absolute top-10 lg:left-auto lg:-right-9 lg:w-36 ${navBgClass} font-bold transition-opacity duration-500 ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >

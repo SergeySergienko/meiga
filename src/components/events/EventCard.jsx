@@ -3,11 +3,12 @@ import { useState, useRef } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './Event.css';
+import './Events.css';
 import { getLocaleDate } from '../../utils';
 import { CalendarIcon, MapMarkerIcon } from '../icons';
 
 export const EventCard = ({ event }) => {
+  const [fullText, setFullText] = useState(false);
   const [currentPhoto, setCurrentPhoto] = useState(0);
   const mainSlider = useRef(null);
   const thumbsSlider = useRef(null);
@@ -43,6 +44,8 @@ export const EventCard = ({ event }) => {
     setCurrentPhoto(index);
   };
 
+  const toggleFullText = () => setFullText((prev) => !prev);
+
   if (!event)
     return (
       <h2 className='text-center font-accent tracking-widest font-bold'>
@@ -75,7 +78,16 @@ export const EventCard = ({ event }) => {
             <span>{event.location}</span>
           </div>
         </div>
-        <p className='h-full opacity-60 my-4'>{event.description}</p>
+        <div className='my-4'>
+          <p className={`h-full opacity-80 ${fullText ? '' : 'line-clamp-4'}`}>
+            {event.description}
+          </p>
+          <span className='flex justify-end'>
+            <button className='btn-secondary-small' onClick={toggleFullText}>
+              {fullText ? 'Text reduzieren' : 'Text erweitern'}
+            </button>
+          </span>
+        </div>
       </>
       <Slider ref={mainSlider} {...settingsMain} className='slider-for mb-4'>
         {event.photos.map((photo, index) => (
