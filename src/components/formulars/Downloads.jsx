@@ -1,4 +1,4 @@
-import { DownloadButton } from '../DownloadButton';
+import { DownloadButton } from '../../components/ui/DownloadButton';
 
 const STORAGE_URL = import.meta.env.VITE_STORAGE_URL;
 

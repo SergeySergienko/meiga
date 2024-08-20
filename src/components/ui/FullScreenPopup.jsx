@@ -1,7 +1,7 @@
 import { useEffect, useState, Suspense, lazy } from 'react';
-import { BackIcon } from './icons';
-import ErrorBoundary from './ErrorBoundary';
-import { Skeleton } from './Skeleton';
+import { BackIcon } from '..';
+import ErrorBoundary from '../ErrorBoundary';
+import { Skeleton } from '.';
 
 export const FullScreenPopup = ({ formularName, onClose }) => {
   const [Component, setComponent] = useState(null);

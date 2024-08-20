@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 // import { FaSearch } from 'react-icons/fa';
-import { NavMenu, MenuPopup } from './';
-import { BurgerIcon, LogoIcon } from './icons';
-import { throttle } from '../utils';
+import { NavMenu, MenuPopup } from '..';
+import { BurgerIcon, LogoIcon } from '..';
+import { throttle } from '../../utils';
 
 export const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);

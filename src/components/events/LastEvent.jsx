@@ -1,3 +1,4 @@
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { EventCard } from './EventCard';
 
 export const LastEvent = ({ event }) => {
@@ -6,8 +7,9 @@ export const LastEvent = ({ event }) => {
       <h2 className='mb-4 text-center font-accent text-lg'>
         <p className='text-purple-700'>Letzte Veranstaltung</p>
       </h2>
-
-      <EventCard event={event} />
+      <LazyLoadComponent>
+        <EventCard event={event} />
+      </LazyLoadComponent>
     </div>
   );
 };

@@ -1,12 +1,10 @@
 import {
-  Fotos,
+  Photos,
   Main,
   Team,
   Kontakt,
   Navbar,
-  PastEvents,
   Footer,
-  LastEvent,
   Events,
 } from './components';
 
@@ -24,7 +22,7 @@ const App = () => {
         <Team />
       </div>
       <div className='relative flex justify-center'>
-        <Fotos />
+        <Photos />
       </div>
       <div>
         <Events />

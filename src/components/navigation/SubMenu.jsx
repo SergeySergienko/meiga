@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FullScreenPopup } from '.';
+import { FullScreenPopup } from '..';
 
 const submenuItems = [
   // { path: 'mitgliederwerbung', label: 'Mitgliederwerbung' },

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { NavMenu } from './NavMenu';
-import { CrossIcon } from './icons';
+import { NavMenu } from '..';
+import { CrossIcon } from '../icons';
 
 export const MenuPopup = ({ onClose }) => {
   const [isVisible, setIsVisible] = useState(false);

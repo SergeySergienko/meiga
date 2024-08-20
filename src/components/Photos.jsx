@@ -4,12 +4,12 @@ import sv3 from '../assets/images/20230712_213110.jpg';
 import sv4 from '../assets/images/20230719_213453.jpg';
 import { useScrollFadeIn } from '../hooks/useScrollFadeIn';
 
-export const Fotos = () => {
+export const Photos = () => {
   useScrollFadeIn();
 
   return (
     <div
-      id='fotos'
+      id='photos'
       className='flex flex-col gap-8 min-h-screen w-full sm:w-3/4 lg:w-1/2 p-4'
     >
       <div className='photo'>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { LastEvent } from '.';
 import { PastEvents } from '.';
 
@@ -82,13 +81,13 @@ export const Events = () => {
   const copiedEvents = [...events];
   const lastEvent = copiedEvents.shift();
   return (
-    <>
+    <div id='events'>
       <div className='relative'>
         <LastEvent event={lastEvent} />
       </div>
       <div className='relative'>
         <PastEvents events={copiedEvents} />
       </div>
-    </>
+    </div>
   );
 };

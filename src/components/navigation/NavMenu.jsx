@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { SubMenu } from '.';
-import { CaretIcon } from './icons';
+import { SubMenu } from '..';
+import { CaretIcon } from '../icons';
 
 const links = [
   { path: '#home', label: 'Startseite' },
   { path: '#team', label: 'Team' },
   { path: '#fotos', label: 'Fotos' },
-  { path: '#last-event', label: 'Veranstaltungen' },
+  { path: '#events', label: 'Veranstaltungen' },
   // { path: 'impressum', label: 'Impressum' },
   // { path: '#contacts', label: 'Kontakt' },
   { path: 'unterlagen', label: 'Unterlagen' },
