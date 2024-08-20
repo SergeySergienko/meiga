@@ -48,13 +48,13 @@ export const EventCard = ({ event }) => {
 
   if (!event)
     return (
-      <h2 className='text-center font-accent tracking-widest font-bold'>
+      <h3 className='text-center font-accent tracking-widest font-bold'>
         <p className='text-3xl'>Keine Ereignisse</p>
-      </h2>
+      </h3>
     );
 
   return (
-    <>
+    <div id='event-card'>
       <>
         <h3 className='text-center font-bold'>
           <p className='text-xl'>{event.title}</p>
@@ -79,7 +79,9 @@ export const EventCard = ({ event }) => {
           </div>
         </div>
         <div className='my-4'>
-          <p className={`h-full opacity-80 ${fullText ? '' : 'line-clamp-4'}`}>
+          <p
+            className={`h-full text-gray-600 ${fullText ? '' : 'line-clamp-4'}`}
+          >
             {event.description}
           </p>
           <span className='flex justify-end'>
@@ -89,31 +91,33 @@ export const EventCard = ({ event }) => {
           </span>
         </div>
       </>
-      <Slider ref={mainSlider} {...settingsMain} className='slider-for mb-4'>
-        {event.photos.map((photo, index) => (
-          <div key={index}>
-            <img
-              className='w-full h-64 sm:h-96 object-contain object-center'
-              src={photo}
-              alt={`Event_photo_${index}`}
-            />
-          </div>
-        ))}
-      </Slider>
-      <Slider ref={thumbsSlider} {...settingsThumbs} className='slider-nav'>
-        {event.photos.map((photo, index) => (
-          <div key={index} onClick={() => handleThumbnailClick(index)}>
-            <div
-              className={`w-16 h-10 mx-1 sm:w-32 sm:h-20 md:mx-4 bg-cover bg-center cursor-pointer transition ${
-                currentPhoto === index ? 'brightness-90' : ''
-              } brightness-50  `}
-              style={{
-                backgroundImage: `url(${photo})`,
-              }}
-            ></div>
-          </div>
-        ))}
-      </Slider>
-    </>
+      <div id='sliders'>
+        <Slider ref={mainSlider} {...settingsMain} className='slider-for mb-4'>
+          {event.photos.map((photo, index) => (
+            <div key={index}>
+              <img
+                className='w-full h-96 sm:h-192 object-contain object-center'
+                src={photo}
+                alt={`Event_photo_${index}`}
+              />
+            </div>
+          ))}
+        </Slider>
+        <Slider ref={thumbsSlider} {...settingsThumbs} className='slider-nav'>
+          {event.photos.map((photo, index) => (
+            <div key={index} onClick={() => handleThumbnailClick(index)}>
+              <div
+                className={`w-16 h-10 mx-1 sm:w-32 sm:h-20 md:mx-4 bg-cover bg-center cursor-pointer transition ${
+                  currentPhoto === index ? 'brightness-90' : ''
+                } brightness-50  `}
+                style={{
+                  backgroundImage: `url(${photo})`,
+                }}
+              ></div>
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </div>
   );
 };
