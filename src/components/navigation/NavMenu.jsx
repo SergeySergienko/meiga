@@ -5,7 +5,7 @@ import { CaretIcon } from '../icons';
 const links = [
   { path: '#home', label: 'Startseite' },
   { path: '#team', label: 'Team' },
-  { path: '#fotos', label: 'Fotos' },
+  { path: '#photos', label: 'Fotos' },
   { path: '#events', label: 'Veranstaltungen' },
   // { path: 'impressum', label: 'Impressum' },
   // { path: '#contacts', label: 'Kontakt' },

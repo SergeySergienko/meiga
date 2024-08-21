@@ -79,11 +79,11 @@ export const EventCard = ({ event }) => {
           </div>
         </div>
         <div className='my-4'>
-          <p
+          <div
             className={`h-full text-gray-600 ${fullText ? '' : 'line-clamp-4'}`}
           >
             {event.description}
-          </p>
+          </div>
           <span className='flex justify-end'>
             <button className='btn-secondary-small' onClick={toggleFullText}>
               {fullText ? 'Text reduzieren' : 'Text erweitern'}
