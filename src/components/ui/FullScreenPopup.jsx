@@ -18,7 +18,7 @@ export const FullScreenPopup = ({ formularName, onClose }) => {
 
   useEffect(() => {
     const LoadedComponent = lazy(() =>
-      import(`./formulars/${formularName}.jsx`)
+      import(`../formulars/${formularName}.jsx`)
     );
     setComponent(() => LoadedComponent);
   }, [formularName]);
