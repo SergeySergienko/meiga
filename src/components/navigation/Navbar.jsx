@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 // import { FaSearch } from 'react-icons/fa';
 import { NavMenu, MenuPopup } from '..';
-import { BurgerIcon, LogoIcon } from '..';
+import { BurgerIcon, LogoIcon, UserIcon } from '..';
 import { throttle } from '../../utils';
 
 export const Navbar = () => {
@@ -32,25 +33,30 @@ export const Navbar = () => {
       <nav
         className={`z-20 fixed top-0 left-0 right-0 w-full text-white/40 ${navBgClass}`}
       >
-        <div className='flex items-start justify-between h-16 external-container pt-3'>
+        <div className='flex items-baseline justify-between h-16 external-container pt-3'>
           <div className='flex grow items-center justify-between p-1 rounded-full bg-gradient-to-r from-white/15 to-40% '>
-            <a
-              href='#home'
+            <NavLink
+              to='/'
               className='flex flex-shrink-0 items-center mr-4 md:mr-12 text-white hover:text-white/70'
             >
               <LogoIcon />
               <span className='text-white ml-2 xs:font-bold xs:tracking-widest'>
                 SV Meissner Gasse e.V.
               </span>
-            </a>
+            </NavLink>
             <NavMenu
-              classList='hidden lg:flex gap-6'
+              classList='hidden lg:flex items-center gap-6'
               isScrolled={isScrolledBeyondOffset}
             />
+            <div className='p-1'>
+              <NavLink to='/auth' className='text-white hover:text-purple-300'>
+                <UserIcon />
+              </NavLink>
+            </div>
           </div>
-          <div className='flex items-center h-12 p-1 lg:hidden'>
+          <div className='flex h-12 p-1 ml-1 xs:ml-2 sm:ml-4 lg:hidden'>
             <button
-              className='text-white hover:text-white/70'
+              className='text-white hover:text-purple-300'
               onClick={() => toggleMenuPopup((prevState) => !prevState)}
             >
               <BurgerIcon />
@@ -72,7 +78,7 @@ export const Navbar = () => {
         </div>
       </nav>
       <div
-        className={`h-4 z-10 fixed top-16 left-0 right-0 w-full ${navEdgeClass}`}
+        className={`h-4 z-20 fixed top-16 left-0 right-0 w-full ${navEdgeClass}`}
       />
       {isMenuPopupOpen && (
         <MenuPopup onClose={() => toggleMenuPopup((prevState) => !prevState)} />

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { EventCard } from './EventCard';
 import { CrossIcon } from '../icons';
 
-export const EventPopup = ({ event, onClose }) => {
+export const Popup = ({ children, onClose }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -22,13 +21,13 @@ export const EventPopup = ({ event, onClose }) => {
   return (
     <div
       id='popup-bg'
-      className={`fixed p-4 inset-0 z-30 flex items-center justify-center bg-main-dark/80 backdrop-blur transition-opacity duration-500 ${
+      className={`fixed p-4 inset-0 z-30 flex items-center justify-center backdrop-blur transition-opacity duration-500 ${
         isVisible ? 'opasity-100' : 'opacity-0'
       }`}
     >
       <div
         id='popup'
-        className='relative external-container pt-12 pb-6 overflow-y-auto max-h-full bg-white rounded'
+        className='relative pt-12 pb-6 overflow-y-auto max-h-full min-w-96 bg-white rounded'
       >
         <button
           className='absolute top-4 right-4 text-main-dark hover:text-main-dark/70'
@@ -36,7 +35,7 @@ export const EventPopup = ({ event, onClose }) => {
         >
           <CrossIcon />
         </button>
-        <EventCard event={event} />
+        {children}
       </div>
     </div>
   );

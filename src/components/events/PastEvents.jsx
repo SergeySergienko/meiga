@@ -14,11 +14,9 @@ export const PastEvents = ({ events }) => {
         </p>
       </h2>
       <LazyLoadComponent>
-        <div className='mb-10'>
-          {events.map((event, index) => (
-            <EventCardCover key={index} event={event} />
-          ))}
-        </div>
+        {events.map((event, index) => (
+          <EventCardCover key={index} event={event} />
+        ))}
       </LazyLoadComponent>
     </div>
   );

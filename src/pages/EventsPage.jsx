@@ -1,5 +1,5 @@
-import { LastEvent } from '.';
-import { PastEvents } from '.';
+import { LastEvent } from '../components/events';
+import { PastEvents } from '../components/events';
 
 const getPublicUrl = (url) => url.replace('/public', '');
 
@@ -77,15 +77,15 @@ const events = [
   },
 ];
 
-export const Events = () => {
+export const EventsPage = () => {
   const copiedEvents = [...events];
   const lastEvent = copiedEvents.shift();
   return (
-    <div id='events'>
-      <div className='relative'>
+    <div id='events-page'>
+      <div className='my-32 mx-2 xs:mx-4 sm:mx-8'>
         <LastEvent event={lastEvent} />
       </div>
-      <div className='relative'>
+      <div className='my-32 mx-2 xs:mx-4 sm:mx-8'>
         <PastEvents events={copiedEvents} />
       </div>
     </div>

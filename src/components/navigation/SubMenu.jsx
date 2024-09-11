@@ -1,30 +1,24 @@
 import { useEffect, useState } from 'react';
-import { FullScreenPopup } from '..';
+import { useNavigate } from 'react-router-dom';
 
 const submenuItems = [
-  // { path: 'mitgliederwerbung', label: 'Mitgliederwerbung' },
-  // { path: 'aufnahmeantrag', label: 'Aufnahmeantrag' },
-  // { path: 'satzung', label: 'Satzung' },
   { path: 'downloads', label: 'Downloads' },
   { path: 'impressum', label: 'Impressum' },
 ];
 
 export const SubMenu = ({ isScrolled, onClose }) => {
+  const navigate = useNavigate();
+
   const [isVisible, setIsVisible] = useState(false);
-  const [formularName, setFormularName] = useState(null);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const handleSubMenuItemClick = (name) => () => {
+  const handleNavigate = (path) => () => {
     setIsVisible(false);
-    setFormularName(name);
-  };
-
-  const closePopup = () => {
     onClose();
-    setFormularName(null);
+    navigate(`/${path}`);
   };
 
   const navBgClass = isScrolled ? 'bg-blue-dark' : 'transparent';
@@ -42,7 +36,7 @@ export const SubMenu = ({ isScrolled, onClose }) => {
         {submenuItems.map((item) => (
           <li
             key={item.path}
-            onClick={handleSubMenuItemClick(item.label)}
+            onClick={handleNavigate(item.path)}
             className='submenu-item'
           >
             <span>{item.label}</span>
@@ -52,9 +46,6 @@ export const SubMenu = ({ isScrolled, onClose }) => {
           className={`hidden lg:block h-4 absolute left-0 right-0 ${navEdgeClass}`}
         />
       </ul>
-      {formularName && (
-        <FullScreenPopup formularName={formularName} onClose={closePopup} />
-      )}
     </>
   );
 };

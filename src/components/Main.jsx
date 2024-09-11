@@ -40,8 +40,8 @@ export const Main = () => {
   return (
     <div
       id='home'
-      style={{ height: '100dvh' }}
-      className='flex flex-col justify-end relative w-full h-screen min-h-600 overflow-hidden bg-hero-bg bg-cover bg-center'
+      style={{ height: '100vh' }}
+      className='min-h-600'
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >

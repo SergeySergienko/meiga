@@ -1,40 +1,44 @@
 import {
-  Photos,
-  Main,
-  Team,
-  Kontakt,
-  Navbar,
-  Footer,
-  Events,
-} from './components';
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from 'react-router-dom';
+import {
+  AuthPage,
+  DownloadsPage,
+  EventsPage,
+  HomePage,
+  ImpressumPage,
+  NotFoundPage,
+} from './pages';
+import MainLayout from './layouts/MainLayout';
 
 import './App.css';
 
-const App = () => {
-  return (
-    <div className='app'>
-      <div id='img-bg' className='fixed inset-0 bg-cover'></div>
-      <Navbar />
-      <div className='relative'>
-        <Main />
-      </div>
-      <div className='relative'>
-        <Team />
-      </div>
-      <div className='relative flex justify-center'>
-        <Photos />
-      </div>
-      <div>
-        <Events />
-      </div>
-      <div className='relative flex'>
-        <Kontakt />
-      </div>
-      <div className='relative'>
-        <Footer />
-      </div>
-    </div>
+export const App = () => {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path='/' element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path='/team'
+            element={
+              <NotFoundPage message='Diese Seite befindet sich in der Entwicklung' />
+            }
+          />
+          <Route path='/events' element={<EventsPage />} />
+          <Route path='/downloads' element={<DownloadsPage />} />
+          <Route path='/impressum' element={<ImpressumPage />} />
+          <Route path='/auth' element={<AuthPage />} />
+          <Route
+            path='*'
+            element={<NotFoundPage message='Diese Seite existiert nicht' />}
+          />
+        </Route>
+      </>
+    )
   );
+  return <RouterProvider router={router} />;
 };
-
-export default App;
