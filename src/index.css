@@ -12,6 +12,9 @@
   .nav-menu-item {
     @apply transition cursor-pointer font-bold text-xl text-white hover:text-purple-300 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-blue-dark;
   }
+  .nav-menu-item.active {
+    @apply text-purple-300;
+  }
   .submenu-item {
     @apply transition cursor-pointer p-3 mt-3 text-base text-white hover:text-purple-300 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-blue-dark;
   }

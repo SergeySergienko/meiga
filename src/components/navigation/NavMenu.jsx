@@ -11,12 +11,12 @@ const links = [
 ];
 
 export const NavMenu = ({ classList, isScrolled, onClose }) => {
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+  const [isSubmenuOpen, setSubmenuOpen] = useState(false);
 
-  const toggleSubmenu = () => setIsSubmenuOpen((prev) => !prev);
+  const toggleSubmenu = () => setSubmenuOpen((prev) => !prev);
 
   const closeSubmenu = () => {
-    setIsSubmenuOpen(false);
+    setSubmenuOpen(false);
     if (onClose) {
       onClose();
     }

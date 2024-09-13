@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const submenuItems = [
+const menuItems = [
   { path: 'downloads', label: 'Downloads' },
   { path: 'impressum', label: 'Impressum' },
 ];
@@ -33,7 +33,7 @@ export const SubMenu = ({ isScrolled, onClose }) => {
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        {submenuItems.map((item) => (
+        {menuItems.map((item) => (
           <li
             key={item.path}
             onClick={handleNavigate(item.path)}

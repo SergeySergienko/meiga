@@ -3,15 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import { AuthForm, TabButton } from '../components';
+import { useProfileStore } from '../store';
 
 const tabTitles = ['Anmelden', 'Registrieren'];
 
 export const AuthPage = () => {
+  const update = useProfileStore((state) => state.update);
+
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(tabTitles[0]);
 
   const toggleTab = (tab) => {
     setActiveTab(tab);
+  };
+
+  const updateProfile = ({ email }) => {
+    update({ login: email, role: 'User' });
+    navigate(-1);
   };
 
   return (
@@ -38,7 +46,11 @@ export const AuthPage = () => {
             ))}
           </div>
 
-          <AuthForm title={activeTab} onCancel={() => navigate(-1)} />
+          <AuthForm
+            title={activeTab}
+            onSubmit={updateProfile}
+            onCancel={() => navigate(-1)}
+          />
         </motion.div>
       </div>
     </div>
