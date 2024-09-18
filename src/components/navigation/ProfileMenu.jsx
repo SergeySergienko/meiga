@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProfileStore } from '../../store';
+import { authApi } from '../../api';
 
 const menuItems = [
   { path: 'settings', label: 'Einstellungen' },
@@ -27,11 +28,17 @@ export const ProfileMenu = ({ onClose }) => {
     navigate(`/${path}`);
   };
 
-  const logout = () => {
-    reset();
-    setIsVisible(false);
-    onClose();
-    navigate('/');
+  const logout = async () => {
+    try {
+      const res = await authApi.logout();
+      const json = await res.json();
+      reset();
+      setIsVisible(false);
+      onClose();
+      navigate('/');
+    } catch (error) {
+      console.error('error:', error);
+    }
   };
 
   return (

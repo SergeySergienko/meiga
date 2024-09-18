@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 import { AuthForm, TabButton } from '../components';
 import { useProfileStore } from '../store';
+import { authApi } from '../api';
 
 const tabTitles = ['Anmelden', 'Registrieren'];
 
@@ -17,9 +18,15 @@ export const AuthPage = () => {
     setActiveTab(tab);
   };
 
-  const updateProfile = ({ email }) => {
-    update({ login: email, role: 'User' });
-    navigate(-1);
+  const updateProfile = async ({ email, password }) => {
+    try {
+      const res = await authApi.login({ email, password });
+      const { user } = await res.json();
+      update({ login: user.email, role: user.role });
+      navigate(-1);
+    } catch (error) {
+      console.error('error:', error);
+    }
   };
 
   return (

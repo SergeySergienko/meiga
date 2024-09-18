@@ -22,8 +22,8 @@ export const AuthForm = ({ title, onSubmit, onCancel }) => {
       return;
     }
 
-    if (password.length < 6) {
-      setError('Das Passwort muss mindestens 6 Zeichen lang sein');
+    if (password.length < 5) {
+      setError('Das Passwort muss mindestens 5 Zeichen lang sein');
       return;
     }
 

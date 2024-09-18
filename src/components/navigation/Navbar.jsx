@@ -92,7 +92,7 @@ export const Navbar = () => {
                 </NavLink>
               ) : (
                 <button
-                  className='text-white hover:text-purple-300 pt-2'
+                  className='text-purple-600 hover:text-purple-300 pt-2'
                   onClick={toggleProfilemenu}
                 >
                   <UserIcon />
