@@ -1,14 +1,13 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import fs from 'fs';
 import path from 'path';
 import react from '@vitejs/plugin-react';
 
-const NODE_ENV = import.meta.env.VITE_NODE_ENV;
-
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const isProdMode = mode === 'production';
-  const isLocal = NODE_ENV === 'local';
+  const env = loadEnv(mode, process.cwd(), '');
+  const isLocal = env.VITE_NODE_ENV === 'local';
 
   const userConfig = { plugins: [react()] };
 
