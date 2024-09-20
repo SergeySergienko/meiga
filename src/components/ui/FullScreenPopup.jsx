@@ -32,7 +32,7 @@ export const FullScreenPopup = ({ children, onClose, closeButtonPlace }) => {
         }}
       >
         <button
-          className={`absolute top-8 ${closeButtonPlace}-6 md:${closeButtonPlace}-10 text-white hover:text-purple-300`}
+          className={`absolute top-8 ${closeButtonPlace}-4 text-white hover:text-purple-300`}
           onClick={handleMenuClose}
         >
           <CrossIcon />
