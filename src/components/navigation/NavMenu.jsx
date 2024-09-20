@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { SubMenu } from '..';
 import { CaretIcon } from '../icons';
-import { NavLink } from 'react-router-dom';
 
 const links = [
   { path: '/', label: 'Startseite' },

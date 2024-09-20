@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { useProfileStore } from '../../store';
 import { authApi } from '../../api';
 
@@ -16,24 +15,11 @@ export const ProfileMenu = ({ onClose }) => {
 
   const navigate = useNavigate();
 
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const handleNavigate = (path) => () => {
-    setIsVisible(false);
-    onClose();
-    navigate(`/${path}`);
-  };
-
   const logout = async () => {
     try {
       const res = await authApi.logout();
       const json = await res.json();
       reset();
-      setIsVisible(false);
       onClose();
       navigate('/');
     } catch (error) {
@@ -42,39 +28,28 @@ export const ProfileMenu = ({ onClose }) => {
   };
 
   return (
-    <>
-      <ul
-        className={`absolute top-9 right-0 pt-3 text-center bg-blue-dark font-semibold transition-opacity duration-500 ${
-          isVisible ? 'opacity-100' : 'opacity-0'
-        }`}
-      >
-        <div className='p-3 border-b-2 border-gray-800'>
-          <div className='text-white'>Hallo {currentUser.role}!</div>
-          <span className='font-medium underline underline-offset-4'>
-            {currentUser.login}
-          </span>
+    <div className='flex flex-col items-end gap-8 mb-12'>
+      <div className='flex flex-col items-end gap-2 mb-4'>
+        <div className='text-white text-2xl font-bold'>
+          Hallo {currentUser.role} !
         </div>
-        {menuItems.map((item) => (
-          <li
-            key={item.path}
-            onClick={handleNavigate(item.path)}
-            className='submenu-item hover:bg-gray-800'
-          >
-            <span>{item.label}</span>
-          </li>
-        ))}
-        <button
-          className='submenu-item w-full hover:bg-gray-800'
-          onClick={logout}
+        <span className=' text-gray-400 font-medium underline italic underline-offset-4'>
+          {currentUser.login}
+        </span>
+      </div>
+      {menuItems.map((link) => (
+        <NavLink
+          key={link.path}
+          to={link.path}
+          onClick={onClose}
+          className='nav-menu-item'
         >
-          Abmelden
-        </button>
-        <div
-          className={
-            'h-4 absolute left-0 right-0 bg-gradient-to-b from-blue-dark to-transparent'
-          }
-        />
-      </ul>
-    </>
+          {link.label}
+        </NavLink>
+      ))}
+      <button className='nav-menu-item my-6' onClick={logout}>
+        Abmelden
+      </button>
+    </div>
   );
 };

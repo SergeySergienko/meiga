@@ -1,7 +1,7 @@
 export const ImpressumPage = () => {
   return (
     <div
-      id='downloads-page'
+      id='impressum-page'
       className='bg-gray-200 p-4 sm:py-10 mt-32 mb-12 mx-2 xs:mx-4 sm:mx-8'
     >
       <h2 className='mb-4 text-center font-accent text-lg'>

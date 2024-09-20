@@ -18,6 +18,14 @@ export const AuthPage = () => {
     setActiveTab(tab);
   };
 
+  const createProfile = async ({ email, password }) => {
+    try {
+      navigate(-1);
+    } catch (error) {
+      console.error('error:', error);
+    }
+  };
+
   const updateProfile = async ({ email, password }) => {
     try {
       const res = await authApi.login({ email, password });
@@ -36,7 +44,7 @@ export const AuthPage = () => {
         'inset-0 p-4 fixed flex items-center justify-center backdrop-blur bg-main-dark/60'
       }
     >
-      <div id='tabs' className='w-full max-w-sm h-3/5'>
+      <div id='tabs' className='w-full max-w-sm h-2/3'>
         <motion.div
           initial={{ x: '-25vw', opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -55,7 +63,9 @@ export const AuthPage = () => {
 
           <AuthForm
             title={activeTab}
-            onSubmit={updateProfile}
+            onSubmit={
+              activeTab === tabTitles[0] ? updateProfile : createProfile
+            }
             onCancel={() => navigate(-1)}
           />
         </motion.div>
