@@ -18,10 +18,14 @@ export const ProfileMenu = ({ onClose }) => {
   const logout = async () => {
     try {
       const res = await authApi.logout();
-      const json = await res.json();
-      reset();
-      onClose();
-      navigate('/');
+      if (res.status === 200) {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('userInfo');
+        reset();
+        onClose();
+        navigate('/');
+      }
     } catch (error) {
       console.error('error:', error);
     }

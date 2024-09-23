@@ -70,7 +70,7 @@ export const Navbar = () => {
             <button
               className={`${
                 login ? 'text-purple-600' : 'text-white'
-              } hover:text-purple-300 pt-2`}
+              } hover:text-purple-300`}
               onClick={login ? toggleProfileMenu : () => navigate('/auth')}
             >
               <UserIcon />

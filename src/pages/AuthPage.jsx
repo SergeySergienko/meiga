@@ -29,7 +29,11 @@ export const AuthPage = () => {
   const updateProfile = async ({ email, password }) => {
     try {
       const res = await authApi.login({ email, password });
-      const { user } = await res.json();
+      const { accessToken, refreshToken, user } = res.data;
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('userInfo', JSON.stringify(user));
+
       update({ login: user.email, role: user.role });
       navigate(-1);
     } catch (error) {
