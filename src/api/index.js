@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { authApi } from './auth-api';
 
 export * from './auth-api';
 
@@ -32,15 +33,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       try {
         const refreshToken = localStorage.getItem('refreshToken');
-        const response = await axios({
-          method: 'get',
-          baseURL: API_URL,
-          url: '/auth/refresh',
-          headers: {
-            'Content-type': 'application/json',
-            'x-refresh-token': refreshToken,
-          },
-        });
+        const response = await authApi.refresh(refreshToken);
         const { accessToken, refreshToken: newRefreshToken } = response.data;
 
         localStorage.setItem('accessToken', accessToken);
@@ -53,7 +46,7 @@ api.interceptors.response.use(
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('userInfo');
-        // window.location.href = '/auth';
+        window.location.href = '/auth';
 
         return Promise.reject(refreshError);
       }
