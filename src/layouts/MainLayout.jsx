@@ -25,7 +25,7 @@ const MainLayout = () => {
             user,
           } = response.data;
 
-          update({ login: user.email, role: user.role });
+          update({ email: user.email, role: user.role });
 
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', newRefreshToken);

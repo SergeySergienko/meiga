@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
-  { path: 'downloads', label: 'Downloads' },
-  { path: 'impressum', label: 'Impressum' },
+  { path: '/downloads', label: 'Downloads' },
+  { path: '/impressum', label: 'Impressum' },
 ];
 
 export const SubMenu = ({ isScrolled, onClose }) => {
@@ -18,7 +18,7 @@ export const SubMenu = ({ isScrolled, onClose }) => {
   const handleNavigate = (path) => () => {
     setIsVisible(false);
     onClose();
-    navigate(`/${path}`);
+    navigate(`${path}`);
   };
 
   const navBgClass = isScrolled ? 'bg-blue-dark' : 'transparent';

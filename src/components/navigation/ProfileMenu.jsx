@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { useProfileStore } from '../../store';
 import { authApi } from '../../api';
+import { EditMenu } from './EditMenu';
+import { CaretIcon } from '../icons';
 
 const menuItems = [
-  { path: 'settings', label: 'Einstellungen' },
-  { path: 'membership', label: 'Mitgliedschaft' },
+  { path: '/settings', label: 'Einstellungen' },
+  { path: '/membership', label: 'Mitgliedschaft' },
+  { path: 'bearbeitung', label: 'Bearbeitung' },
 ];
 
 export const ProfileMenu = ({ onClose }) => {
@@ -12,6 +16,17 @@ export const ProfileMenu = ({ onClose }) => {
     state.currentUser,
     state.reset,
   ]);
+
+  const [isEditMenuOpen, setEditMenuOpen] = useState(false);
+
+  const toggleEditMenu = () => setEditMenuOpen((prev) => !prev);
+
+  const closeEditMenu = () => {
+    setEditMenuOpen(false);
+    if (onClose) {
+      onClose();
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -38,20 +53,43 @@ export const ProfileMenu = ({ onClose }) => {
           Hallo {currentUser.role} !
         </div>
         <span className=' text-gray-400 font-medium underline italic underline-offset-4'>
-          {currentUser.login}
+          {currentUser.email}
         </span>
       </div>
-      {menuItems.map((link) => (
-        <NavLink
-          key={link.path}
-          to={link.path}
-          onClick={onClose}
-          className='nav-menu-item'
-        >
-          {link.label}
-        </NavLink>
-      ))}
-      <button className='nav-menu-item my-6' onClick={logout}>
+      {menuItems.map((link) => {
+        if (link.label === 'Bearbeitung') {
+          if (currentUser.role !== 'ADMIN') return;
+
+          return (
+            <div key={link.path} className='relative'>
+              <div
+                onClick={toggleEditMenu}
+                className='flex items-center gap-1 nav-menu-item'
+              >
+                <span
+                  className={`${isEditMenuOpen ? 'rotate-180' : 'rotate-0'}`}
+                >
+                  <CaretIcon />
+                </span>
+                <span>{link.label}</span>
+              </div>
+              {isEditMenuOpen && <EditMenu onClose={closeEditMenu} />}
+            </div>
+          );
+        }
+
+        return (
+          <NavLink
+            key={link.path}
+            to={link.path}
+            onClick={onClose}
+            className='nav-menu-item'
+          >
+            {link.label}
+          </NavLink>
+        );
+      })}
+      <button className='nav-menu-item my-6 text-red-500' onClick={logout}>
         Abmelden
       </button>
     </div>

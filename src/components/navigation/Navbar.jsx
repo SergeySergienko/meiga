@@ -8,7 +8,7 @@ import { useProfileStore } from '../../store';
 export const Navbar = () => {
   const navigate = useNavigate();
 
-  const { login } = useProfileStore((state) => state.currentUser);
+  const { email } = useProfileStore((state) => state.currentUser);
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isNavMenuOpen, setNavMenuPopupOpen] = useState(false);
@@ -69,9 +69,9 @@ export const Navbar = () => {
             />
             <button
               className={`${
-                login ? 'text-purple-600' : 'text-white'
+                email ? 'text-purple-600' : 'text-white'
               } hover:text-purple-300`}
-              onClick={login ? toggleProfileMenu : () => navigate('/auth')}
+              onClick={email ? toggleProfileMenu : () => navigate('/auth')}
             >
               <UserIcon />
             </button>

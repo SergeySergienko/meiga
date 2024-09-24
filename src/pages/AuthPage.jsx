@@ -34,7 +34,7 @@ export const AuthPage = () => {
       localStorage.setItem('refreshToken', refreshToken);
       localStorage.setItem('userInfo', JSON.stringify(user));
 
-      update({ login: user.email, role: user.role });
+      update({ email: user.email, role: user.role });
       navigate(-1);
     } catch (error) {
       console.error('error:', error);
