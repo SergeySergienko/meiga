@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import { AuthForm, TabButton } from '../components';
+import { AuthForm, BlurredWrapper, TabButton } from '../components';
 import { useProfileStore } from '../store';
 import { authApi } from '../api';
 
@@ -42,38 +42,23 @@ export const AuthPage = () => {
   };
 
   return (
-    <div
-      id='bg-blur'
-      className={
-        'inset-0 p-4 fixed flex items-center justify-center backdrop-blur bg-main-dark/60'
-      }
-    >
-      <div id='tabs' className='w-full max-w-sm h-2/3'>
-        <motion.div
-          initial={{ x: '-25vw', opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ type: 'spring', stiffness: 50, damping: 8 }}
-        >
-          <div className='flex mb-8'>
-            {tabTitles.map((title) => (
-              <TabButton
-                key={title}
-                title={title}
-                activeTab={activeTab}
-                toggleTab={toggleTab}
-              />
-            ))}
-          </div>
-
-          <AuthForm
-            title={activeTab}
-            onSubmit={
-              activeTab === tabTitles[0] ? updateProfile : createProfile
-            }
-            onCancel={() => navigate(-1)}
+    <BlurredWrapper>
+      <div className='flex mb-8'>
+        {tabTitles.map((title) => (
+          <TabButton
+            key={title}
+            title={title}
+            activeTab={activeTab}
+            toggleTab={toggleTab}
           />
-        </motion.div>
+        ))}
       </div>
-    </div>
+
+      <AuthForm
+        title={activeTab}
+        onSubmit={activeTab === tabTitles[0] ? updateProfile : createProfile}
+        onCancel={() => navigate(-1)}
+      />
+    </BlurredWrapper>
   );
 };

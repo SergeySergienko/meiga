@@ -1,22 +1,22 @@
 import { DownloadButton } from '../components';
 
-const STORAGE_URL = import.meta.env.VITE_STORAGE_URL;
+const PDF_STORAGE_URL = import.meta.env.VITE_PDF_STORAGE_URL;
 
 const formularList = [
   {
     label: 'Mitgliederwerbung',
     desc: 'Informationen und Erklärungen zur Aufnahme in unseren Verein',
-    path: `${STORAGE_URL}Mitgliederwerbung-SV-Meiszner-Gasse-e.V.pdf`,
+    path: `${PDF_STORAGE_URL}Mitgliederwerbung-SV-Meiszner-Gasse-e.V.pdf`,
   },
   {
     label: 'Aufnahmeantrag',
     desc: 'Aufnahmeantrag SV Meissner Gasse e.V.',
-    path: `${STORAGE_URL}Aufnahmeantrag-SV-Meiszner-Gasse-e.V.pdf`,
+    path: `${PDF_STORAGE_URL}Aufnahmeantrag-SV-Meiszner-Gasse-e.V.pdf`,
   },
   {
     label: 'Satzung',
     desc: 'Satzung SV Meissner Gasse e.V.',
-    path: `${STORAGE_URL}Satzung-SV-Meissner-Gasse-e.V..pdf`,
+    path: `${PDF_STORAGE_URL}Satzung-SV-Meissner-Gasse-e.V..pdf`,
   },
 ];
 

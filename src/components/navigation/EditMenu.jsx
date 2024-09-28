@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
-  { path: '/editUsers', label: 'Benutzer' },
-  { path: '/editMembers', label: 'Teammitglieder' },
-  { path: '/editEvents', label: 'Veranstaltungen' },
+  { path: '/handleUsers', label: 'Benutzer' },
+  { path: '/handleMembers', label: 'Teammitglieder' },
+  { path: '/createEvent', label: 'Veranstaltungen' },
 ];
 
 export const EditMenu = ({ onClose }) => {

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { authApi } from './auth-api';
 
 export * from './auth-api';
+export * from './event-api';
 
 const API_URL = import.meta.env.VITE_API_URL;
 

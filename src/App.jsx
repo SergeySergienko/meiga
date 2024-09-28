@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import {
   AuthPage,
+  CreateEventPage,
   DownloadsPage,
   EventsPage,
   HomePage,
@@ -15,6 +16,7 @@ import {
 import MainLayout from './layouts/MainLayout';
 
 import './App.css';
+import { eventApi } from './api';
 
 export const App = () => {
   const router = createBrowserRouter(
@@ -28,10 +30,19 @@ export const App = () => {
               <NotFoundPage message='Diese Seite befindet sich in der Entwicklung' />
             }
           />
-          <Route path='/events' element={<EventsPage />} />
+          <Route
+            path='/events'
+            element={<EventsPage />}
+            loader={async () => {
+              const { data } = await eventApi.findAll();
+              return data;
+            }}
+          />
           <Route path='/downloads' element={<DownloadsPage />} />
           <Route path='/impressum' element={<ImpressumPage />} />
           <Route path='/auth' element={<AuthPage />} />
+
+          <Route path='/createEvent' element={<CreateEventPage />} />
           <Route
             path='*'
             element={<NotFoundPage message='Diese Seite existiert nicht' />}

@@ -8,7 +8,7 @@ import { CaretIcon } from '../icons';
 const menuItems = [
   { path: '/settings', label: 'Einstellungen' },
   { path: '/membership', label: 'Mitgliedschaft' },
-  { path: 'bearbeitung', label: 'Bearbeitung' },
+  { path: 'erstellen', label: 'Erstellen' },
 ];
 
 export const ProfileMenu = ({ onClose }) => {
@@ -57,14 +57,14 @@ export const ProfileMenu = ({ onClose }) => {
         </span>
       </div>
       {menuItems.map((link) => {
-        if (link.label === 'Bearbeitung') {
+        if (link.label === 'Erstellen') {
           if (currentUser.role !== 'ADMIN') return;
 
           return (
             <div key={link.path} className='relative'>
               <div
                 onClick={toggleEditMenu}
-                className='flex items-center gap-1 nav-menu-item'
+                className='flex justify-end items-center gap-1 nav-menu-item'
               >
                 <span
                   className={`${isEditMenuOpen ? 'rotate-180' : 'rotate-0'}`}
