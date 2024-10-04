@@ -97,15 +97,15 @@ export const AuthForm = ({ title, onSubmit, onCancel }) => {
       )}
 
       <div className='flex justify-between mt-12'>
-        <button type='submit' className='btn-primary'>
-          Einreichen
-        </button>
         <button
           type='button'
           className='py-3 px-9 bg-white font-bold rounded-full shadow-xl hover:bg-gray-300 hover:shadow-none focus:outline-none transition-all'
           onClick={onCancel}
         >
           Abbrechen
+        </button>
+        <button type='submit' className='btn-primary'>
+          Einreichen
         </button>
       </div>
     </form>

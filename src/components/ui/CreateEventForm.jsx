@@ -24,14 +24,14 @@ const formFields = [
     placeholder: 'Geben Sie Datum ein',
     className: 'col-span-1',
   },
-  {
-    name: 'teamPlace',
-    label: 'Teamplatz',
-    type: 'number',
-    placeholder: 'Geben Sie Teamplatz ein',
-    required: false,
-    className: 'col-span-1',
-  },
+  // {
+  //   name: 'teamPlace',
+  //   label: 'Teamplatz',
+  //   type: 'number',
+  //   placeholder: 'Geben Sie Teamplatz ein',
+  //   required: false,
+  //   className: 'col-span-1',
+  // },
   {
     name: 'upload',
     label: 'Fotos hochladen',
