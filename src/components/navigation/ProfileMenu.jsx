@@ -8,7 +8,7 @@ import { CaretIcon } from '../icons';
 const menuItems = [
   { path: '/settings', label: 'Einstellungen' },
   { path: '/membership', label: 'Mitgliedschaft' },
-  { path: 'erstellen', label: 'Erstellen' },
+  { path: 'management', label: 'Verwaltung' },
 ];
 
 export const ProfileMenu = ({ onClose }) => {
@@ -57,7 +57,7 @@ export const ProfileMenu = ({ onClose }) => {
         </span>
       </div>
       {menuItems.map((link) => {
-        if (link.label === 'Erstellen') {
+        if (link.label === 'Verwaltung') {
           if (currentUser.role !== 'ADMIN') return;
 
           return (

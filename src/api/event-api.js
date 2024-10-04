@@ -11,4 +11,7 @@ export const eventApi = {
       },
     });
   },
+  delete(id) {
+    return api.delete(`/events/${id}`);
+  },
 };

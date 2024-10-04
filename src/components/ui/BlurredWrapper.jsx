@@ -5,10 +5,11 @@ export const BlurredWrapper = ({ children }) => {
     <div
       id='blurred-wrapper'
       className={
-        'inset-0 p-4 fixed flex items-center justify-center backdrop-blur bg-main-dark/60'
+        'z-30 inset-0 p-4 fixed flex items-center justify-center backdrop-blur bg-main-dark/60'
       }
     >
       <motion.div
+        id='blurred-wrapper-content'
         initial={{ x: '-25vw', opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 50, damping: 8 }}

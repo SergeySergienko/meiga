@@ -1,8 +1,6 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 
 export const useProfileStore = create(
-  // persist(
   (set) => ({
     currentUser: {},
     update(currentUser) {
@@ -13,5 +11,18 @@ export const useProfileStore = create(
     },
   }),
   { name: 'profile' }
-  // )
 );
+
+export const useModalStore = create((set) => ({
+  isModalOpen: false,
+  modalInfo: {},
+  setModalOpen(isOpen) {
+    set(() => ({ isModalOpen: isOpen }));
+  },
+  setModalInfo(modalInfo) {
+    set(() => ({ modalInfo }));
+  },
+  resetModalInfo() {
+    set({ modalInfo: {} });
+  },
+}));

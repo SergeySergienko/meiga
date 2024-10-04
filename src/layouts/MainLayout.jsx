@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { Footer, Navbar } from '../components';
+import { Footer, Navbar, Popup } from '../components';
 import { authApi } from '../api';
-import { useProfileStore } from '../store';
+import { useModalStore, useProfileStore } from '../store';
 
 const MainLayout = () => {
   const { pathname } = useLocation();
   const update = useProfileStore((state) => state.update);
+  const isModalOpen = useModalStore((state) => state.isModalOpen);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -53,6 +54,8 @@ const MainLayout = () => {
           <Footer />
         </footer>
       </div>
+
+      <Popup open={isModalOpen} />
     </div>
   );
 };
