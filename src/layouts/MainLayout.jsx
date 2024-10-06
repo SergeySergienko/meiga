@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { Footer, Navbar, Popup } from '../components';
+import { Footer, Navbar, Modal } from '../components';
 import { authApi } from '../api';
 import { useModalStore, useProfileStore } from '../store';
 
@@ -55,7 +55,7 @@ const MainLayout = () => {
         </footer>
       </div>
 
-      <Popup open={isModalOpen} />
+      <Modal open={isModalOpen} />
     </div>
   );
 };

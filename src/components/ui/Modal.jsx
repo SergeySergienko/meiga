@@ -3,7 +3,7 @@ import { CrossIcon } from '../icons';
 import { useModalStore } from '../../store';
 import { motion } from 'framer-motion';
 
-export const Popup = ({ open }) => {
+export const Modal = ({ open }) => {
   const [setModalOpen, modalInfo, resetModalInfo] = useModalStore((state) => [
     state.setModalOpen,
     state.modalInfo,

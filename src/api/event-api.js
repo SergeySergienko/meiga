@@ -11,6 +11,13 @@ export const eventApi = {
       },
     });
   },
+  update(event) {
+    return api.put('/events', event, {
+      headers: {
+        'Content-type': 'multipart/form-data',
+      },
+    });
+  },
   delete(id) {
     return api.delete(`/events/${id}`);
   },

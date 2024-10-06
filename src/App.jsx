@@ -8,6 +8,7 @@ import {
   AuthPage,
   CreateEventPage,
   DownloadsPage,
+  EditEventPage,
   EventsPage,
   HomePage,
   ImpressumPage,
@@ -42,6 +43,7 @@ export const App = () => {
         <Route path='/auth' element={<AuthPage />} />
 
         <Route path='/createEvent' element={<CreateEventPage />} />
+        <Route path='/editEvent' element={<EditEventPage />} />
         <Route
           path='*'
           element={<NotFoundPage message='Diese Seite existiert nicht' />}

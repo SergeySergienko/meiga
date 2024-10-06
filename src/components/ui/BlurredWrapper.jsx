@@ -13,7 +13,7 @@ export const BlurredWrapper = ({ children }) => {
         initial={{ x: '-25vw', opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 50, damping: 8 }}
-        className='w-full max-w-sm h-5/6 overflow-y-auto'
+        className='w-full max-w-sm h-full overflow-y-auto'
       >
         {children}
       </motion.div>

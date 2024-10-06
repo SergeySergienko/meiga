@@ -144,7 +144,12 @@ export const EventCard = ({ event }) => {
       </div>
       {currentUser.role === 'ADMIN' && (
         <span className='flex gap-2 mt-8'>
-          <button className='btn-primary-small'>Bearbeiten</button>
+          <button
+            className='btn-primary-small'
+            onClick={() => navigate('/editEvent', { state: { event } })}
+          >
+            Bearbeiten
+          </button>
           <button
             className='btn-error-small'
             onClick={handleModal({
