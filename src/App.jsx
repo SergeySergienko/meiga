@@ -9,10 +9,11 @@ import {
   CreateEventPage,
   DownloadsPage,
   EditEventPage,
+  EmailConfirmationPage,
   EventsPage,
   HomePage,
   ImpressumPage,
-  NotFoundPage,
+  ErrorPage,
 } from './pages';
 import MainLayout from './layouts/MainLayout';
 
@@ -27,7 +28,10 @@ export const App = () => {
         <Route
           path='/team'
           element={
-            <NotFoundPage message='Diese Seite befindet sich in der Entwicklung' />
+            <ErrorPage
+              title='Geduld bitte'
+              message='Diese Website-Seite befindet sich in der Entwicklung'
+            />
           }
         />
         <Route
@@ -41,12 +45,22 @@ export const App = () => {
         <Route path='/downloads' element={<DownloadsPage />} />
         <Route path='/impressum' element={<ImpressumPage />} />
         <Route path='/auth' element={<AuthPage />} />
+        <Route
+          path='/email-confirmation/:activationToken'
+          element={<EmailConfirmationPage />}
+        />
 
         <Route path='/createEvent' element={<CreateEventPage />} />
         <Route path='/editEvent' element={<EditEventPage />} />
+        <Route path='/error' element={<ErrorPage />} />
         <Route
           path='*'
-          element={<NotFoundPage message='Diese Seite existiert nicht' />}
+          element={
+            <ErrorPage
+              title='404 Nicht gefunden'
+              message='Diese Seite existiert nicht'
+            />
+          }
         />
       </Route>
     )

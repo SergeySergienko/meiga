@@ -70,6 +70,7 @@ export const AuthForm = ({ title, onSubmit, onCancel }) => {
         <input
           id='password'
           type='password'
+          autoComplete='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500'
@@ -88,6 +89,7 @@ export const AuthForm = ({ title, onSubmit, onCancel }) => {
           <input
             id='confirm-password'
             type='password'
+            autoComplete='confirm-password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500'

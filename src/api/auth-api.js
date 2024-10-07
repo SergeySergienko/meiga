@@ -4,6 +4,10 @@ import { api } from '.';
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const authApi = {
+  signup({ email, password }) {
+    return api.post('/users', { email, password });
+  },
+
   login({ email, password }) {
     return api.post('/auth/login', { email, password });
   },
@@ -19,6 +23,10 @@ export const authApi = {
         },
       }
     );
+  },
+
+  activate(activationToken) {
+    return api.put(`/auth/activate/${activationToken}`);
   },
 
   refresh(refreshToken) {

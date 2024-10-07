@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 import { AuthForm, BlurredWrapper, TabButton } from '../components';
 import { useProfileStore } from '../store';
@@ -10,7 +9,6 @@ const tabTitles = ['Anmelden', 'Registrieren'];
 
 export const AuthPage = () => {
   const update = useProfileStore((state) => state.update);
-
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(tabTitles[0]);
 
@@ -18,15 +16,27 @@ export const AuthPage = () => {
     setActiveTab(tab);
   };
 
-  const createProfile = async ({ email, password }) => {
+  const signup = async ({ email, password }) => {
     try {
+      const res = await authApi.signup({ email, password });
+
       navigate(-1);
     } catch (error) {
       console.error('error:', error);
+      if (error.status === 409) {
+        navigate('/error', {
+          state: {
+            error: {
+              title: 'E-Mail muss eindeutig sein',
+              message: `Benutzer mit der E-Mail ${email} existiert bereits`,
+            },
+          },
+        });
+      }
     }
   };
 
-  const updateProfile = async ({ email, password }) => {
+  const login = async ({ email, password }) => {
     try {
       const res = await authApi.login({ email, password });
       const { accessToken, refreshToken, user } = res.data;
@@ -56,7 +66,7 @@ export const AuthPage = () => {
 
       <AuthForm
         title={activeTab}
-        onSubmit={activeTab === tabTitles[0] ? updateProfile : createProfile}
+        onSubmit={activeTab === tabTitles[0] ? login : signup}
         onCancel={() => navigate(-1)}
       />
     </BlurredWrapper>
