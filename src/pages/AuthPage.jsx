@@ -20,7 +20,9 @@ export const AuthPage = () => {
     try {
       const res = await authApi.signup({ email, password });
 
-      navigate(-1);
+      if (res.status === 201) {
+        navigate('/email-verification');
+      }
     } catch (error) {
       console.error('error:', error);
       if (error.status === 409) {
@@ -48,6 +50,16 @@ export const AuthPage = () => {
       navigate(-1);
     } catch (error) {
       console.error('error:', error);
+      if (error.status === 403) {
+        navigate('/error', {
+          state: {
+            error: {
+              title: 'Das Konto wurde nicht aktiviert',
+              message: `Überprüfen Sie Ihre E-Mail: ${email} und folgen Sie dem Link in der Nachricht`,
+            },
+          },
+        });
+      }
     }
   };
 

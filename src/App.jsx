@@ -14,6 +14,7 @@ import {
   HomePage,
   ImpressumPage,
   ErrorPage,
+  EmailVerificationPage,
 } from './pages';
 import MainLayout from './layouts/MainLayout';
 
@@ -49,6 +50,7 @@ export const App = () => {
           path='/email-confirmation/:activationToken'
           element={<EmailConfirmationPage />}
         />
+        <Route path='/email-verification' element={<EmailVerificationPage />} />
 
         <Route path='/createEvent' element={<CreateEventPage />} />
         <Route path='/editEvent' element={<EditEventPage />} />
