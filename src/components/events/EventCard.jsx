@@ -146,7 +146,7 @@ export const EventCard = ({ event }) => {
         <span className='flex gap-2 mt-8'>
           <button
             className='btn-primary-small'
-            onClick={() => navigate('/editEvent', { state: { event } })}
+            onClick={() => navigate('/edit-event', { state: { event } })}
           >
             Bearbeiten
           </button>

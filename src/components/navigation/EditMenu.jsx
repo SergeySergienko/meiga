@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const menuItems = [
   { path: '/handleUsers', label: 'Benutzer' },
   { path: '/handleMembers', label: 'Teammitglieder' },
-  { path: '/createEvent', label: 'Veranstaltungen' },
+  { path: '/create-event', label: 'Veranstaltungen' },
 ];
 
 export const EditMenu = ({ onClose }) => {

@@ -13,7 +13,7 @@ export const CreateEventPage = () => {
     try {
       const data = await eventApi.create(eventData);
 
-      navigate(-1);
+      navigate('/events');
       return data;
     } catch (error) {
       console.error('error:', error);
@@ -31,7 +31,7 @@ export const CreateEventPage = () => {
     <BlurredWrapper>
       <EventForm
         onSubmit={createEvent}
-        onCancel={() => navigate(-1)}
+        onCancel={() => navigate('/events')}
         errors={errors}
       />
     </BlurredWrapper>

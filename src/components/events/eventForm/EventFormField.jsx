@@ -1,7 +1,7 @@
 export const EventFormField = ({ field, event, errors }) => {
   const { name, label, type = 'text', placeholder, minLength } = field;
 
-  const isEditMode = !!event?.id;
+  const isEditMode = !!event;
   const isUploadField = name === 'upload';
   const isRequired = !(isUploadField && isEditMode);
   const isDisabled = name === 'date' && isEditMode;
@@ -43,17 +43,17 @@ export const EventFormField = ({ field, event, errors }) => {
             required={isRequired}
             minLength={minLength}
             multiple={isUploadField}
-            min={1}
             disabled={isDisabled}
+            accept={isUploadField ? 'image/*' : undefined}
             className={`text-sm py-2 ${
               isUploadField
                 ? 'text-white'
-                : 'text-sm py-2 px-3 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500'
+                : 'px-3 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500'
             }`}
           />
           {isUploadField && (
             <div className='text-xs leading-4 text-white'>
-              <p>PNG, JPG, GIF bis zu 20 Fotos</p>
+              <p>Nur im Bildformat bis 20 Fotos</p>
               {isEditMode && (
                 <>
                   <p>Keine Wahl – alte Fotos bleiben.</p>

@@ -12,7 +12,7 @@ export const EditEventPage = () => {
     try {
       const data = await eventApi.update(eventData);
 
-      navigate(-1);
+      navigate('/events');
       return data;
     } catch (error) {
       console.error('error:', error);
@@ -24,7 +24,7 @@ export const EditEventPage = () => {
     <BlurredWrapper>
       <EventForm
         onSubmit={editEvent}
-        onCancel={() => navigate(-1)}
+        onCancel={() => navigate('/events')}
         event={event}
       />
     </BlurredWrapper>

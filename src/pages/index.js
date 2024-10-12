@@ -1,5 +1,6 @@
 export * from './AuthPage';
 export * from './CreateEventPage';
+export * from './CreateTeamMemberPage';
 export * from './EditEventPage';
 export * from './EmailConfirmationPage';
 export * from './EmailVerificationPage';

@@ -17,7 +17,7 @@ export const EmailConfirmationPage = () => {
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('userInfo', JSON.stringify(user));
 
-        update({ email: user.email, role: user.role });
+        update({ id: user.id, email: user.email, role: user.role });
         navigate('/');
       } catch (error) {
         console.error('error:', error);

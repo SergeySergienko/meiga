@@ -7,7 +7,7 @@ import { CaretIcon } from '../icons';
 
 const menuItems = [
   { path: '/settings', label: 'Einstellungen' },
-  { path: '/membership', label: 'Mitgliedschaft' },
+  { path: '/create-team-member', label: 'Mitgliedschaft' },
   { path: 'management', label: 'Verwaltung' },
 ];
 

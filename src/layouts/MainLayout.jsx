@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Footer, Navbar, Modal } from '../components';
-import { authApi } from '../api';
 import { useModalStore, useProfileStore } from '../store';
 
-const MainLayout = () => {
+export const MainLayout = () => {
   const { pathname } = useLocation();
   const update = useProfileStore((state) => state.update);
   const isModalOpen = useModalStore((state) => state.isModalOpen);
@@ -14,29 +13,11 @@ const MainLayout = () => {
   }, [pathname]);
 
   useEffect(() => {
-    const reloadCurrentUser = async () => {
-      try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        if (refreshToken) {
-          const response = await authApi.refresh(refreshToken);
+    const user = JSON.parse(localStorage.getItem('userInfo'));
 
-          const {
-            accessToken,
-            refreshToken: newRefreshToken,
-            user,
-          } = response.data;
-
-          update({ email: user.email, role: user.role });
-
-          localStorage.setItem('accessToken', accessToken);
-          localStorage.setItem('refreshToken', newRefreshToken);
-        }
-      } catch (error) {
-        console.error('error:', error);
-      }
-    };
-
-    reloadCurrentUser();
+    if (user) {
+      update({ id: user.id, email: user.email, role: user.role });
+    }
   }, []);
 
   return (
@@ -59,5 +40,3 @@ const MainLayout = () => {
     </div>
   );
 };
-
-export default MainLayout;

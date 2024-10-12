@@ -4,6 +4,7 @@ export * from './Photos';
 export * from './Kontakt';
 export * from './Footer';
 export * from './events';
+export * from './teamMembers';
 export * from './icons';
 export * from './navigation';
 export * from './ui';
