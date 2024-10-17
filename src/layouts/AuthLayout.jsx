@@ -1,15 +1,16 @@
 import { useLocation, Outlet, Navigate } from 'react-router-dom';
+import { useProfileStore } from '../store';
 
 export const AuthLayout = ({ allowedRoles = ['USER'] }) => {
   const location = useLocation();
-  const user = JSON.parse(localStorage.getItem('userInfo'));
+  const currentUser = useProfileStore((state) => state.currentUser);
 
-  if (!user) {
+  if (!currentUser.role) {
     return <Navigate to='/auth' state={{ from: location.pathname }} replace />;
   }
-  if (allowedRoles.includes(user.role)) {
+  if (allowedRoles.includes(currentUser.role)) {
     return <Outlet />;
   }
 
-  return <Navigate to='/' replace />;
+  return <Navigate to='/' />;
 };

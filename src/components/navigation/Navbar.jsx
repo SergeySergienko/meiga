@@ -3,12 +3,13 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { NavMenu, ProfileMenu, FullScreenPopup } from '..';
 import { BurgerIcon, LogoIcon, UserIcon } from '..';
 import { throttle } from '../../utils';
-import { useProfileStore } from '../../store';
+import { useProfileStore, useTeamMemberStore } from '../../store';
 
 export const Navbar = () => {
   const navigate = useNavigate();
 
   const { email } = useProfileStore((state) => state.currentUser);
+  const { photo } = useTeamMemberStore((state) => state.currentTeamMember);
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isNavMenuOpen, setNavMenuPopupOpen] = useState(false);
@@ -73,7 +74,15 @@ export const Navbar = () => {
               } hover:text-purple-300`}
               onClick={email ? toggleProfileMenu : () => navigate('/auth')}
             >
-              <UserIcon />
+              {photo ? (
+                <img
+                  src={photo}
+                  alt='team-member-photo'
+                  className='h-8 w-8 xs:h-10 xs:w-10 rounded-full object-cover object-top hover:outline-none hover:ring-2 hover:ring-purple-300'
+                />
+              ) : (
+                <UserIcon />
+              )}
             </button>
           </div>
         </div>

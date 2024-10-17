@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { SpinIcon } from '../icons';
 
-export const AuthForm = ({ title, onSubmit, onCancel }) => {
+export const AuthForm = ({ title, loading, onSubmit, onCancel }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -101,13 +102,20 @@ export const AuthForm = ({ title, onSubmit, onCancel }) => {
       <div className='flex justify-between mt-12'>
         <button
           type='button'
-          className='py-3 px-9 bg-white font-bold rounded-full shadow-xl hover:bg-gray-300 hover:shadow-none focus:outline-none transition-all'
+          className='py-3 px-9 bg-white text-black font-bold rounded-full shadow-xl hover:bg-gray-300 hover:shadow-none focus:outline-none transition-all'
           onClick={onCancel}
         >
           Abbrechen
         </button>
-        <button type='submit' className='btn-primary'>
-          Einreichen
+        <button type='submit' className='btn-primary' disabled={loading}>
+          {loading ? (
+            <span className='flex'>
+              <SpinIcon />
+              <span>Aufbereitung</span>
+            </span>
+          ) : (
+            <span>Einreichen</span>
+          )}
         </button>
       </div>
     </form>

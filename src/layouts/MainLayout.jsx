@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Footer, Navbar, Modal } from '../components';
-import { useModalStore, useProfileStore } from '../store';
+import { useModalStore, useProfileStore, useTeamMemberStore } from '../store';
 
 export const MainLayout = () => {
   const { pathname } = useLocation();
   const update = useProfileStore((state) => state.update);
+  const updateTeamMember = useTeamMemberStore(
+    (state) => state.updateTeamMember
+  );
   const isModalOpen = useModalStore((state) => state.isModalOpen);
 
   useEffect(() => {
@@ -14,9 +17,17 @@ export const MainLayout = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('userInfo'));
+    const teamMember = JSON.parse(localStorage.getItem('teamMemberInfo'));
 
     if (user) {
       update({ id: user.id, email: user.email, role: user.role });
+    }
+    if (teamMember) {
+      updateTeamMember({
+        name: teamMember.name,
+        photo: teamMember.photo,
+        isActivated: teamMember.isActivated,
+      });
     }
   }, []);
 

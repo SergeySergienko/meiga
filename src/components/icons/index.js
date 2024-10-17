@@ -5,5 +5,6 @@ export * from './BurgerIcon';
 export * from './CalendarIcon';
 export * from './MapMarkerIcon';
 export * from './LogoIcon';
+export * from './SpinIcon';
 export * from './UserIcon';
 export * from './ExclamationTriangleIcon';

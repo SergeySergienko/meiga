@@ -1,17 +1,34 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 export const useProfileStore = create(
-  (set) => ({
-    currentUser: {},
-    update(currentUser) {
-      set(() => ({ currentUser }));
-    },
-    reset() {
-      set({ currentUser: {} });
-    },
-  }),
-  { name: 'profile' }
+  persist(
+    (set) => ({
+      currentUser: {},
+      update(userInfo) {
+        set((state) => ({
+          currentUser: { ...state.currentUser, ...userInfo },
+        }));
+      },
+      reset() {
+        set({ currentUser: {} });
+      },
+    }),
+    { name: 'profile-storage' }
+  )
 );
+
+export const useTeamMemberStore = create((set) => ({
+  currentTeamMember: {},
+  updateTeamMember(teamMemberInfo) {
+    set((state) => ({
+      currentTeamMember: { ...state.currentTeamMember, ...teamMemberInfo },
+    }));
+  },
+  resetTeamMember() {
+    set({ currentTeamMember: {} });
+  },
+}));
 
 export const useModalStore = create((set) => ({
   isModalOpen: false,

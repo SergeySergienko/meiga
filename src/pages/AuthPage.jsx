@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { AuthForm, BlurredWrapper, TabButton } from '../components';
-import { useProfileStore } from '../store';
-import { authApi } from '../api';
+import { useProfileStore, useTeamMemberStore } from '../store';
+import { authApi, teamMemberApi } from '../api';
 
 const tabTitles = ['Anmelden', 'Registrieren'];
 
@@ -12,6 +12,11 @@ export const AuthPage = () => {
   const location = useLocation();
 
   const update = useProfileStore((state) => state.update);
+  const updateTeamMember = useTeamMemberStore(
+    (state) => state.updateTeamMember
+  );
+
+  const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState(tabTitles[0]);
 
   const toggleTab = (tab) => {
@@ -20,6 +25,8 @@ export const AuthPage = () => {
 
   const signup = async ({ email, password }) => {
     try {
+      setLoading(true);
+
       const res = await authApi.signup({ email, password });
 
       if (res.status === 201) {
@@ -37,18 +44,40 @@ export const AuthPage = () => {
           },
         });
       }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const findTeamMember = async (userId) => {
+    try {
+      const { data: teamMember } = await teamMemberApi.findByUserId(userId);
+      localStorage.setItem('teamMemberInfo', JSON.stringify(teamMember));
+      updateTeamMember({
+        name: teamMember.name,
+        photo: teamMember.photo,
+        isActivated: teamMember.isActivated,
+      });
+    } catch (error) {
+      console.error('error:', error);
+      if (error.status === 404) {
+        navigate(location.state?.from || '/');
+      }
     }
   };
 
   const login = async ({ email, password }) => {
     try {
+      setLoading(true);
+
       const res = await authApi.login({ email, password });
       const { accessToken, refreshToken, user } = res.data;
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
       localStorage.setItem('userInfo', JSON.stringify(user));
-
       update({ id: user.id, email: user.email, role: user.role });
+
+      await findTeamMember(user.id);
 
       navigate(location.state?.from || '/');
     } catch (error) {
@@ -63,6 +92,8 @@ export const AuthPage = () => {
           },
         });
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -81,6 +112,7 @@ export const AuthPage = () => {
 
       <AuthForm
         title={activeTab}
+        loading={loading}
         onSubmit={activeTab === tabTitles[0] ? login : signup}
         onCancel={() => navigate(-1)}
       />

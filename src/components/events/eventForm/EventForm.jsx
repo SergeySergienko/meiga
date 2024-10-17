@@ -30,7 +30,7 @@ export const EventForm = ({ onSubmit, onCancel, event, errors }) => {
       <div className='flex justify-between mt-12'>
         <button
           type='button'
-          className='py-3 px-9 bg-white font-bold rounded-full shadow-xl hover:bg-gray-300 hover:shadow-none focus:outline-none transition-all'
+          className='py-3 px-9 bg-white text-black font-bold rounded-full shadow-xl hover:bg-gray-300 hover:shadow-none focus:outline-none transition-all'
           onClick={onCancel}
         >
           Abbrechen

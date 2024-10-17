@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
-import { useProfileStore } from '../../store';
+import { useProfileStore, useTeamMemberStore } from '../../store';
 import { authApi } from '../../api';
 import { EditMenu } from './EditMenu';
 import { CaretIcon } from '../icons';
@@ -15,6 +15,11 @@ export const ProfileMenu = ({ onClose }) => {
   const [currentUser, reset] = useProfileStore((state) => [
     state.currentUser,
     state.reset,
+  ]);
+
+  const [currentTeamMember, resetTeamMember] = useTeamMemberStore((state) => [
+    state.currentTeamMember,
+    state.resetTeamMember,
   ]);
 
   const [isEditMenuOpen, setEditMenuOpen] = useState(false);
@@ -37,7 +42,9 @@ export const ProfileMenu = ({ onClose }) => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('userInfo');
+        localStorage.removeItem('teamMemberInfo');
         reset();
+        resetTeamMember();
         onClose();
         navigate('/');
       }
@@ -50,15 +57,17 @@ export const ProfileMenu = ({ onClose }) => {
     <div className='flex flex-col items-end gap-8 mb-12'>
       <div className='flex flex-col items-end gap-2 mb-4'>
         <div className='text-white text-2xl font-bold'>
-          Hallo {currentUser.role} !
+          Hallo {currentTeamMember.name || currentUser.role} !
         </div>
         <span className=' text-gray-400 font-medium underline italic underline-offset-4'>
           {currentUser.email}
         </span>
+        <div className='text-white'>Ihre Rolle ist {currentUser.role}</div>
       </div>
       {menuItems.map((link) => {
         if (link.label === 'Verwaltung') {
-          if (currentUser.role !== 'ADMIN') return;
+          if (currentUser.role !== 'ADMIN' || currentUser.role !== 'OWNER')
+            return;
 
           return (
             <div key={link.path} className='relative'>
@@ -77,6 +86,12 @@ export const ProfileMenu = ({ onClose }) => {
             </div>
           );
         }
+
+        if (
+          link.label === 'Mitgliedschaft' &&
+          (currentUser.role === 'CANDIDATE' || currentUser.role === 'MEMBER')
+        )
+          return;
 
         return (
           <NavLink
