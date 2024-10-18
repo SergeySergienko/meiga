@@ -6,7 +6,7 @@ import { EditMenu } from './EditMenu';
 import { CaretIcon } from '../icons';
 
 const menuItems = [
-  { path: '/settings', label: 'Einstellungen' },
+  { path: '/my-settings', label: 'Meine Einstellungen' },
   { path: '/create-team-member', label: 'Mitgliedschaft' },
   { path: 'management', label: 'Verwaltung' },
 ];

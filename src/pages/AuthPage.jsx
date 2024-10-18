@@ -49,20 +49,19 @@ export const AuthPage = () => {
     }
   };
 
-  const findTeamMember = async (userId) => {
+  const findTeamMemberByUserId = async (userId) => {
     try {
       const { data: teamMember } = await teamMemberApi.findByUserId(userId);
-      localStorage.setItem('teamMemberInfo', JSON.stringify(teamMember));
-      updateTeamMember({
-        name: teamMember.name,
-        photo: teamMember.photo,
-        isActivated: teamMember.isActivated,
-      });
+      if (teamMember) {
+        localStorage.setItem('teamMemberInfo', JSON.stringify(teamMember));
+        updateTeamMember({
+          name: teamMember.name,
+          photo: teamMember.photo,
+          isActivated: teamMember.isActivated,
+        });
+      }
     } catch (error) {
       console.error('error:', error);
-      if (error.status === 404) {
-        navigate(location.state?.from || '/');
-      }
     }
   };
 
@@ -77,7 +76,7 @@ export const AuthPage = () => {
       localStorage.setItem('userInfo', JSON.stringify(user));
       update({ id: user.id, email: user.email, role: user.role });
 
-      await findTeamMember(user.id);
+      await findTeamMemberByUserId(user.id);
 
       navigate(location.state?.from || '/');
     } catch (error) {
