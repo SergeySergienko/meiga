@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useProfileStore } from '../../../store';
+import { FormFooter } from '../..';
 
-export const TeamMemberForm = ({ onSubmit, onCancel, teamMember }) => {
+export const TeamMemberForm = ({ teamMember, loading, onSubmit, onCancel }) => {
+  const isEditMode = !!teamMember;
+
   const currentUser = useProfileStore((state) => state.currentUser);
 
   const [fileError, setFileError] = useState('');
@@ -9,10 +12,9 @@ export const TeamMemberForm = ({ onSubmit, onCancel, teamMember }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    if (teamMember) {
+    if (isEditMode) {
       formData.append('id', teamMember.id);
-    }
-    if (!teamMember) {
+    } else {
       formData.append('userId', currentUser.id);
     }
 
@@ -35,7 +37,7 @@ export const TeamMemberForm = ({ onSubmit, onCancel, teamMember }) => {
   return (
     <form onSubmit={handleSubmit}>
       <h2 className='text-center text-xl font-bold my-4 sm:my-8 text-purple-300'>
-        {teamMember
+        {isEditMode
           ? 'Teammitglied aktualisieren'
           : 'Bewerben Sie sich für das Team'}
       </h2>
@@ -110,20 +112,20 @@ export const TeamMemberForm = ({ onSubmit, onCancel, teamMember }) => {
             htmlFor='upload'
           >
             Foto hochladen
-            {!teamMember && <span className='text-red-600'>&#42;</span>}
+            {!isEditMode && <span className='text-red-600'>&#42;</span>}
           </label>
           <input
             id='upload'
             name='upload'
             type='file'
-            required={!teamMember}
+            required={!isEditMode}
             accept='image/*'
             className='text-sm'
           />
 
           <div className='text-xs leading-4 mt-2'>
             <p>Nur im Bildformat bis 500kB</p>
-            {teamMember && (
+            {isEditMode && (
               <>
                 <p>Keine Wahl – alte Foto bleibt.</p>
                 <p>Neue Foto ersetzt das alte.</p>
@@ -131,23 +133,15 @@ export const TeamMemberForm = ({ onSubmit, onCancel, teamMember }) => {
             )}
           </div>
           {fileError && <p className='bg-red-600'>{fileError}</p>}
-          {teamMember && (
+          {isEditMode && (
             <p className='mt-2'>Current Photo: {teamMember.photo}</p>
           )}
         </div>
-
-        <div className='flex justify-between mt-12'>
-          <button
-            type='button'
-            className='py-3 px-9 bg-white text-black font-bold rounded-full shadow-xl hover:bg-gray-300 hover:shadow-none focus:outline-none transition-all'
-            onClick={onCancel}
-          >
-            Abbrechen
-          </button>
-          <button type='submit' className='btn-primary'>
-            {teamMember ? 'Aktualisieren' : 'Einreichen'}
-          </button>
-        </div>
+        <FormFooter
+          loading={loading}
+          onCancel={onCancel}
+          isEditMode={isEditMode}
+        />
       </div>
     </form>
   );

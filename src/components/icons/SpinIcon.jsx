@@ -7,7 +7,7 @@ export const SpinIcon = ({ size = '1.5em' }) => (
     height={size}
     width={size}
     xmlns='http://www.w3.org/2000/svg'
-    className='animate-spin -ml-5 mr-3 text-white'
+    className='animate-spin -ml-2 mr-3 text-white'
   >
     <circle
       className='opacity-0'

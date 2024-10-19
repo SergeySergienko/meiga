@@ -7,7 +7,7 @@ import { CaretIcon } from '../icons';
 
 const menuItems = [
   { path: '/my-settings', label: 'Meine Einstellungen' },
-  { path: '/create-team-member', label: 'Mitgliedschaft' },
+  { path: '/create-team-member', label: 'Teammitgliedschaft beantragen' },
   { path: 'management', label: 'Verwaltung' },
 ];
 
@@ -65,10 +65,10 @@ export const ProfileMenu = ({ onClose }) => {
         <div className='text-white'>Ihre Rolle ist {currentUser.role}</div>
       </div>
       {menuItems.map((link) => {
-        if (link.label === 'Verwaltung') {
-          if (currentUser.role !== 'ADMIN' || currentUser.role !== 'OWNER')
-            return;
-
+        if (
+          link.label === 'Verwaltung' &&
+          (currentUser.role === 'ADMIN' || currentUser.role === 'OWNER')
+        ) {
           return (
             <div key={link.path} className='relative'>
               <div

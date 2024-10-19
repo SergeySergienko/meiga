@@ -7,10 +7,13 @@ import { eventApi } from '../api';
 export const CreateEventPage = () => {
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
   const createEvent = async (eventData) => {
     try {
+      setLoading(true);
+
       const data = await eventApi.create(eventData);
 
       navigate('/events');
@@ -24,15 +27,18 @@ export const CreateEventPage = () => {
         [path]: message,
       }));
       return error;
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <BlurredWrapper>
       <EventForm
+        loading={loading}
+        errors={errors}
         onSubmit={createEvent}
         onCancel={() => navigate('/events')}
-        errors={errors}
       />
     </BlurredWrapper>
   );

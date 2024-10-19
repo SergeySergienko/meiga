@@ -1,19 +1,27 @@
-import { useEffect } from 'react';
-import { CrossIcon } from '../icons';
+import { useState, useEffect } from 'react';
+import { CrossIcon, SpinIcon } from '../icons';
 import { useModalStore } from '../../store';
 import { motion } from 'framer-motion';
 
 export const Modal = ({ open }) => {
+  const [loading, setLoading] = useState(false);
   const [setModalOpen, modalInfo, resetModalInfo] = useModalStore((state) => [
     state.setModalOpen,
     state.modalInfo,
     state.resetModalInfo,
   ]);
 
-  const handleSubmit = () => {
-    modalInfo?.submitFn();
-    resetModalInfo();
-    setModalOpen(false);
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      await modalInfo?.submitFn();
+      resetModalInfo();
+      setModalOpen(false);
+    } catch (error) {
+      console.log('error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCancel = () => {
@@ -72,8 +80,19 @@ export const Modal = ({ open }) => {
               <button className='btn-secondary-small' onClick={handleCancel}>
                 Abbrechen
               </button>
-              <button className='btn-error-small' onClick={handleSubmit}>
-                Einreichen
+              <button
+                className='btn-error-small disabled:opacity-70 disabled:bg-red-500 disabled:text-white'
+                onClick={handleSubmit}
+                disabled={loading}
+              >
+                {loading ? (
+                  <span className='flex items-center'>
+                    <SpinIcon size='1em' />
+                    <span>Aufbereitung...</span>
+                  </span>
+                ) : (
+                  <span>Einreichen</span>
+                )}
               </button>
             </div>
           </div>

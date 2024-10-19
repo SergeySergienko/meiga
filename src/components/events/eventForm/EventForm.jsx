@@ -1,11 +1,14 @@
+import { FormFooter } from '../..';
 import { EventFormField } from './EventFormField';
 import { formFields } from './eventFormFields';
 
-export const EventForm = ({ onSubmit, onCancel, event, errors }) => {
+export const EventForm = ({ event, loading, errors, onSubmit, onCancel }) => {
+  const isEditMode = !!event;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    if (event) {
+    if (isEditMode) {
       formData.append('id', event.id);
     }
     await onSubmit(formData);
@@ -14,7 +17,9 @@ export const EventForm = ({ onSubmit, onCancel, event, errors }) => {
   return (
     <form onSubmit={handleSubmit}>
       <h2 className='text-center text-xl font-bold my-4 sm:my-8 text-purple-300'>
-        {event ? 'Veranstaltung aktualisieren' : 'Neue Veranstaltung erstellen'}
+        {isEditMode
+          ? 'Veranstaltung aktualisieren'
+          : 'Neue Veranstaltung erstellen'}
       </h2>
       <div className='grid grid-cols-2 gap-x-2 gap-y-4 sm:grid-cols-1 sm:gap-y-8'>
         {formFields.map((field) => (
@@ -26,19 +31,11 @@ export const EventForm = ({ onSubmit, onCancel, event, errors }) => {
           />
         ))}
       </div>
-
-      <div className='flex justify-between mt-12'>
-        <button
-          type='button'
-          className='py-3 px-9 bg-white text-black font-bold rounded-full shadow-xl hover:bg-gray-300 hover:shadow-none focus:outline-none transition-all'
-          onClick={onCancel}
-        >
-          Abbrechen
-        </button>
-        <button type='submit' className='btn-primary'>
-          {event ? 'Aktualisieren' : 'Einreichen'}
-        </button>
-      </div>
+      <FormFooter
+        loading={loading}
+        onCancel={onCancel}
+        isEditMode={isEditMode}
+      />
     </form>
   );
 };

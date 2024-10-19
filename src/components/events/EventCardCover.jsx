@@ -57,7 +57,7 @@ export const EventCardCover = ({ event }) => {
           </div>
         </div>
         <div className='flex items-center shrink-0 md:pl-4 md:border-l-2'>
-          <button className='btn-primary' onClick={openEventPopup}>
+          <button className='btn-primary-small' onClick={openEventPopup}>
             Mehr
           </button>
         </div>

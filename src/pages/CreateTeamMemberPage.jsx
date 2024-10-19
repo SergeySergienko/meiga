@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BlurredWrapper, TeamMemberForm } from '../components';
 import { teamMemberApi } from '../api';
@@ -9,9 +10,12 @@ export const CreateTeamMemberPage = () => {
   const updateTeamMember = useTeamMemberStore(
     (state) => state.updateTeamMember
   );
+  const [loading, setLoading] = useState(false);
 
   const createTeamMember = async (teamMemberData) => {
     try {
+      setLoading(true);
+
       const { data: teamMember } = await teamMemberApi.create(teamMemberData);
       localStorage.setItem('teamMemberInfo', JSON.stringify(teamMember));
       updateTeamMember({
@@ -31,11 +35,14 @@ export const CreateTeamMemberPage = () => {
       return teamMember;
     } catch (error) {
       console.log('error:', error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
     <BlurredWrapper>
       <TeamMemberForm
+        loading={loading}
         onSubmit={createTeamMember}
         onCancel={() => navigate(-1)}
       />
