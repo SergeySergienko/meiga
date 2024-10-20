@@ -14,13 +14,13 @@ export const teamMemberApi = {
       },
     });
   },
-  // update(event) {
-  //   return api.put('/events', event, {
-  //     headers: {
-  //       'Content-type': 'multipart/form-data',
-  //     },
-  //   });
-  // },
+  update(teamMember) {
+    return api.put('/team-members', teamMember, {
+      headers: {
+        'Content-type': 'multipart/form-data',
+      },
+    });
+  },
   // delete(id) {
   //   return api.delete(`/events/${id}`);
   // },

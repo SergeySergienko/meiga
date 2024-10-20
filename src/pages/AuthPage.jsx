@@ -54,11 +54,7 @@ export const AuthPage = () => {
       const { data: teamMember } = await teamMemberApi.findByUserId(userId);
       if (teamMember) {
         localStorage.setItem('teamMemberInfo', JSON.stringify(teamMember));
-        updateTeamMember({
-          name: teamMember.name,
-          photo: teamMember.photo,
-          isActivated: teamMember.isActivated,
-        });
+        updateTeamMember(teamMember);
       }
     } catch (error) {
       console.error('error:', error);

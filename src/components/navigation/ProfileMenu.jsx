@@ -8,6 +8,7 @@ import { CaretIcon } from '../icons';
 const menuItems = [
   { path: '/my-settings', label: 'Meine Einstellungen' },
   { path: '/create-team-member', label: 'Teammitgliedschaft beantragen' },
+  { path: '/edit-team-member', label: 'Teammitglied aktualisieren' },
   { path: 'management', label: 'Verwaltung' },
 ];
 
@@ -55,7 +56,7 @@ export const ProfileMenu = ({ onClose }) => {
 
   return (
     <div className='flex flex-col items-end gap-8 mb-12'>
-      <div className='flex flex-col items-end gap-2 mb-4'>
+      <div id='profile-info' className='flex flex-col items-end gap-2 mb-4'>
         <div className='text-white text-2xl font-bold'>
           Hallo {currentTeamMember.name || currentUser.role} !
         </div>
@@ -88,8 +89,20 @@ export const ProfileMenu = ({ onClose }) => {
         }
 
         if (
-          link.label === 'Mitgliedschaft' &&
+          link.label === 'Verwaltung' &&
+          (currentUser.role !== 'ADMIN' || currentUser.role !== 'OWNER')
+        )
+          return;
+
+        if (
+          link.label === 'Teammitgliedschaft beantragen' &&
           (currentUser.role === 'CANDIDATE' || currentUser.role === 'MEMBER')
+        )
+          return;
+
+        if (
+          link.label === 'Teammitglied aktualisieren' &&
+          currentUser.role !== 'MEMBER'
         )
           return;
 

@@ -18,11 +18,7 @@ export const CreateTeamMemberPage = () => {
 
       const { data: teamMember } = await teamMemberApi.create(teamMemberData);
       localStorage.setItem('teamMemberInfo', JSON.stringify(teamMember));
-      updateTeamMember({
-        name: teamMember.name,
-        photo: teamMember.photo,
-        isActivated: teamMember.isActivated,
-      });
+      updateTeamMember(teamMember);
 
       const user = JSON.parse(localStorage.getItem('userInfo'));
       localStorage.setItem(

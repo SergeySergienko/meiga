@@ -23,11 +23,7 @@ export const MainLayout = () => {
       update({ id: user.id, email: user.email, role: user.role });
     }
     if (teamMember) {
-      updateTeamMember({
-        name: teamMember.name,
-        photo: teamMember.photo,
-        isActivated: teamMember.isActivated,
-      });
+      updateTeamMember(teamMember);
     }
   }, []);
 

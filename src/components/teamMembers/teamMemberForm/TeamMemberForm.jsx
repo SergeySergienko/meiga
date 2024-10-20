@@ -19,13 +19,13 @@ export const TeamMemberForm = ({ teamMember, loading, onSubmit, onCancel }) => {
     }
 
     const file = formData.get('upload');
-    if (!file?.type.startsWith('image/')) {
+    if (file?.name && !file.type.startsWith('image/')) {
       setFileError('Es sind nur Bilder erlaubt!');
       return;
     }
 
     const maxSizeInBytes = 500 * 1024;
-    if (file && file.size > maxSizeInBytes) {
+    if (file?.size > maxSizeInBytes) {
       setFileError('Die Dateigröße darf 500kB nicht überschreiten!');
       return;
     }
@@ -134,7 +134,14 @@ export const TeamMemberForm = ({ teamMember, loading, onSubmit, onCancel }) => {
           </div>
           {fileError && <p className='bg-red-600'>{fileError}</p>}
           {isEditMode && (
-            <p className='mt-2'>Current Photo: {teamMember.photo}</p>
+            <>
+              <p className='mt-2 text-sm'>Current Photo:</p>
+              <img
+                src={teamMember.photo}
+                alt='team-member-photo'
+                className='h-10 w-10 xs:h-20 xs:w-20 object-cover object-top'
+              />
+            </>
           )}
         </div>
         <FormFooter

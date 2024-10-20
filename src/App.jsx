@@ -17,6 +17,7 @@ import {
   ErrorPage,
   EmailVerificationPage,
   CreateTeamMemberPage,
+  EditTeamMemberPage,
 } from './pages';
 import { eventApi } from './api';
 
@@ -66,6 +67,9 @@ export const App = () => {
             path='/create-team-member'
             element={<CreateTeamMemberPage />}
           />
+        </Route>
+        <Route element={<AuthLayout allowedRoles={['MEMBER']} />}>
+          <Route path='/edit-team-member' element={<EditTeamMemberPage />} />
         </Route>
         <Route element={<AuthLayout allowedRoles={['ADMIN', 'OWNER']} />}>
           <Route path='/create-event' element={<CreateEventPage />} />
