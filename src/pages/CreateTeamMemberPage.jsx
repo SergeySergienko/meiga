@@ -20,13 +20,6 @@ export const CreateTeamMemberPage = () => {
       localStorage.setItem('teamMemberInfo', JSON.stringify(teamMember));
       updateTeamMember(teamMember);
 
-      const user = JSON.parse(localStorage.getItem('userInfo'));
-      localStorage.setItem(
-        'userInfo',
-        JSON.stringify({ ...user, role: 'CANDIDATE' })
-      );
-      update({ role: 'CANDIDATE' });
-
       navigate(-1);
       return teamMember;
     } catch (error) {

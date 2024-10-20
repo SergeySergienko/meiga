@@ -63,7 +63,16 @@ export const ProfileMenu = ({ onClose }) => {
         <span className=' text-gray-400 font-medium underline italic underline-offset-4'>
           {currentUser.email}
         </span>
-        <div className='text-white'>Ihre Rolle ist {currentUser.role}</div>
+        {currentTeamMember.teamRole && (
+          <>
+            <div className='text-white'>
+              Ihre App Rolle ist {currentUser.role}
+            </div>
+            <div className='text-white'>
+              Ihre Team Rolle ist {currentTeamMember.teamRole}
+            </div>
+          </>
+        )}
       </div>
       {menuItems.map((link) => {
         if (
@@ -96,13 +105,13 @@ export const ProfileMenu = ({ onClose }) => {
 
         if (
           link.label === 'Teammitgliedschaft beantragen' &&
-          (currentUser.role === 'CANDIDATE' || currentUser.role === 'MEMBER')
+          currentTeamMember.teamRole
         )
           return;
 
         if (
           link.label === 'Teammitglied aktualisieren' &&
-          currentUser.role !== 'MEMBER'
+          currentTeamMember.teamRole !== 'MEMBER'
         )
           return;
 

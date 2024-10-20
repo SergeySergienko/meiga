@@ -68,7 +68,7 @@ export const App = () => {
             element={<CreateTeamMemberPage />}
           />
         </Route>
-        <Route element={<AuthLayout allowedRoles={['MEMBER']} />}>
+        <Route element={<AuthLayout />}>
           <Route path='/edit-team-member' element={<EditTeamMemberPage />} />
         </Route>
         <Route element={<AuthLayout allowedRoles={['ADMIN', 'OWNER']} />}>
