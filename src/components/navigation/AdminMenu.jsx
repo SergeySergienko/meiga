@@ -7,7 +7,7 @@ const menuItems = [
   { path: '/create-event', label: 'Veranstaltung erstellen' },
 ];
 
-export const EditMenu = ({ onClose }) => {
+export const AdminMenu = ({ onClose }) => {
   const navigate = useNavigate();
 
   const [isVisible, setIsVisible] = useState(false);
@@ -24,7 +24,7 @@ export const EditMenu = ({ onClose }) => {
 
   return (
     <ul
-      className={`flex flex-col items-end font-bold transition-opacity duration-500 ${
+      className={`flex flex-col gap-2 mt-2 items-end font-bold transition-opacity duration-500 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
     >
@@ -32,9 +32,9 @@ export const EditMenu = ({ onClose }) => {
         <li
           key={item.path}
           onClick={handleNavigate(item.path)}
-          className='submenu-item p-0 py-3'
+          className='submenu-item p-0'
         >
-          <span>{item.label}</span>
+          <div className='profile-menu-item'>{item.label} &#8680;</div>
         </li>
       ))}
     </ul>

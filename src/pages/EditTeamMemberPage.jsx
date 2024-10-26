@@ -7,7 +7,7 @@ import { useTeamMemberStore } from '../store';
 
 export const EditTeamMemberPage = () => {
   const navigate = useNavigate();
-  const [teamMember, updateTeamMember] = useTeamMemberStore((state) => [
+  const [currentTeamMember, updateTeamMember] = useTeamMemberStore((state) => [
     state.currentTeamMember,
     state.updateTeamMember,
   ]);
@@ -37,7 +37,7 @@ export const EditTeamMemberPage = () => {
   return (
     <BlurredWrapper>
       <TeamMemberForm
-        teamMember={teamMember}
+        teamMember={currentTeamMember}
         loading={loading}
         onSubmit={editTeamMember}
         onCancel={() => navigate('/team')}

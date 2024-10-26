@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { useProfileStore, useTeamMemberStore } from '../../store';
 import { authApi } from '../../api';
-import { EditMenu } from './EditMenu';
+import { AdminMenu } from './AdminMenu';
 import { CaretIcon } from '../icons';
 
 const menuItems = [
   { path: '/my-settings', label: 'Meine Einstellungen' },
-  { path: '/create-team-member', label: 'Teammitgliedschaft beantragen' },
+  { path: '/create-team-member', label: 'Mitgliedschaft beantragen' },
   { path: '/edit-team-member', label: 'Teammitglied aktualisieren' },
   { path: 'management', label: 'Verwaltung' },
 ];
@@ -23,12 +23,12 @@ export const ProfileMenu = ({ onClose }) => {
     state.resetTeamMember,
   ]);
 
-  const [isEditMenuOpen, setEditMenuOpen] = useState(false);
+  const [isAdminMenuOpen, setAdminMenuOpen] = useState(false);
 
-  const toggleEditMenu = () => setEditMenuOpen((prev) => !prev);
+  const toggleAdminMenu = () => setAdminMenuOpen((prev) => !prev);
 
-  const closeEditMenu = () => {
-    setEditMenuOpen(false);
+  const closeAdminMenu = () => {
+    setAdminMenuOpen(false);
     if (onClose) {
       onClose();
     }
@@ -55,80 +55,90 @@ export const ProfileMenu = ({ onClose }) => {
   };
 
   return (
-    <div className='flex flex-col items-end gap-8 mb-12'>
-      <div id='profile-info' className='flex flex-col items-end gap-2 mb-4'>
-        <div className='text-white text-2xl font-bold'>
-          Hallo {currentTeamMember.name || currentUser.role} !
-        </div>
-        <span className=' text-gray-400 font-medium underline italic underline-offset-4'>
-          {currentUser.email}
-        </span>
-        {currentTeamMember.teamRole && (
+    <div className='flex justify-end'>
+      <div
+        id='profile-menu'
+        className='flex flex-col w-fit items-end gap-8 mb-12'
+      >
+        <div id='profile-info' className='flex flex-col items-end gap-2'>
+          <div className='text-white text-2xl font-bold'>
+            Hallo {currentTeamMember.name || currentUser.role} !
+          </div>
+          <span className=' text-gray-400 font-medium italic'>
+            {currentUser.email}
+          </span>
+          {/* {currentTeamMember.teamRole && (
           <>
             <div className='text-white'>
-              Ihre App Rolle ist {currentUser.role}
+            Ihre App Rolle ist {currentUser.role}
             </div>
             <div className='text-white'>
               Ihre Team Rolle ist {currentTeamMember.teamRole}
             </div>
           </>
-        )}
-      </div>
-      {menuItems.map((link) => {
-        if (
-          link.label === 'Verwaltung' &&
-          (currentUser.role === 'ADMIN' || currentUser.role === 'OWNER')
-        ) {
-          return (
-            <div key={link.path} className='relative'>
-              <div
-                onClick={toggleEditMenu}
-                className='flex justify-end items-center gap-1 nav-menu-item'
-              >
-                <span
-                  className={`${isEditMenuOpen ? 'rotate-180' : 'rotate-0'}`}
+        )} */}
+        </div>
+        <div className='border w-full'></div>
+        {menuItems.map((item) => {
+          if (
+            item.label === 'Verwaltung' &&
+            (currentUser.role === 'ADMIN' || currentUser.role === 'OWNER')
+          ) {
+            return (
+              <div key={item.path} className='flex flex-col items-end'>
+                <div
+                  onClick={toggleAdminMenu}
+                  className='flex justify-end items-center gap-1 nav-menu-item profile-menu-item'
                 >
-                  <CaretIcon />
-                </span>
-                <span>{link.label}</span>
+                  <span>{item.label}</span>
+                  <span
+                    className={`${isAdminMenuOpen ? 'rotate-180' : 'rotate-0'}`}
+                  >
+                    <CaretIcon />
+                  </span>
+                </div>
+                {isAdminMenuOpen && <AdminMenu onClose={closeAdminMenu} />}
               </div>
-              {isEditMenuOpen && <EditMenu onClose={closeEditMenu} />}
-            </div>
+            );
+          }
+
+          if (
+            item.label === 'Verwaltung' &&
+            (currentUser.role !== 'ADMIN' || currentUser.role !== 'OWNER')
+          )
+            return;
+
+          if (
+            item.label === 'Mitgliedschaft beantragen' &&
+            currentTeamMember.teamRole
+          )
+            return;
+
+          if (
+            item.label === 'Teammitglied aktualisieren' &&
+            currentTeamMember.teamRole !== 'MEMBER'
+          )
+            return;
+
+          return (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              onClick={onClose}
+              className='nav-menu-item'
+            >
+              <div className='profile-menu-item'>{item.label} &#8680;</div>
+            </NavLink>
           );
-        }
-
-        if (
-          link.label === 'Verwaltung' &&
-          (currentUser.role !== 'ADMIN' || currentUser.role !== 'OWNER')
-        )
-          return;
-
-        if (
-          link.label === 'Teammitgliedschaft beantragen' &&
-          currentTeamMember.teamRole
-        )
-          return;
-
-        if (
-          link.label === 'Teammitglied aktualisieren' &&
-          currentTeamMember.teamRole !== 'MEMBER'
-        )
-          return;
-
-        return (
-          <NavLink
-            key={link.path}
-            to={link.path}
-            onClick={onClose}
-            className='nav-menu-item'
-          >
-            {link.label}
-          </NavLink>
-        );
-      })}
-      <button className='nav-menu-item my-6 text-red-500' onClick={logout}>
-        Abmelden
-      </button>
+        })}
+        <div className='border w-full'></div>
+        <button
+          className='nav-menu-item text-red-500 profile-menu-item'
+          onClick={logout}
+        >
+          Abmelden &#8680;
+        </button>
+      </div>
     </div>
   );
 };

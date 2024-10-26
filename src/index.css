@@ -24,6 +24,9 @@
   .nav-menu-item.active {
     @apply text-purple-300;
   }
+  .profile-menu-item {
+    @apply px-2 py-1 border-b-2 border-gray-600 hover:border-gray-600/0 rounded-xl;
+  }
   .submenu-item {
     @apply transition cursor-pointer p-3 mt-3 text-base text-white hover:text-purple-300 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-blue-dark;
   }
