@@ -1,4 +1,4 @@
-import { Main, Photos, Team, Kontakt } from '../components';
+import { Main, Photos, About, Kontakt } from '../components';
 
 export const HomePage = () => {
   return (
@@ -7,7 +7,7 @@ export const HomePage = () => {
         <Main />
       </div>
       <div className='relative'>
-        <Team />
+        <About />
       </div>
       <div className='relative flex justify-center'>
         <Photos />

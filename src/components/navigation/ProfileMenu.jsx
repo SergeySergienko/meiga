@@ -68,7 +68,7 @@ export const ProfileMenu = ({ onClose }) => {
             {currentUser.email}
           </span>
         </div>
-        <div className='border border-gray-500 w-full'></div>
+        <div className='border border-gray-800 w-full'></div>
         {menuItems.map((item) => {
           if (
             item.label === 'Verwaltung' &&
@@ -121,7 +121,7 @@ export const ProfileMenu = ({ onClose }) => {
             </NavLink>
           );
         })}
-        <div className='border border-gray-500 w-full'></div>
+        <div className='border border-gray-800 w-full'></div>
         <button
           className='nav-menu-item text-red-500 profile-menu-item'
           onClick={logout}

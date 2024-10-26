@@ -1,5 +1,5 @@
 export * from './Main';
-export * from './Team';
+export * from './About';
 export * from './Photos';
 export * from './Kontakt';
 export * from './Footer';

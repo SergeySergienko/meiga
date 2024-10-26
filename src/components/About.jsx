@@ -1,10 +1,10 @@
 import vereinslogo from '../assets/images/vereinslogo.jpg';
 
-export const Team = () => {
+export const About = () => {
   return (
     <div id='team' className='external-container p-4 sm:py-10 bg-gray-200'>
       <h2 className='mb-4 text-center font-accent text-lg'>
-        <p className='text-purple-700'>Team</p>
+        <p className='text-purple-700'>Über uns</p>
       </h2>
 
       <p className='mb-6 text-center text-3xl sm:text-4xl font-bold italic text-purple-700 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-black'>
