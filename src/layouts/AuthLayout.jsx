@@ -1,7 +1,7 @@
 import { useLocation, Outlet, Navigate } from 'react-router-dom';
 import { useProfileStore } from '../store';
 
-export const AuthLayout = ({ allowedRoles = ['USER'] }) => {
+export const AuthLayout = ({ allowedRoles = ['USER', 'ADMIN', 'OWNER'] }) => {
   const location = useLocation();
   const currentUser = useProfileStore((state) => state.currentUser);
 

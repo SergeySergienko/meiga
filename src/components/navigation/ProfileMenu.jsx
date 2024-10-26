@@ -51,6 +51,16 @@ export const ProfileMenu = ({ onClose }) => {
       }
     } catch (error) {
       console.error('error:', error);
+      if (error.status === 404) {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('userInfo');
+        localStorage.removeItem('teamMemberInfo');
+        reset();
+        resetTeamMember();
+        onClose();
+        navigate('/');
+      }
     }
   };
 

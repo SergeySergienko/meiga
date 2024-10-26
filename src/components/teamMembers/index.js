@@ -1,2 +1,2 @@
 export * from './teamMemberForm';
-export * from './TeamList';
+export * from './TeamMemberList';

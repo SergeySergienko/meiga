@@ -18,7 +18,8 @@ import {
   EmailVerificationPage,
   CreateTeamMemberPage,
   EditTeamMemberPage,
-  TeamPage,
+  TeamMembersPage,
+  CandidatesPage,
 } from './pages';
 import { eventApi, teamMemberApi } from './api';
 
@@ -31,7 +32,7 @@ export const App = () => {
         <Route index element={<HomePage />} />
         <Route
           path='/team'
-          element={<TeamPage />}
+          element={<TeamMembersPage />}
           loader={async () => {
             const { data } = await teamMemberApi.findAll();
             return data;
@@ -60,20 +61,26 @@ export const App = () => {
           />
         </Route>
 
-        <Route
-          element={<AuthLayout allowedRoles={['USER', 'ADMIN', 'OWNER']} />}
-        >
+        <Route element={<AuthLayout />}>
           <Route
             path='/create-team-member'
             element={<CreateTeamMemberPage />}
           />
         </Route>
-        <Route element={<AuthLayout />}>
+        <Route element={<AuthLayout allowedRoles={['USER']} />}>
           <Route path='/edit-team-member' element={<EditTeamMemberPage />} />
         </Route>
         <Route element={<AuthLayout allowedRoles={['ADMIN', 'OWNER']} />}>
           <Route path='/create-event' element={<CreateEventPage />} />
           <Route path='/edit-event' element={<EditEventPage />} />
+          <Route
+            path='/candidates'
+            element={<CandidatesPage />}
+            loader={async () => {
+              const { data } = await teamMemberApi.findAll();
+              return data;
+            }}
+          />
         </Route>
 
         <Route path='/error' element={<ErrorPage />} />

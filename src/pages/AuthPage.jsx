@@ -109,7 +109,7 @@ export const AuthPage = () => {
         title={activeTab}
         loading={loading}
         onSubmit={activeTab === tabTitles[0] ? login : signup}
-        onCancel={() => navigate(-1)}
+        onCancel={() => navigate('/')}
       />
     </BlurredWrapper>
   );
