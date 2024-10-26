@@ -18,8 +18,9 @@ import {
   EmailVerificationPage,
   CreateTeamMemberPage,
   EditTeamMemberPage,
+  TeamPage,
 } from './pages';
-import { eventApi } from './api';
+import { eventApi, teamMemberApi } from './api';
 
 import './App.css';
 
@@ -30,12 +31,11 @@ export const App = () => {
         <Route index element={<HomePage />} />
         <Route
           path='/team'
-          element={
-            <ErrorPage
-              title='Geduld bitte'
-              message='Diese Website-Seite befindet sich in der Entwicklung'
-            />
-          }
+          element={<TeamPage />}
+          loader={async () => {
+            const { data } = await teamMemberApi.findAll();
+            return data;
+          }}
         />
         <Route
           path='/events'

@@ -58,6 +58,16 @@ export const EventCard = ({ event }) => {
       navigate('/events');
     } catch (error) {
       console.error('error:', error);
+      if (error.status === 403) {
+        navigate('/error', {
+          state: {
+            error: {
+              title: 'Die Veranstaltung konnte nicht gelöscht werden',
+              message: 'Diese Veranstaltung ist vor dem Löschen geschützt',
+            },
+          },
+        });
+      }
     }
   };
 
@@ -75,7 +85,7 @@ export const EventCard = ({ event }) => {
   if (!event)
     return (
       <h3 className='text-center font-accent tracking-widest font-bold'>
-        <p className='text-3xl'>Keine Ereignisse</p>
+        <p className='text-3xl'>Keine Veranstaltungen</p>
       </h3>
     );
 
@@ -152,6 +162,7 @@ export const EventCard = ({ event }) => {
           </button>
           <button
             className='btn-error-small'
+            disabled={event.protected}
             onClick={handleModal({
               action: 'löschen',
               entity: 'Veranstaltung',

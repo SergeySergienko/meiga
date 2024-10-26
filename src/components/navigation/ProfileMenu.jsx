@@ -64,21 +64,11 @@ export const ProfileMenu = ({ onClose }) => {
           <div className='text-white text-2xl font-bold'>
             Hallo {currentTeamMember.name || currentUser.role} !
           </div>
-          <span className=' text-gray-400 font-medium italic'>
+          <span className=' text-purple-300 font-medium italic'>
             {currentUser.email}
           </span>
-          {/* {currentTeamMember.teamRole && (
-          <>
-            <div className='text-white'>
-            Ihre App Rolle ist {currentUser.role}
-            </div>
-            <div className='text-white'>
-              Ihre Team Rolle ist {currentTeamMember.teamRole}
-            </div>
-          </>
-        )} */}
         </div>
-        <div className='border w-full'></div>
+        <div className='border border-gray-500 w-full'></div>
         {menuItems.map((item) => {
           if (
             item.label === 'Verwaltung' &&
@@ -131,7 +121,7 @@ export const ProfileMenu = ({ onClose }) => {
             </NavLink>
           );
         })}
-        <div className='border w-full'></div>
+        <div className='border border-gray-500 w-full'></div>
         <button
           className='nav-menu-item text-red-500 profile-menu-item'
           onClick={logout}

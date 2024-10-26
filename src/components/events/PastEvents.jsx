@@ -1,4 +1,3 @@
-import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { EventCardCover } from './EventCardCover';
 
 export const PastEvents = ({ events }) => {
@@ -13,11 +12,9 @@ export const PastEvents = ({ events }) => {
           Unsere vergangenen Veranstaltungen
         </p>
       </h2>
-      <LazyLoadComponent>
-        {events.map((event, index) => (
-          <EventCardCover key={index} event={event} />
-        ))}
-      </LazyLoadComponent>
+      {events.map((event, index) => (
+        <EventCardCover key={index} event={event} />
+      ))}
     </div>
   );
 };

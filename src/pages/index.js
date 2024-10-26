@@ -7,6 +7,7 @@ export * from './EmailConfirmationPage';
 export * from './EmailVerificationPage';
 export * from './DownloadsPage';
 export * from './EventsPage';
+export * from './TeamPage';
 export * from './ImpressumPage';
 export * from './HomePage';
 export * from './ErrorPage';
