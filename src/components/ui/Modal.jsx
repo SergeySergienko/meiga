@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { CrossIcon, SpinIcon } from '../icons';
 import { useModalStore } from '../../store';
-import { motion } from 'framer-motion';
+
+const modalColorMapper = {
+  aktivieren: 'purple-700',
+  löschen: 'red-500',
+};
 
 export const Modal = ({ open }) => {
   const [loading, setLoading] = useState(false);
@@ -10,6 +15,8 @@ export const Modal = ({ open }) => {
     state.modalInfo,
     state.resetModalInfo,
   ]);
+
+  const modalColor = modalColorMapper[modalInfo.action];
 
   const handleSubmit = async () => {
     try {
@@ -67,7 +74,9 @@ export const Modal = ({ open }) => {
             <CrossIcon />
           </button>
 
-          <h3 className='font-bold text-center p-4 text-white bg-red-500'>
+          <h3
+            className={`font-bold text-center p-4 text-white bg-${modalColor}`}
+          >
             {modalInfo.entity} {modalInfo.action}
           </h3>
           <div className='p-4'>
@@ -81,7 +90,7 @@ export const Modal = ({ open }) => {
                 Abbrechen
               </button>
               <button
-                className='btn-error-small disabled:opacity-70 disabled:bg-red-500 disabled:text-white'
+                className={`btn-error-small bg-${modalColor} hover:bg-${modalColor} hover:opacity-80 disabled:opacity-70 disabled:bg-${modalColor}`}
                 onClick={handleSubmit}
                 disabled={loading}
               >

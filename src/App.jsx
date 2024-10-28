@@ -30,14 +30,7 @@ export const App = () => {
     createRoutesFromElements(
       <Route path='/' element={<MainLayout />}>
         <Route index element={<HomePage />} />
-        <Route
-          path='/team'
-          element={<TeamMembersPage />}
-          loader={async () => {
-            const { data } = await teamMemberApi.findAll();
-            return data;
-          }}
-        />
+        <Route path='/team' element={<TeamMembersPage />} />
         <Route
           path='/events'
           element={<EventsPage />}
@@ -73,14 +66,7 @@ export const App = () => {
         <Route element={<AuthLayout allowedRoles={['ADMIN', 'OWNER']} />}>
           <Route path='/create-event' element={<CreateEventPage />} />
           <Route path='/edit-event' element={<EditEventPage />} />
-          <Route
-            path='/candidates'
-            element={<CandidatesPage />}
-            loader={async () => {
-              const { data } = await teamMemberApi.findAll();
-              return data;
-            }}
-          />
+          <Route path='/candidates' element={<CandidatesPage />} />
         </Route>
 
         <Route path='/error' element={<ErrorPage />} />
