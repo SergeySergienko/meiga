@@ -156,6 +156,7 @@ export const EventCard = ({ event }) => {
         <span className='flex gap-2 mt-8'>
           <button
             className='btn-primary-small'
+            disabled={event.protected}
             onClick={() => navigate('/edit-event', { state: { event } })}
           >
             Bearbeiten

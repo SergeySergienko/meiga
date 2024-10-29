@@ -21,7 +21,7 @@ import {
   TeamMembersPage,
   CandidatesPage,
 } from './pages';
-import { eventApi, teamMemberApi } from './api';
+import { eventApi } from './api';
 
 import './App.css';
 

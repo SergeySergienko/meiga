@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { TeamMemberList } from '../components';
 import { teamMemberApi } from '../api';
+import { CandidateList } from '../components';
 
 export const CandidatesPage = () => {
   const [candidates, setCandidates] = useState([]);
@@ -24,7 +24,7 @@ export const CandidatesPage = () => {
         <div className='mb-4 text-center font-accent text-lg'>
           <h2 className='text-purple-700'>Unser Team</h2>
         </div>
-        <TeamMemberList teamMembers={candidates} title='Kandidaten' />
+        <CandidateList candidates={candidates} />
       </div>
     </div>
   );

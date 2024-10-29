@@ -24,7 +24,7 @@ export const TeamMembersPage = () => {
         <div className='mb-4 text-center font-accent text-lg'>
           <h2 className='text-purple-700'>Unser Team</h2>
         </div>
-        <TeamMemberList teamMembers={teamMembers} title='Teammitglieder' />
+        <TeamMemberList teamMembers={teamMembers} />
       </div>
     </div>
   );

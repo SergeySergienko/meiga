@@ -4,8 +4,8 @@ import { CrossIcon, SpinIcon } from '../icons';
 import { useModalStore } from '../../store';
 
 const modalColorMapper = {
-  aktivieren: 'purple-700',
-  löschen: 'red-500',
+  aktivieren: { type: 'primary', color: 'purple-700' },
+  löschen: { type: 'error', color: 'red-500' },
 };
 
 export const Modal = ({ open }) => {
@@ -75,7 +75,7 @@ export const Modal = ({ open }) => {
           </button>
 
           <h3
-            className={`font-bold text-center p-4 text-white bg-${modalColor}`}
+            className={`font-bold text-center p-4 text-white bg-${modalColor?.color}`}
           >
             {modalInfo.entity} {modalInfo.action}
           </h3>
@@ -90,7 +90,7 @@ export const Modal = ({ open }) => {
                 Abbrechen
               </button>
               <button
-                className={`btn-error-small bg-${modalColor} hover:bg-${modalColor} hover:opacity-80 disabled:opacity-70 disabled:bg-${modalColor}`}
+                className={`btn-${modalColor?.type}-small`}
                 onClick={handleSubmit}
                 disabled={loading}
               >

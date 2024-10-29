@@ -1,17 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 import { teamMemberApi } from '../../api';
-import { useModalStore } from '../../store';
+import { useModalStore, useProfileStore } from '../../store';
 
 export const TeamMemberCard = ({ teamMember }) => {
   const navigate = useNavigate();
 
+  const currentUser = useProfileStore((state) => state.currentUser);
   const [setModalOpen, setModalInfo] = useModalStore((state) => [
     state.setModalOpen,
     state.setModalInfo,
   ]);
 
   const { id, name, position, slogan, photo, teamRole } = teamMember;
-  const isCandidate = teamRole === 'CANDIDATE';
 
   const activateTeamMember = async (id) => {
     try {
@@ -20,6 +20,16 @@ export const TeamMemberCard = ({ teamMember }) => {
       navigate('/team');
     } catch (error) {
       console.error('error:', error);
+      if (error.status === 409) {
+        navigate('/error', {
+          state: {
+            error: {
+              title: 'Aktivierungsfehler',
+              message: '',
+            },
+          },
+        });
+      }
     }
   };
 
@@ -40,26 +50,6 @@ export const TeamMemberCard = ({ teamMember }) => {
       <h3 className='font-bold'>{name}</h3>
       <p className='mb-4 text-sm'>{position}</p>
       <p className='text-sm text-purple-700 font-semibold italic'>"{slogan}"</p>
-      {isCandidate && (
-        <div
-          id='candidate-info'
-          className='text-xs my-2 pt-2 border-t border-gray-400'
-        >
-          <div>{teamRole}</div>
-          <div>ID: {id}</div>
-          <button
-            className='btn-primary-small mt-4'
-            onClick={handleModal({
-              action: 'aktivieren',
-              entity: 'Kandidat',
-              name,
-              submitFn: () => activateTeamMember(id),
-            })}
-          >
-            Aktivieren
-          </button>
-        </div>
-      )}
     </div>
   );
 };
