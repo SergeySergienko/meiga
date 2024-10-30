@@ -110,13 +110,13 @@ export const ProfileMenu = ({ onClose }) => {
 
           if (
             item.label === 'Mitgliedschaft beantragen' &&
-            currentTeamMember.teamRole
+            currentTeamMember.status
           )
             return;
 
           if (
             item.label === 'Teammitglied aktualisieren' &&
-            currentTeamMember.teamRole !== 'MEMBER'
+            currentTeamMember.status !== 'MEMBER'
           )
             return;
 

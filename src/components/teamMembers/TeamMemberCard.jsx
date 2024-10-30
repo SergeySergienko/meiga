@@ -11,7 +11,7 @@ export const TeamMemberCard = ({ teamMember }) => {
     state.setModalInfo,
   ]);
 
-  const { id, name, position, slogan, photo, teamRole } = teamMember;
+  const { id, name, position, slogan, photo, status } = teamMember;
 
   const activateTeamMember = async (id) => {
     try {

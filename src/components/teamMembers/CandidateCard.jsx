@@ -38,9 +38,9 @@ export const CandidateCard = ({ candidate }) => {
   };
 
   return (
-    <div className='flex flex-col sm:flex-row justify-around items-center p-4 mb-4 rounded overflow-hidden bg-white'>
+    <div className='flex flex-col md:flex-row justify-between items-center p-4 mb-4 rounded overflow-hidden bg-white'>
       <img src={photo} alt={name} className='h-64 rounded object-contain' />
-      <div className='flex flex-col items-center sm:items-start'>
+      <div className='flex flex-col items-center md:items-start'>
         <h3 className='font-bold'>{name}</h3>
         <p className='text-sm'>{position}</p>
         <p className='my-4 text-sm text-purple-700 font-semibold italic'>
@@ -48,8 +48,10 @@ export const CandidateCard = ({ candidate }) => {
         </p>
         <div>Kandidat</div>
         <div>ID: {id}</div>
+      </div>
+      <div className='min-w-24'>
         <button
-          className='btn-primary-small mt-4'
+          className='btn-primary-small mt-4 md:mt-0'
           onClick={handleModal({
             action: 'aktivieren',
             entity: 'Kandidat',

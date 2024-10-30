@@ -9,7 +9,7 @@ export const CandidatesPage = () => {
     (async () => {
       try {
         const { data } = await teamMemberApi.findAll({
-          teamRole: 'CANDIDATE',
+          status: 'CANDIDATE',
         });
         setCandidates(data);
       } catch (error) {
