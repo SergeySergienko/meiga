@@ -103,6 +103,7 @@ export const TeamMemberForm = ({ teamMember, loading, onSubmit, onCancel }) => {
             defaultValue={teamMember?.slogan}
             className='text-sm text-black py-2 px-3 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500'
             required
+            maxLength={28}
           />
         </div>
 

@@ -5,4 +5,5 @@ export * from './FullScreenPopup';
 export * from './FormFooter';
 export * from './Modal';
 export * from './Skeleton';
+export * from './InvokeModalButton';
 export * from './TabButton';

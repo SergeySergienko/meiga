@@ -24,7 +24,7 @@ export const EditTeamMemberPage = () => {
         updateTeamMember(teamMember);
       }
 
-      navigate('/team');
+      navigate('/team-members');
       return teamMember;
     } catch (error) {
       console.error('error:', error);
@@ -40,7 +40,7 @@ export const EditTeamMemberPage = () => {
         teamMember={currentTeamMember}
         loading={loading}
         onSubmit={editTeamMember}
-        onCancel={() => navigate('/team')}
+        onCancel={() => navigate('/team-members')}
       />
     </BlurredWrapper>
   );

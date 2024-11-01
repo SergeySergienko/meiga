@@ -1,13 +1,17 @@
-import { CandidateCard } from './CandidateCard';
+import { PersonCard } from './PersonCard';
 
-export const CandidateList = ({ candidates }) => {
+export const CandidateList = ({ candidates, getActions }) => {
   return (
     <>
       <p className='text-center text-2xl font-accent font-bold mb-8'>
         Kandidaten
       </p>
       {candidates.map((candidate) => (
-        <CandidateCard key={candidate.id} candidate={candidate} />
+        <PersonCard
+          key={candidate.id}
+          person={candidate}
+          actions={getActions(candidate)}
+        />
       ))}
     </>
   );

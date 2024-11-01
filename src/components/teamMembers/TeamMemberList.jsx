@@ -1,4 +1,4 @@
-import { TeamMemberCard } from './TeamMemberCard';
+import { TeamMemberCardCover } from './TeamMemberCardCover';
 
 export const TeamMemberList = ({ teamMembers }) => {
   return (
@@ -11,7 +11,7 @@ export const TeamMemberList = ({ teamMembers }) => {
         className='flex flex-wrap justify-center gap-8 my-8'
       >
         {teamMembers.map((member) => (
-          <TeamMemberCard key={member.id} teamMember={member} />
+          <TeamMemberCardCover key={member.id} teamMember={member} />
         ))}
       </div>
     </>

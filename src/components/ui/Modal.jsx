@@ -1,53 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CrossIcon, SpinIcon } from '../icons';
-import { useModalStore } from '../../store';
 
 const modalColorMapper = {
-  aktivieren: { type: 'primary', color: 'purple-700' },
-  löschen: { type: 'error', color: 'red-500' },
+  primary: 'purple-700',
+  error: 'red-500',
 };
 
-export const Modal = ({ open }) => {
-  const [loading, setLoading] = useState(false);
-  const [setModalOpen, modalInfo, resetModalInfo] = useModalStore((state) => [
-    state.setModalOpen,
-    state.modalInfo,
-    state.resetModalInfo,
-  ]);
-
-  const modalColor = modalColorMapper[modalInfo.action];
-
-  const handleSubmit = async () => {
-    try {
-      setLoading(true);
-      await modalInfo?.submitFn();
-      resetModalInfo();
-      setModalOpen(false);
-    } catch (error) {
-      console.log('error:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleCancel = () => {
-    resetModalInfo();
-    setModalOpen(false);
-  };
-
+export const Modal = ({
+  type,
+  action,
+  entity,
+  descriptor,
+  loading,
+  onSubmit,
+  onCancel,
+}) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && open) {
-        handleCancel();
+      if (e.key === 'Escape') {
+        onCancel?.();
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [open]);
-
-  if (!open) return null;
 
   return (
     <div
@@ -69,29 +47,29 @@ export const Modal = ({ open }) => {
         >
           <button
             className='absolute top-4 right-4 text-white hover:text-gray-300'
-            onClick={handleCancel}
+            onClick={onCancel}
           >
             <CrossIcon />
           </button>
 
           <h3
-            className={`font-bold text-center p-4 text-white bg-${modalColor?.color}`}
+            className={`min-h-14 font-bold text-center p-4 text-white bg-${modalColorMapper[type]}`}
           >
-            {modalInfo.entity} {modalInfo.action}
+            {entity} {action}
           </h3>
           <div className='p-4'>
             <div className='my-4'>
-              Wollen Sie "{modalInfo.name}" {modalInfo.entity} wirklich{' '}
-              <span className='font-bold'>{modalInfo.action}</span>?
+              Wollen Sie "{descriptor}" {entity} wirklich{' '}
+              <span className='font-bold'>{action}</span>?
             </div>
             <div className='border border-black/5' />
             <div className='flex justify-between mt-4'>
-              <button className='btn-secondary-small' onClick={handleCancel}>
+              <button className='btn-secondary-small' onClick={onCancel}>
                 Abbrechen
               </button>
               <button
-                className={`btn-${modalColor?.type}-small`}
-                onClick={handleSubmit}
+                className={`btn-${type}-small`}
+                onClick={onSubmit}
                 disabled={loading}
               >
                 {loading ? (

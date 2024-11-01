@@ -1,24 +1,20 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { FaTrophy } from 'react-icons/fa';
+import { getLocaleDate } from '../../utils';
+import { CalendarIcon, MapMarkerIcon } from '../icons';
+import { useProfileStore } from '../../store';
+import { eventApi } from '../../api';
+import { InvokeModalButton } from '..';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Events.css';
-import { getLocaleDate } from '../../utils';
-import { CalendarIcon, MapMarkerIcon } from '../icons';
-import { useModalStore, useProfileStore } from '../../store';
-import { eventApi } from '../../api';
 
 export const EventCard = ({ event }) => {
   const navigate = useNavigate();
 
   const currentUser = useProfileStore((state) => state.currentUser);
-  const [setModalOpen, setModalInfo] = useModalStore((state) => [
-    state.setModalOpen,
-    state.setModalInfo,
-  ]);
-
   const [fullText, setFullText] = useState(false);
   const [currentPhoto, setCurrentPhoto] = useState(0);
   const mainSlider = useRef(null);
@@ -69,11 +65,6 @@ export const EventCard = ({ event }) => {
         });
       }
     }
-  };
-
-  const handleModal = (info) => () => {
-    setModalOpen(true);
-    setModalInfo(info);
   };
 
   const handleThumbnailClick = (index) => {
@@ -161,18 +152,14 @@ export const EventCard = ({ event }) => {
           >
             Bearbeiten
           </button>
-          <button
-            className='btn-error-small'
+          <InvokeModalButton
+            type='error'
+            action='löschen'
+            entity='Veranstaltung'
+            descriptor={event.title}
             disabled={event.protected}
-            onClick={handleModal({
-              action: 'löschen',
-              entity: 'Veranstaltung',
-              name: event.title,
-              submitFn: () => deleteEvent(event.id),
-            })}
-          >
-            Löschen
-          </button>
+            submitFn={() => deleteEvent(event.id)}
+          />
         </span>
       )}
     </div>

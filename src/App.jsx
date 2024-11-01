@@ -20,6 +20,7 @@ import {
   EditTeamMemberPage,
   TeamMembersPage,
   CandidatesPage,
+  PersonPage,
 } from './pages';
 import { eventApi } from './api';
 
@@ -30,7 +31,10 @@ export const App = () => {
     createRoutesFromElements(
       <Route path='/' element={<MainLayout />}>
         <Route index element={<HomePage />} />
-        <Route path='/team' element={<TeamMembersPage />} />
+        <Route path='/team-members'>
+          <Route index element={<TeamMembersPage />} />
+          <Route path=':personId' element={<PersonPage />} />
+        </Route>
         <Route
           path='/events'
           element={<EventsPage />}
@@ -59,8 +63,6 @@ export const App = () => {
             path='/create-team-member'
             element={<CreateTeamMemberPage />}
           />
-        </Route>
-        <Route element={<AuthLayout allowedRoles={['USER']} />}>
           <Route path='/edit-team-member' element={<EditTeamMemberPage />} />
         </Route>
         <Route element={<AuthLayout allowedRoles={['ADMIN', 'OWNER']} />}>

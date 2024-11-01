@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { Footer, Navbar, Modal } from '../components';
-import { useModalStore, useProfileStore, useTeamMemberStore } from '../store';
+import { Footer, Navbar } from '../components';
+import { useProfileStore, useTeamMemberStore } from '../store';
 
 export const MainLayout = () => {
   const { pathname } = useLocation();
@@ -9,7 +9,6 @@ export const MainLayout = () => {
   const updateTeamMember = useTeamMemberStore(
     (state) => state.updateTeamMember
   );
-  const isModalOpen = useModalStore((state) => state.isModalOpen);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,8 +41,6 @@ export const MainLayout = () => {
           <Footer />
         </footer>
       </div>
-
-      <Modal open={isModalOpen} />
     </div>
   );
 };

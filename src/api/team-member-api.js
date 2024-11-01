@@ -3,6 +3,9 @@ import { api } from '.';
 const URL = '/team-members';
 
 export const teamMemberApi = {
+  find(id) {
+    return api.get(`${URL}/${id}`);
+  },
   findByUserId(userId) {
     return api.get(`${URL}/search?userId=${userId}`);
   },
@@ -21,15 +24,15 @@ export const teamMemberApi = {
       },
     });
   },
-  activate(id) {
-    return api.patch(`${URL}/${id}`);
-  },
   update(teamMember) {
     return api.put(URL, teamMember, {
       headers: {
         'Content-type': 'multipart/form-data',
       },
     });
+  },
+  changeStatus(id, status) {
+    return api.patch(URL, { id, status });
   },
   // delete(id) {
   //   return api.delete(`${URL}/${id}`);

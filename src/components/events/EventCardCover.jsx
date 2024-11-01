@@ -17,7 +17,10 @@ export const EventCardCover = ({ event }) => {
 
   return (
     <>
-      <div className='flex flex-col justify-between p-4 mb-4 rounded overflow-hidden bg-white md:flex-row'>
+      <div
+        id='event-card-cover'
+        className='flex flex-col justify-between p-4 mb-4 rounded overflow-hidden bg-white md:flex-row'
+      >
         <div className='flex flex-col md:flex-row'>
           <div
             className='shrink-0 w-full h-72 md:w-72 md:h-40 mr-4 mb-4 rounded bg-cover bg-center bg-no-repeat md:mb-0'
