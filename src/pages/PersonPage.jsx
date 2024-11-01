@@ -9,9 +9,9 @@ export const PersonPage = () => {
   const { personId } = useParams();
 
   const { role } = useProfileStore((state) => state.currentUser);
-  const [currentTeamMember, updateTeamMember] = useTeamMemberStore((state) => [
+  const [currentTeamMember, resetTeamMember] = useTeamMemberStore((state) => [
     state.currentTeamMember,
-    state.updateTeamMember,
+    state.resetTeamMember,
   ]);
 
   const [person, setPerson] = useState({});
@@ -48,9 +48,33 @@ export const PersonPage = () => {
     }
   };
 
+  const deleteTeamMember = async (id) => {
+    try {
+      const res = await teamMemberApi.delete(id);
+      if (res.status === 200) {
+        localStorage.removeItem('teamMemberInfo');
+        resetTeamMember();
+        navigate('/team-members');
+      }
+    } catch (error) {
+      console.error('error:', error);
+      if (error.status === 403) {
+        navigate('/error', {
+          state: {
+            error: {
+              title: 'Löschfehler',
+              message: '',
+            },
+          },
+        });
+      }
+    }
+  };
+
   const getActions = () => {
     let deactivateButton = <></>;
     let updateButton = <></>;
+    let deleteButton = <></>;
     if (role === 'ADMIN') {
       deactivateButton = (
         <InvokeModalButton
@@ -62,7 +86,7 @@ export const PersonPage = () => {
         />
       );
     }
-    if (person.id === currentTeamMember.id) {
+    if (personId === currentTeamMember.id) {
       updateButton = (
         <InvokeModalButton
           type='primary'
@@ -72,11 +96,21 @@ export const PersonPage = () => {
           submitFn={() => navigate('/edit-team-member')}
         />
       );
+      deleteButton = (
+        <InvokeModalButton
+          type='error'
+          action='löschen'
+          entity='Mitglied'
+          descriptor={person.name}
+          submitFn={() => deleteTeamMember(person.id)}
+        />
+      );
     }
     return (
       <>
         {updateButton}
         {deactivateButton}
+        {deleteButton}
       </>
     );
   };

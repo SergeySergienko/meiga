@@ -34,7 +34,7 @@ export const teamMemberApi = {
   changeStatus(id, status) {
     return api.patch(URL, { id, status });
   },
-  // delete(id) {
-  //   return api.delete(`${URL}/${id}`);
-  // },
+  delete(id) {
+    return api.delete(`${URL}/${id}`);
+  },
 };
