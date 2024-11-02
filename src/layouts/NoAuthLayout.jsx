@@ -1,8 +1,9 @@
 import { Outlet, Navigate } from 'react-router-dom';
+import { useStore } from '../store';
 
 export const NoAuthLayout = () => {
-  const user = localStorage.getItem('userInfo');
-  if (user) {
+  const currentUser = useStore((state) => state.currentUser);
+  if (currentUser?.email) {
     return <Navigate to='/' />;
   }
 

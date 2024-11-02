@@ -2,17 +2,19 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { InvokeModalButton, PersonCard } from '../components';
 import { teamMemberApi } from '../api';
-import { useProfileStore, useTeamMemberStore } from '../store';
+import { useStore } from '../store';
 
 export const PersonPage = () => {
   const navigate = useNavigate();
   const { personId } = useParams();
 
-  const { role } = useProfileStore((state) => state.currentUser);
-  const [currentTeamMember, resetTeamMember] = useTeamMemberStore((state) => [
-    state.currentTeamMember,
-    state.resetTeamMember,
-  ]);
+  const [currentUser, currentTeamMember, resetTeamMember] = useStore(
+    (state) => [
+      state.currentUser,
+      state.currentTeamMember,
+      state.resetTeamMember,
+    ]
+  );
 
   const [person, setPerson] = useState({});
 
@@ -52,7 +54,6 @@ export const PersonPage = () => {
     try {
       const res = await teamMemberApi.delete(id);
       if (res.status === 200) {
-        localStorage.removeItem('teamMemberInfo');
         resetTeamMember();
         navigate('/team-members');
       }
@@ -75,7 +76,7 @@ export const PersonPage = () => {
     let deactivateButton = <></>;
     let updateButton = <></>;
     let deleteButton = <></>;
-    if (role === 'ADMIN') {
+    if (currentUser.role === 'ADMIN') {
       deactivateButton = (
         <InvokeModalButton
           type='error'
@@ -88,13 +89,12 @@ export const PersonPage = () => {
     }
     if (personId === currentTeamMember.id) {
       updateButton = (
-        <InvokeModalButton
-          type='primary'
-          action='aktualisieren'
-          entity='Mitglied'
-          descriptor={person.name}
-          submitFn={() => navigate('/edit-team-member')}
-        />
+        <button
+          className='btn-primary-small'
+          onClick={() => navigate('/edit-team-member')}
+        >
+          Bearbeiten
+        </button>
       );
       deleteButton = (
         <InvokeModalButton

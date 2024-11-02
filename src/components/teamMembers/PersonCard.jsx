@@ -1,7 +1,7 @@
-import { useProfileStore } from '../../store';
+import { useStore } from '../../store';
 
 export const PersonCard = ({ person, actions }) => {
-  const { role } = useProfileStore((state) => state.currentUser);
+  const { role } = useStore((state) => state.currentUser);
 
   return (
     <div

@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useProfileStore } from '../../../store';
+import { useStore } from '../../../store';
 import { FormFooter } from '../..';
 
 export const TeamMemberForm = ({ teamMember, loading, onSubmit, onCancel }) => {
   const isEditMode = !!teamMember;
 
-  const currentUser = useProfileStore((state) => state.currentUser);
+  const currentUser = useStore((state) => state.currentUser);
 
   const [fileError, setFileError] = useState('');
 

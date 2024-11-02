@@ -47,7 +47,7 @@ api.interceptors.response.use(
       } catch (refreshError) {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        localStorage.removeItem('userInfo');
+        localStorage.removeItem('store');
         window.location.href = '/auth';
 
         return Promise.reject(refreshError);

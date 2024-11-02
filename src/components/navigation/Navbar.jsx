@@ -3,13 +3,13 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { NavMenu, ProfileMenu, FullScreenPopup } from '..';
 import { BurgerIcon, LogoIcon, UserIcon } from '..';
 import { throttle } from '../../utils';
-import { useProfileStore, useTeamMemberStore } from '../../store';
+import { useStore } from '../../store';
 
 export const Navbar = () => {
   const navigate = useNavigate();
 
-  const { email } = useProfileStore((state) => state.currentUser);
-  const { photo } = useTeamMemberStore((state) => state.currentTeamMember);
+  const { email } = useStore((state) => state.currentUser);
+  const { photo } = useStore((state) => state.currentTeamMember);
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isNavMenuOpen, setNavMenuPopupOpen] = useState(false);

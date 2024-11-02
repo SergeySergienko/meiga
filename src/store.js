@@ -1,31 +1,29 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export const useProfileStore = create(
+export const useStore = create(
   persist(
     (set) => ({
       currentUser: {},
-      update(userInfo) {
+      updateUser(userInfo) {
         set((state) => ({
           currentUser: { ...state.currentUser, ...userInfo },
         }));
       },
-      reset() {
+      resetUser() {
         set({ currentUser: {} });
       },
+
+      currentTeamMember: {},
+      updateTeamMember(teamMemberInfo) {
+        set((state) => ({
+          currentTeamMember: { ...state.currentTeamMember, ...teamMemberInfo },
+        }));
+      },
+      resetTeamMember() {
+        set({ currentTeamMember: {} });
+      },
     }),
-    { name: 'profile-storage' }
+    { name: 'store' }
   )
 );
-
-export const useTeamMemberStore = create((set) => ({
-  currentTeamMember: {},
-  updateTeamMember(teamMemberInfo) {
-    set((state) => ({
-      currentTeamMember: { ...state.currentTeamMember, ...teamMemberInfo },
-    }));
-  },
-  resetTeamMember() {
-    set({ currentTeamMember: {} });
-  },
-}));

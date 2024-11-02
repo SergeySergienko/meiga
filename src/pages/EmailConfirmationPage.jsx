@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { authApi } from '../api';
-import { useProfileStore } from '../store';
+import { useStore } from '../store';
 
 export const EmailConfirmationPage = () => {
-  const update = useProfileStore((state) => state.update);
+  const updateUser = useStore((state) => state.updateUser);
   const navigate = useNavigate();
   const { activationToken } = useParams();
 
@@ -15,9 +15,7 @@ export const EmailConfirmationPage = () => {
         const { accessToken, refreshToken, user } = res.data;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        localStorage.setItem('userInfo', JSON.stringify(user));
-
-        update({ id: user.id, email: user.email, role: user.role });
+        updateUser(user);
         navigate('/');
       } catch (error) {
         console.error('error:', error);

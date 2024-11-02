@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
-import { useProfileStore, useTeamMemberStore } from '../../store';
+import { useStore } from '../../store';
 import { authApi } from '../../api';
 import { AdminMenu } from './AdminMenu';
 import { CaretIcon } from '../icons';
@@ -13,15 +13,14 @@ const menuItems = [
 ];
 
 export const ProfileMenu = ({ onClose }) => {
-  const [currentUser, reset] = useProfileStore((state) => [
-    state.currentUser,
-    state.reset,
-  ]);
-
-  const [currentTeamMember, resetTeamMember] = useTeamMemberStore((state) => [
-    state.currentTeamMember,
-    state.resetTeamMember,
-  ]);
+  const [currentUser, resetUser, currentTeamMember, resetTeamMember] = useStore(
+    (state) => [
+      state.currentUser,
+      state.resetUser,
+      state.currentTeamMember,
+      state.resetTeamMember,
+    ]
+  );
 
   const [isAdminMenuOpen, setAdminMenuOpen] = useState(false);
 
@@ -42,9 +41,7 @@ export const ProfileMenu = ({ onClose }) => {
       if (res.status === 200) {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        localStorage.removeItem('userInfo');
-        localStorage.removeItem('teamMemberInfo');
-        reset();
+        resetUser();
         resetTeamMember();
         onClose();
         navigate('/');
@@ -54,9 +51,7 @@ export const ProfileMenu = ({ onClose }) => {
       if (error.status === 404) {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        localStorage.removeItem('userInfo');
-        localStorage.removeItem('teamMemberInfo');
-        reset();
+        resetUser();
         resetTeamMember();
         onClose();
         navigate('/');

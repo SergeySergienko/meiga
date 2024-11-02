@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 // import { FaTrophy } from 'react-icons/fa';
 import { getLocaleDate } from '../../utils';
 import { CalendarIcon, MapMarkerIcon } from '../icons';
-import { useProfileStore } from '../../store';
+import { useStore } from '../../store';
 import { eventApi } from '../../api';
 import { InvokeModalButton } from '..';
 import Slider from 'react-slick';
@@ -14,7 +14,7 @@ import './Events.css';
 export const EventCard = ({ event }) => {
   const navigate = useNavigate();
 
-  const currentUser = useProfileStore((state) => state.currentUser);
+  const currentUser = useStore((state) => state.currentUser);
   const [fullText, setFullText] = useState(false);
   const [currentPhoto, setCurrentPhoto] = useState(0);
   const mainSlider = useRef(null);

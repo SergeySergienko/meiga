@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { AuthForm, BlurredWrapper, TabButton } from '../components';
-import { useProfileStore, useTeamMemberStore } from '../store';
+import { useStore } from '../store';
 import { authApi, teamMemberApi } from '../api';
 
 const tabTitles = ['Anmelden', 'Registrieren'];
@@ -11,10 +11,10 @@ export const AuthPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const update = useProfileStore((state) => state.update);
-  const updateTeamMember = useTeamMemberStore(
-    (state) => state.updateTeamMember
-  );
+  const [updateUser, updateTeamMember] = useStore((state) => [
+    state.updateUser,
+    state.updateTeamMember,
+  ]);
 
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState(tabTitles[0]);
@@ -53,7 +53,6 @@ export const AuthPage = () => {
     try {
       const { data: teamMember } = await teamMemberApi.findByUserId(userId);
       if (teamMember) {
-        localStorage.setItem('teamMemberInfo', JSON.stringify(teamMember));
         updateTeamMember(teamMember);
       }
     } catch (error) {
@@ -69,8 +68,7 @@ export const AuthPage = () => {
       const { accessToken, refreshToken, user } = res.data;
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
-      localStorage.setItem('userInfo', JSON.stringify(user));
-      update({ id: user.id, email: user.email, role: user.role });
+      updateUser(user);
 
       await findTeamMemberByUserId(user.id);
 
