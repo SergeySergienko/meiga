@@ -21,6 +21,7 @@ import {
   TeamMembersPage,
   CandidatesPage,
   PersonPage,
+  PrivacyPage,
 } from './pages';
 import { eventApi } from './api';
 
@@ -45,6 +46,7 @@ export const App = () => {
         />
         <Route path='/downloads' element={<DownloadsPage />} />
         <Route path='/impressum' element={<ImpressumPage />} />
+        <Route path='/privacy' element={<PrivacyPage />} />
 
         <Route element={<NoAuthLayout />}>
           <Route path='/auth' element={<AuthPage />} />

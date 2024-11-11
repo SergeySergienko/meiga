@@ -7,7 +7,7 @@ const links = [
   { path: '/', label: 'Startseite' },
   { path: '/team-members', label: 'Team' },
   { path: '/events', label: 'Veranstaltungen' },
-  { path: 'unterlagen', label: 'Unterlagen' },
+  // { path: 'unterlagen', label: 'Unterlagen' },
 ];
 
 export const NavMenu = ({ classList, isScrolled, onClose }) => {

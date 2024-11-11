@@ -65,13 +65,22 @@ export const ProfileMenu = ({ onClose }) => {
         id='profile-menu'
         className='flex flex-col w-fit items-end gap-8 mb-12'
       >
-        <div id='profile-info' className='flex flex-col items-end gap-2'>
-          <div className='text-white text-2xl font-bold'>
-            Hallo {currentTeamMember.name || currentUser.role} !
+        <div id='profile-info' className='flex items-center gap-4'>
+          <div className='flex flex-col items-end gap-2'>
+            <div className='text-white text-2xl font-bold'>
+              Hallo {currentTeamMember.name || currentUser.role} !
+            </div>
+            <span className=' text-purple-300 font-medium italic'>
+              {currentUser.email}
+            </span>
           </div>
-          <span className=' text-purple-300 font-medium italic'>
-            {currentUser.email}
-          </span>
+          {currentTeamMember.photo && (
+            <img
+              src={currentTeamMember.photo}
+              alt='team-member-photo'
+              className='h-14 w-14 rounded-md object-cover object-top'
+            />
+          )}
         </div>
         <div className='border border-gray-800 w-full'></div>
         {menuItems.map((item) => {

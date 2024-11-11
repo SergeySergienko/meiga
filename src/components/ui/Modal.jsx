@@ -2,11 +2,6 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CrossIcon, SpinIcon } from '../icons';
 
-const modalColorMapper = {
-  primary: 'purple-700',
-  error: 'red-500',
-};
-
 export const Modal = ({
   type,
   action,
@@ -16,6 +11,11 @@ export const Modal = ({
   onSubmit,
   onCancel,
 }) => {
+  const modalColorMapper = {
+    primary: 'purple-700',
+    error: 'red-500',
+  };
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -53,7 +53,9 @@ export const Modal = ({
           </button>
 
           <h3
-            className={`min-h-14 font-bold text-center p-4 text-white bg-${modalColorMapper[type]}`}
+            className={`min-h-14 font-bold text-center p-4 text-white ${
+              type === 'primary' ? 'bg-purple-700' : 'bg-red-500'
+            }`}
           >
             {entity} {action}
           </h3>
@@ -68,7 +70,9 @@ export const Modal = ({
                 Abbrechen
               </button>
               <button
-                className={`btn-${type}-small`}
+                className={`${
+                  type === 'primary' ? 'btn-primary-small' : 'btn-error-small'
+                }`}
                 onClick={onSubmit}
                 disabled={loading}
               >

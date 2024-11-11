@@ -10,7 +10,7 @@
     @apply py-3 px-6 bg-white text-black font-bold rounded-full shadow-xl hover:bg-gray-300 hover:shadow-none focus:outline-none transition-all;
   }
   .btn-primary-small {
-    @apply py-1 px-3 text-sm bg-purple-700 text-white rounded-xl hover:bg-purple-500 disabled:shadow-none disabled:bg-purple-400 transition-all;
+    @apply py-1 px-3 text-sm bg-purple-700 text-white rounded-xl shadow-lg hover:shadow-none hover:bg-purple-500 disabled:shadow-none disabled:bg-purple-400 transition-all;
   }
   .btn-secondary-small {
     @apply py-1 px-3 text-sm text-purple-700 border border-gray-200 rounded-xl shadow-lg hover:shadow-none hover:text-purple-400 transition-all;
@@ -21,11 +21,12 @@
   .nav-menu-item {
     @apply transition cursor-pointer font-bold text-xl text-white hover:text-purple-300 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-blue-dark;
   }
-  .nav-menu-item.active {
+  .nav-menu-item.active,
+  .doc-menu-item.active {
     @apply text-purple-300;
   }
   .profile-menu-item {
-    @apply px-2 py-1 border-b-2 border-gray-600 hover:border-gray-600/0 rounded-xl;
+    @apply px-2 py-1 border-x border-b-2 border-gray-600 hover:border-gray-600/0 rounded-xl;
   }
   .submenu-item {
     @apply transition cursor-pointer p-3 mt-3 text-base text-white hover:text-purple-300 [text-shadow:2px_2px_2px_var(--tw-shadow-color)] shadow-blue-dark;

@@ -24,6 +24,10 @@ export const PersonCard = ({ person, actions }) => {
           <>
             <dt>ID</dt>
             <dd className='text-sm'>{person.id}</dd>
+            <dt>Erstellt am</dt>
+            <dd className='text-sm'>
+              {new Date(person.createdAt).toLocaleString('de')}
+            </dd>
           </>
         )}
       </dl>
