@@ -10,6 +10,7 @@ export * from './EventsPage';
 export * from './CandidatesPage';
 export * from './PersonPage';
 export * from './TeamMembersPage';
+export * from './UsersPage';
 export * from './ImpressumPage';
 export * from './PrivacyPage';
 export * from './HomePage';

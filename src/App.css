@@ -27,8 +27,27 @@ dd {
   color: #7e22ce;
 }
 
-/* animation */
+.table-cell {
+  padding: 0.25rem;
+  text-align: start;
+  border-width: 1px;
+  border-color: #d8b4fe;
+  white-space: nowrap;
+}
+@media (min-width: 768px) {
+  .table-cell {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+@media (min-width: 880px) {
+  .table-cell {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+}
 
+/* animation */
 .photo {
   opacity: 0;
   transform: scale(0.8);

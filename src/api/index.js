@@ -4,6 +4,7 @@ import { authApi } from './auth-api';
 export * from './auth-api';
 export * from './event-api';
 export * from './team-member-api';
+export * from './user-api';
 
 const API_URL = import.meta.env.VITE_API_URL;
 

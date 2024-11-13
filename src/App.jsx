@@ -22,6 +22,7 @@ import {
   CandidatesPage,
   PersonPage,
   PrivacyPage,
+  UsersPage,
 } from './pages';
 import { eventApi } from './api';
 
@@ -71,6 +72,7 @@ export const App = () => {
           <Route path='/create-event' element={<CreateEventPage />} />
           <Route path='/edit-event' element={<EditEventPage />} />
           <Route path='/candidates' element={<CandidatesPage />} />
+          <Route path='/users' element={<UsersPage />} />
         </Route>
 
         <Route path='/error' element={<ErrorPage />} />

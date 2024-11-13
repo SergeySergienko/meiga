@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
-  { path: '/handle-users', label: 'Benutzer handhaben' },
+  { path: '/users', label: 'Benutzer handhaben' },
   { path: '/candidates', label: 'Kandidat aktivieren' },
   { path: '/create-event', label: 'Veranstaltung erstellen' },
 ];
