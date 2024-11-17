@@ -11,4 +11,10 @@ export const userApi = {
     }
     return api.get(URL);
   },
+  changeRole(id, role) {
+    return api.put(URL, { id, role });
+  },
+  delete(id) {
+    return api.delete(`${URL}/${id}`);
+  },
 };

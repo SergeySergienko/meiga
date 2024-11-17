@@ -76,7 +76,7 @@ export const PersonPage = () => {
     let deactivateButton = <></>;
     let updateButton = <></>;
     let deleteButton = <></>;
-    if (currentUser.role === 'ADMIN') {
+    if (currentUser.role === 'ADMIN' || currentUser.role === 'OWNER') {
       deactivateButton = (
         <InvokeModalButton
           type='error'

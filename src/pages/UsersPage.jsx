@@ -1,7 +1,14 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { userApi } from '../api';
+import { useStore } from '../store';
+import { InvokeModalButton } from '../components';
 
 export const UsersPage = () => {
+  const navigate = useNavigate();
+
+  const currentUser = useStore((state) => state.currentUser);
+
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
@@ -36,8 +43,54 @@ export const UsersPage = () => {
     setPage(page + 1);
   };
 
+  const changeUserRole = async (id, role) => {
+    const newRole = role === 'USER' ? 'ADMIN' : 'USER';
+    try {
+      await userApi.changeRole(id, newRole);
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user.id === id ? { ...user, role: newRole } : user
+        )
+      );
+    } catch (error) {
+      console.error('error:', error);
+      if (error.status === 403) {
+        navigate('/error', {
+          state: {
+            error: {
+              title: 'Die Benutzerrolle konnte nicht geändert werden',
+              message: 'Das Benutzerkonto wurde noch nicht aktiviert',
+              path: '/users',
+            },
+          },
+        });
+      }
+    }
+  };
+
+  const deleteUser = async (id) => {
+    try {
+      await userApi.delete(id);
+      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+    } catch (error) {
+      console.error('error:', error);
+      if (error.status === 403) {
+        navigate('/error', {
+          state: {
+            error: {
+              title: 'Der Benutzer konnte nicht gelöscht werden',
+              message:
+                'Der Benutzer mit Teammitglied Status kann nicht gelöscht werden',
+              path: '/users',
+            },
+          },
+        });
+      }
+    }
+  };
+
   return (
-    <div id='team-page' className='my-32 mx-2 xs:mx-4 sm:mx-8'>
+    <div id='users-page' className='my-32 mx-2 xs:mx-4 sm:mx-8'>
       <div className='external-container py-10 bg-gray-200'>
         <h2 className='mb-4 text-center font-accent text-lg text-purple-700'>
           Benutzer
@@ -62,12 +115,26 @@ export const UsersPage = () => {
                   <td className='table-cell'>{user.role}</td>
                   <td className='table-cell'>{user.id}</td>
                   <td className='table-cell'>
-                    <button className='btn-primary-small text-xs md:text-base md:px-2 px-1 py-0 mr-2'>
-                      Bearbeiten
-                    </button>
-                    <button className='btn-error-small text-xs md:text-base md:px-2 px-1 py-0'>
-                      Löschen
-                    </button>
+                    <span className='flex gap-2'>
+                      {currentUser.role === 'OWNER' &&
+                        user.role !== 'OWNER' && (
+                          <InvokeModalButton
+                            action='ändern'
+                            entity='Rolle'
+                            descriptor={user.role}
+                            submitFn={() => changeUserRole(user.id, user.role)}
+                          />
+                        )}
+                      {user.role === 'USER' && (
+                        <InvokeModalButton
+                          type='error'
+                          action='löschen'
+                          entity='Benutzer'
+                          descriptor={user.email}
+                          submitFn={() => deleteUser(user.id)}
+                        />
+                      )}
+                    </span>
                   </td>
                 </tr>
               ))}

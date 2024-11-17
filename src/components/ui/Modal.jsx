@@ -60,7 +60,7 @@ export const Modal = ({
             {entity} {action}
           </h3>
           <div className='p-4'>
-            <div className='my-4'>
+            <div className='my-4 text-wrap leading-6'>
               Wollen Sie "{descriptor}" {entity} wirklich{' '}
               <span className='font-bold'>{action}</span>?
             </div>

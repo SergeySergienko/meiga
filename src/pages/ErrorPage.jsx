@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 import { ExclamationTriangleIcon } from '../components';
 
-export const ErrorPage = ({ title, message }) => {
+export const ErrorPage = ({ title, message, path = '/' }) => {
   const location = useLocation();
   const error = location.state?.error;
 
@@ -20,7 +20,7 @@ export const ErrorPage = ({ title, message }) => {
           </div>
           <h2 className='text-2xl font-bold mb-4'>{title || error?.title}</h2>
           <p className='text-xl mb-5'>{message || error?.message}</p>
-          <Link to='/'>
+          <Link to={error?.path || path}>
             <button className='btn-primary'>Zurück</button>
           </Link>
         </div>

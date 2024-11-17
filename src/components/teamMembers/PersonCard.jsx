@@ -20,7 +20,7 @@ export const PersonCard = ({ person, actions }) => {
         <dd>{person.position}</dd>
         <dt>Slogan</dt>
         <dd>{person.slogan}</dd>
-        {role === 'ADMIN' && (
+        {(role === 'ADMIN' || role === 'OWNER') && (
           <>
             <dt>ID</dt>
             <dd className='text-sm'>{person.id}</dd>
