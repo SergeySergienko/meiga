@@ -104,7 +104,7 @@ export const UsersPage = () => {
                   Email {sortOrder === 'asc' ? '↑' : '↓'}
                 </th>
                 <th className='table-cell'>Rolle</th>
-                <th className='table-cell'>ID</th>
+                {/* <th className='table-cell'>ID</th> */}
                 <th className='table-cell'>Aktionen</th>
               </tr>
             </thead>
@@ -113,7 +113,7 @@ export const UsersPage = () => {
                 <tr key={user.id}>
                   <td className='table-cell'>{user.email}</td>
                   <td className='table-cell'>{user.role}</td>
-                  <td className='table-cell'>{user.id}</td>
+                  {/* <td className='table-cell'>{user.id}</td> */}
                   <td className='table-cell'>
                     <span className='flex gap-2'>
                       {currentUser.role === 'OWNER' &&

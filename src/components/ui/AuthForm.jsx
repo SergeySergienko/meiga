@@ -5,6 +5,7 @@ export const AuthForm = ({ title, loading, onSubmit, onCancel }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [isChecked, setChecked] = useState(false);
   const [error, setError] = useState('');
 
   const isSignup = title === 'Registrieren';
@@ -30,6 +31,13 @@ export const AuthForm = ({ title, loading, onSubmit, onCancel }) => {
 
     if (isSignup && password !== confirmPassword) {
       setError('Passwörter stimmen nicht überein');
+      return;
+    }
+
+    if (isSignup && !isChecked) {
+      setError(
+        'Um fortzufahren, müssen Sie die Datenschutzrichtlinie akzeptieren'
+      );
       return;
     }
 
@@ -80,23 +88,44 @@ export const AuthForm = ({ title, loading, onSubmit, onCancel }) => {
       </div>
 
       {isSignup && (
-        <div className='mb-4'>
-          <label
-            className='block text-white text-sm font-bold mb-2'
-            htmlFor='confirm-password'
-          >
-            Passwort bestätigen
-          </label>
-          <input
-            id='confirm-password'
-            type='password'
-            autoComplete='confirm-password'
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500'
-            required
-          />
-        </div>
+        <>
+          <div className='mb-4'>
+            <label
+              className='block text-white text-sm font-bold mb-2'
+              htmlFor='confirm-password'
+            >
+              Passwort bestätigen
+            </label>
+            <input
+              id='confirm-password'
+              type='password'
+              autoComplete='confirm-password'
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500'
+              required
+            />
+          </div>
+          <div>
+            <input
+              id='privacy-policy-accept'
+              type='checkbox'
+              checked={isChecked}
+              onChange={() => setChecked(!isChecked)}
+              className='accent-purple-500 cursor-pointer'
+            />
+            <label className='text-white text-xs ml-2'>
+              Ich bestätige, dass ich die{' '}
+              <a
+                href='/privacy'
+                className='text-purple-300 hover:text-purple-500 underline'
+              >
+                Datenschutzrichtlinie
+              </a>{' '}
+              gelesen und akzeptiert habe.
+            </label>
+          </div>
+        </>
       )}
       <FormFooter loading={loading} onCancel={onCancel} />
     </form>
