@@ -5,7 +5,7 @@ import { getLocaleDate } from '../../utils';
 import { CalendarIcon, MapMarkerIcon } from '../icons';
 import { useStore } from '../../store';
 import { eventApi } from '../../api';
-import { InvokeModalButton } from '..';
+import { InvokeModalElement } from '..';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -152,7 +152,7 @@ export const EventCard = ({ event }) => {
           >
             Bearbeiten
           </button>
-          <InvokeModalButton
+          <InvokeModalElement
             type='error'
             action='löschen'
             entity='Veranstaltung'

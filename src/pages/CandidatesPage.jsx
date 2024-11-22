@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { teamMemberApi } from '../api';
-import { CandidateList, InvokeModalButton } from '../components';
+import { CandidateList, InvokeModalElement } from '../components';
 
 export const CandidatesPage = () => {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ export const CandidatesPage = () => {
   };
 
   const getActions = (person) => (
-    <InvokeModalButton
+    <InvokeModalElement
       action='aktivieren'
       entity='Kandidat'
       descriptor={person.name}

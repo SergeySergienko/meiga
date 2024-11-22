@@ -1,148 +1,43 @@
-import { useState } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
-import { useStore } from '../../store';
-import { authApi } from '../../api';
-import { AdminMenu } from './AdminMenu';
-import { CaretIcon } from '../icons';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
-  { path: '/my-settings', label: 'Meine Einstellungen' },
-  { path: '/create-team-member', label: 'Mitgliedschaft beantragen' },
-  // { path: '/edit-team-member', label: 'Teammitglied aktualisieren' },
-  { path: 'management', label: 'Verwaltung' },
+  { path: '/change-email', label: 'E-Mail ändern' },
+  { path: '/change-password', label: 'Passwort ändern' },
+  { path: '/delete-account', label: 'Konto löschen' },
 ];
 
 export const ProfileMenu = ({ onClose }) => {
-  const [currentUser, resetUser, currentTeamMember, resetTeamMember] = useStore(
-    (state) => [
-      state.currentUser,
-      state.resetUser,
-      state.currentTeamMember,
-      state.resetTeamMember,
-    ]
-  );
-
-  const [isAdminMenuOpen, setAdminMenuOpen] = useState(false);
-
-  const toggleAdminMenu = () => setAdminMenuOpen((prev) => !prev);
-
-  const closeAdminMenu = () => {
-    setAdminMenuOpen(false);
-    if (onClose) {
-      onClose();
-    }
-  };
-
   const navigate = useNavigate();
 
-  const logout = async () => {
-    try {
-      const res = await authApi.logout();
-      if (res.status === 200) {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        resetUser();
-        resetTeamMember();
-        onClose();
-        navigate('/');
-      }
-    } catch (error) {
-      console.error('error:', error);
-      if (error.status === 404) {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        resetUser();
-        resetTeamMember();
-        onClose();
-        navigate('/');
-      }
-    }
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const handleNavigate = (path) => () => {
+    setIsVisible(false);
+    onClose();
+    navigate(`${path}`);
   };
 
   return (
-    <div className='flex justify-end'>
-      <div
-        id='profile-menu'
-        className='flex flex-col w-fit items-end gap-8 mb-12'
-      >
-        <div id='profile-info' className='flex items-center gap-4'>
-          <div className='flex flex-col items-end gap-2'>
-            <div className='text-white text-2xl font-bold'>
-              Hallo {currentTeamMember.name || currentUser.role} !
-            </div>
-            <span className=' text-purple-300 font-medium italic'>
-              {currentUser.email}
-            </span>
-          </div>
-          {currentTeamMember.photo && (
-            <img
-              src={currentTeamMember.photo}
-              alt='team-member-photo'
-              className='h-14 w-14 rounded-md object-cover object-top'
-            />
-          )}
-        </div>
-        <div className='border border-gray-800 w-full'></div>
-        {menuItems.map((item) => {
-          if (
-            item.label === 'Verwaltung' &&
-            (currentUser.role === 'ADMIN' || currentUser.role === 'OWNER')
-          ) {
-            return (
-              <div key={item.path} className='flex flex-col items-end'>
-                <div
-                  onClick={toggleAdminMenu}
-                  className='flex justify-end items-center gap-1 nav-menu-item profile-menu-item'
-                >
-                  <span>{item.label}</span>
-                  <span
-                    className={`${isAdminMenuOpen ? 'rotate-180' : 'rotate-0'}`}
-                  >
-                    <CaretIcon />
-                  </span>
-                </div>
-                {isAdminMenuOpen && <AdminMenu onClose={closeAdminMenu} />}
-              </div>
-            );
-          }
-
-          if (
-            item.label === 'Verwaltung' &&
-            (currentUser.role !== 'ADMIN' || currentUser.role !== 'OWNER')
-          )
-            return;
-
-          if (
-            item.label === 'Mitgliedschaft beantragen' &&
-            currentTeamMember.status
-          )
-            return;
-
-          if (
-            item.label === 'Teammitglied aktualisieren' &&
-            currentTeamMember.status !== 'MEMBER'
-          )
-            return;
-
-          return (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              onClick={onClose}
-              className='nav-menu-item'
-            >
-              <div className='profile-menu-item'>{item.label} &#8680;</div>
-            </NavLink>
-          );
-        })}
-        <div className='border border-gray-800 w-full'></div>
-        <button
-          className='nav-menu-item text-red-500 profile-menu-item'
-          onClick={logout}
+    <ul
+      id='profile-menu'
+      className={`flex flex-col gap-2 mt-2 items-end transition-opacity duration-500 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
+      {menuItems.map((item) => (
+        <li
+          key={item.path}
+          onClick={handleNavigate(item.path)}
+          className='submenu-item p-0'
         >
-          Abmelden &#8680;
-        </button>
-      </div>
-    </div>
+          <div className='profile-menu-item'>{item.label} &#8680;</div>
+        </li>
+      ))}
+    </ul>
   );
 };

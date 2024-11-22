@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
-  { path: '/users', label: 'Benutzer handhaben' },
-  { path: '/candidates', label: 'Kandidat aktivieren' },
+  { path: '/users', label: 'Benutzerverwaltung' },
+  { path: '/candidates', label: 'Mitgliederverwaltung' },
   { path: '/create-event', label: 'Veranstaltung erstellen' },
 ];
 
@@ -24,7 +24,8 @@ export const AdminMenu = ({ onClose }) => {
 
   return (
     <ul
-      className={`flex flex-col gap-2 mt-2 items-end font-bold transition-opacity duration-500 ${
+      id='admin-menu'
+      className={`flex flex-col gap-2 mt-2 items-end transition-opacity duration-500 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
     >

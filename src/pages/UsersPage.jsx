@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { userApi } from '../api';
 import { useStore } from '../store';
-import { InvokeModalButton } from '../components';
+import { InvokeModalElement } from '../components';
 
 export const UsersPage = () => {
   const navigate = useNavigate();
@@ -118,21 +118,39 @@ export const UsersPage = () => {
                     <span className='flex gap-2'>
                       {currentUser.role === 'OWNER' &&
                         user.role !== 'OWNER' && (
-                          <InvokeModalButton
+                          <InvokeModalElement
                             action='ändern'
                             entity='Rolle'
                             descriptor={user.role}
                             submitFn={() => changeUserRole(user.id, user.role)}
-                          />
+                          >
+                            {(fn) => (
+                              <button
+                                className='px-2 h-4 md:h-6 text-xs md:text-sm bg-purple-700 text-white rounded-xl shadow-lg hover:shadow-none hover:bg-purple-500 disabled:shadow-none disabled:bg-purple-400 transition-all'
+                                onClick={fn}
+                              >
+                                Ändern
+                              </button>
+                            )}
+                          </InvokeModalElement>
                         )}
                       {user.role === 'USER' && (
-                        <InvokeModalButton
+                        <InvokeModalElement
                           type='error'
                           action='löschen'
                           entity='Benutzer'
                           descriptor={user.email}
                           submitFn={() => deleteUser(user.id)}
-                        />
+                        >
+                          {(fn) => (
+                            <button
+                              className='px-2 h-4 md:h-6 text-xs md:text-sm bg-red-500 text-white rounded-xl shadow-lg hover:shadow-none hover:bg-red-400 disabled:shadow-none disabled:bg-red-300 transition-all'
+                              onClick={fn}
+                            >
+                              Löschen
+                            </button>
+                          )}
+                        </InvokeModalElement>
                       )}
                     </span>
                   </td>

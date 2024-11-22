@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { NavMenu, ProfileMenu, FullScreenPopup } from '..';
+import { NavMenu, AccountMenu, FullScreenPopup } from '..';
 import { BurgerIcon, LogoIcon, UserIcon } from '..';
 import { throttle } from '../../utils';
 import { useStore } from '../../store';
@@ -13,10 +13,10 @@ export const Navbar = () => {
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isNavMenuOpen, setNavMenuPopupOpen] = useState(false);
-  const [isProfileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [isAccountMenuOpen, setAccountMenuOpen] = useState(false);
 
   const toggleNavMenu = () => setNavMenuPopupOpen((prev) => !prev);
-  const toggleProfileMenu = () => setProfileMenuOpen((prev) => !prev);
+  const toggleAccountMenu = () => setAccountMenuOpen((prev) => !prev);
 
   useEffect(() => {
     const handleScroll = throttle(() => {
@@ -72,7 +72,7 @@ export const Navbar = () => {
               className={`${
                 email ? 'text-purple-600' : 'text-white'
               } hover:text-purple-300`}
-              onClick={email ? toggleProfileMenu : () => navigate('/auth')}
+              onClick={email ? toggleAccountMenu : () => navigate('/auth')}
             >
               {photo ? (
                 <img
@@ -97,9 +97,9 @@ export const Navbar = () => {
           )}
         </FullScreenPopup>
       )}
-      {isProfileMenuOpen && (
-        <FullScreenPopup onClose={toggleProfileMenu} closeButtonPlace='left'>
-          {(handleClose) => <ProfileMenu onClose={handleClose} />}
+      {isAccountMenuOpen && (
+        <FullScreenPopup onClose={toggleAccountMenu} closeButtonPlace='left'>
+          {(handleClose) => <AccountMenu onClose={handleClose} />}
         </FullScreenPopup>
       )}
     </>

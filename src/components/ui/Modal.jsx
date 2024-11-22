@@ -11,11 +11,6 @@ export const Modal = ({
   onSubmit,
   onCancel,
 }) => {
-  const modalColorMapper = {
-    primary: 'purple-700',
-    error: 'red-500',
-  };
-
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {

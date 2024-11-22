@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Modal } from '.';
 
-export const InvokeModalButton = ({
+export const InvokeModalElement = ({
   type = 'primary',
   action,
   entity,
@@ -9,6 +9,7 @@ export const InvokeModalButton = ({
   disabled,
   submitFn,
   cancelFn,
+  children,
 }) => {
   const [isOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -34,16 +35,22 @@ export const InvokeModalButton = ({
     setModalOpen(false);
   };
 
+  const invokeElement = children ? (
+    children(handleInvoke)
+  ) : (
+    <button
+      id='invoke-modal-button'
+      disabled={disabled}
+      className={`btn-${type}-small capitalize`}
+      onClick={handleInvoke}
+    >
+      {action}
+    </button>
+  );
+
   return (
     <>
-      <button
-        id='invoke-modal-button'
-        disabled={disabled}
-        className={`btn-${type}-small capitalize`}
-        onClick={handleInvoke}
-      >
-        {action}
-      </button>
+      {invokeElement}
       {isOpen && (
         <Modal
           type={type}

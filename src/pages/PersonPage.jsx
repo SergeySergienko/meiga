@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { InvokeModalButton, PersonCard } from '../components';
+import { InvokeModalElement, PersonCard } from '../components';
 import { teamMemberApi } from '../api';
 import { useStore } from '../store';
 
@@ -78,7 +78,7 @@ export const PersonPage = () => {
     let deleteButton = <></>;
     if (currentUser.role === 'ADMIN' || currentUser.role === 'OWNER') {
       deactivateButton = (
-        <InvokeModalButton
+        <InvokeModalElement
           type='error'
           action='blockieren'
           entity='Mitglied'
@@ -97,7 +97,7 @@ export const PersonPage = () => {
         </button>
       );
       deleteButton = (
-        <InvokeModalButton
+        <InvokeModalElement
           type='error'
           action='löschen'
           entity='Mitglied'
