@@ -64,10 +64,7 @@ export const Navbar = () => {
                 SV Meissner Gasse e.V.
               </span>
             </NavLink>
-            <NavMenu
-              classList='hidden lg:flex items-center gap-6'
-              isScrolled={isScrolledBeyondOffset}
-            />
+            <NavMenu classList='hidden lg:flex items-center gap-6' />
             <button
               className={`${
                 email ? 'text-purple-600' : 'text-white'

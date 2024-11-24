@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
 const menuItems = [
-  { path: '/downloads', label: 'Downloads' },
   { path: '/impressum', label: 'Impressum' },
   { path: '/privacy', label: 'Datenschutzerklärung' },
 ];

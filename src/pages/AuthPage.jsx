@@ -85,6 +85,15 @@ export const AuthPage = () => {
           },
         });
       }
+      if (error.status === 404) {
+        navigate('/error', {
+          state: {
+            error: {
+              title: 'Falscher Login oder Passwort',
+            },
+          },
+        });
+      }
     } finally {
       setLoading(false);
     }
