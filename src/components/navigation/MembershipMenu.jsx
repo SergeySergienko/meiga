@@ -29,7 +29,6 @@ export const MembershipMenu = ({ onClose }) => {
       const res = await teamMemberApi.delete(id);
       if (res.status === 200) {
         resetTeamMember();
-        onClose();
         navigate('/team-members');
       }
     } catch (error) {
@@ -44,6 +43,8 @@ export const MembershipMenu = ({ onClose }) => {
           },
         });
       }
+    } finally {
+      onClose();
     }
   };
 

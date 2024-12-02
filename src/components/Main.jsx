@@ -40,8 +40,7 @@ export const Main = () => {
   return (
     <div
       id='home'
-      style={{ height: '100vh' }}
-      className='min-h-600'
+      className='min-h-600 h-lvh'
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >

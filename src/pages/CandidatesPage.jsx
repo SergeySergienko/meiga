@@ -21,7 +21,7 @@ export const CandidatesPage = () => {
     })();
   }, []);
 
-  const activateTeamMember = async (id) => {
+  const activateCandidate = async (id) => {
     try {
       const data = await teamMemberApi.changeStatus(id, 'MEMBER');
       navigate('/team-members');
@@ -40,13 +40,41 @@ export const CandidatesPage = () => {
     }
   };
 
-  const getActions = (person) => (
-    <InvokeModalElement
-      action='aktivieren'
-      entity='Kandidat'
-      descriptor={person.name}
-      submitFn={() => activateTeamMember(person.id)}
-    />
+  const deleteCandidate = async (id) => {
+    try {
+      await teamMemberApi.delete(id);
+      setCandidates((prev) => prev.filter((c) => c.id !== id));
+    } catch (error) {
+      console.error('error:', error);
+      if (error.status === 403) {
+        navigate('/error', {
+          state: {
+            error: {
+              title: 'Löschfehler',
+              message: '',
+            },
+          },
+        });
+      }
+    }
+  };
+
+  const getActions = (candidate) => (
+    <>
+      <InvokeModalElement
+        action='aktivieren'
+        entity='Kandidat'
+        descriptor={candidate.name}
+        submitFn={() => activateCandidate(candidate.id)}
+      />
+      <InvokeModalElement
+        type='error'
+        action='löschen'
+        entity='Kandidat'
+        descriptor={candidate.name}
+        submitFn={() => deleteCandidate(candidate.id)}
+      />
+    </>
   );
 
   return (
